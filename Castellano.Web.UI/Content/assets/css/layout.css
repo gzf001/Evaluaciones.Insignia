@@ -1,0 +1,77 @@
+﻿body{
+    background-color:#222222;
+}
+
+div#logo {
+    background-image: url(../../images/logo_netcore3.png);
+    background-position: right top;
+    background-repeat: no-repeat;
+    height: 364px;
+    width: 600px;
+}
+
+.fuenteEvaluaciones {
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	font-style: italic;
+	font-variant: normal;
+	text-transform: capitalize;
+	color: #1a75ce;
+    text-align: center;
+}
+
+.loginVerticalMiddleAling{
+    position:absolute;
+    top: 25%;
+    left:60%;
+    background-color:#222222;
+}
+
+.marignSlider{
+    margin-top: 5%;
+}
+
+.imageSlider{
+    width:100%; 
+    height:100%;
+}
+
+.footer{
+    padding-top:1%;
+    background-color:#222222;
+}
+
+.fontFooter{
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+	font-size: 13px;
+    color: #FFFFFF;
+    text-align:center;
+}
+
+.rememberMe{
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+	font-size: 13px;
+    color: #FFFFFF;
+    text-align:center;
+    padding-top:5%;
+}
+
+.fontForgotPassword{
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+	font-size: 15px;
+    color: #1a75ce;
+    text-align:center;
+    padding-top:2%;
+    padding-left: 2%;
+}
+
+.fontCaptionSlider {
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+	font-size: 13px;
+	color: #FFFFFF;
+}
+
+.activeText {
+    background-color: #FFFFCC;
+}

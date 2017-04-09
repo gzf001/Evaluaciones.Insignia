@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A5DCD881-6E17-44DC-A9A4-60C9CD6A9922}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Castellano</RootNamespace>
+    <AssemblyName>Castellano</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Business\ActividadEconomica.cs" />
+    <Compile Include="Business\ActividadEconomicaPrincipal.cs" />
+    <Compile Include="Business\AFCAnoMes.cs" />
+    <Compile Include="Business\AFPAnoMes.cs" />
+    <Compile Include="Business\Ambito.cs" />
+    <Compile Include="Business\Ano.cs" />
+    <Compile Include="Business\AnoMes.cs" />
+    <Compile Include="Business\AreaGeografica.cs" />
+    <Compile Include="Business\CajaCompensacion.cs" />
+    <Compile Include="Business\CajaPrevisionalExRegimen.cs" />
+    <Compile Include="Business\Calendario.cs" />
+    <Compile Include="Business\CentroCosto.cs" />
+    <Compile Include="Business\Ciudad.cs" />
+    <Compile Include="Business\Cliente.cs" />
+    <Compile Include="Business\Comuna.cs" />
+    <Compile Include="Business\ConfiguracionContable.cs" />
+    <Compile Include="Business\Contacto.cs" />
+    <Compile Include="Business\CorreccionMonetaria.cs" />
+    <Compile Include="Business\CuentaIFRS.cs" />
+    <Compile Include="Business\CuentaIFRSClasificacion.cs" />
+    <Compile Include="Business\CuentaIFRSSubTipo.cs" />
+    <Compile Include="Business\CuentaIFRSTipo.cs" />
+    <Compile Include="Business\CuentaIFRSTipoInforme.cs" />
+    <Compile Include="Business\Departamento.cs" />
+    <Compile Include="Business\Dia.cs" />
+    <Compile Include="Business\Empresa.cs" />
+    <Compile Include="Business\EquivalenciaTransferenciaBCI.cs" />
+    <Compile Include="Business\EstadoCivil.cs" />
+    <Compile Include="Business\Feriado.cs" />
+    <Compile Include="Business\FormaPago.cs" />
+    <Compile Include="Business\ImpuestoUnico.cs" />
+    <Compile Include="Business\InstitucionSalud.cs" />
+    <Compile Include="Business\InstitucionSaludAnoMes.cs" />
+    <Compile Include="Business\InstitucionValorSeguro.cs" />
+    <Compile Include="Business\InstitucionValorSeguroTipoAhorro.cs" />
+    <Compile Include="Business\IPC.cs" />
+    <Compile Include="Business\Mes.cs" />
+    <Compile Include="Business\Moneda.cs" />
+    <Compile Include="Business\MonedaDiaria.cs" />
+    <Compile Include="Business\MonedaMensual.cs" />
+    <Compile Include="Business\Mutual.cs" />
+    <Compile Include="Business\Nacionalidad.cs" />
+    <Compile Include="Business\NivelEducacional.cs" />
+    <Compile Include="Business\ParametroPrevisional.cs" />
+    <Compile Include="Business\Parentesco.cs" />
+    <Compile Include="Business\Persona.cs" />
+    <Compile Include="Business\Proveedor.cs" />
+    <Compile Include="Business\PuebloIndigena.cs" />
+    <Compile Include="Business\RegimenPrevisional.cs" />
+    <Compile Include="Business\Region.cs" />
+    <Compile Include="Business\SectorActividadEconomica.cs" />
+    <Compile Include="Business\Secuencia.cs" />
+    <Compile Include="Business\SecuenciaCentroCosto.cs" />
+    <Compile Include="Business\SecuenciaEmpresa.cs" />
+    <Compile Include="Business\Semana.cs" />
+    <Compile Include="Business\Sexo.cs" />
+    <Compile Include="Business\SituacionLaboral.cs" />
+    <Compile Include="Business\TipoAdministracion.cs" />
+    <Compile Include="Business\TipoAFC.cs" />
+    <Compile Include="Business\TipoAhorro.cs" />
+    <Compile Include="Business\TipoAtencionMedica.cs" />
+    <Compile Include="Business\TipoCargaFamiliar.cs" />
+    <Compile Include="Business\TipoCuenta.cs" />
+    <Compile Include="Business\TipoEstablecimientoSalud.cs" />
+    <Compile Include="Business\TipoInstitucionValorSeguro.cs" />
+    <Compile Include="Business\TipoMoneda.cs" />
+    <Compile Include="Business\TipoMonedaLegislacionLaboral.cs" />
+    <Compile Include="Business\TipoMonedaTipoPrevision.cs" />
+    <Compile Include="Business\TipoPrevision.cs" />
+    <Compile Include="Business\TipoSubministroAgua.cs" />
+    <Compile Include="Business\TipoVivienda.cs" />
+    <Compile Include="Business\TramoAsignacionFamiliar.cs" />
+    <Compile Include="Business\TramoCargaFamiliar.cs" />
+    <Compile Include="Business\Unidad.cs" />
+    <Compile Include="Context.cs" />
+    <Compile Include="Entity\ActividadEconomica.cs" />
+    <Compile Include="Entity\ActividadEconomicaPrincipal.cs" />
+    <Compile Include="Entity\AFCAnoMes.cs" />
+    <Compile Include="Entity\AFPAnoMes.cs" />
+    <Compile Include="Entity\Ambito.cs" />
+    <Compile Include="Entity\Ano.cs" />
+    <Compile Include="Entity\AnoMes.cs" />
+    <Compile Include="Entity\AreaGeografica.cs" />
+    <Compile Include="Entity\CajaCompensacion.cs" />
+    <Compile Include="Entity\CajaPrevisionalExRegimen.cs" />
+    <Compile Include="Entity\Calendario.cs" />
+    <Compile Include="Entity\CentroCosto.cs" />
+    <Compile Include="Entity\Ciudad.cs" />
+    <Compile Include="Entity\Cliente.cs" />
+    <Compile Include="Entity\Comuna.cs" />
+    <Compile Include="Entity\ConfiguracionContable.cs" />
+    <Compile Include="Entity\Contacto.cs" />
+    <Compile Include="Entity\CorreccionMonetaria.cs" />
+    <Compile Include="Entity\CuentaIFRS.cs" />
+    <Compile Include="Entity\CuentaIFRSClasificacion.cs" />
+    <Compile Include="Entity\CuentaIFRSSubTipo.cs" />
+    <Compile Include="Entity\CuentaIFRSTipo.cs" />
+    <Compile Include="Entity\CuentaIFRSTipoInforme.cs" />
+    <Compile Include="Entity\Departamento.cs" />
+    <Compile Include="Entity\Dia.cs" />
+    <Compile Include="Entity\Empresa.cs" />
+    <Compile Include="Entity\EquivalenciaTransferenciaBCI.cs" />
+    <Compile Include="Entity\EstadoCivil.cs" />
+    <Compile Include="Entity\Feriado.cs" />
+    <Compile Include="Entity\FormaPago.cs" />
+    <Compile Include="Entity\ImpuestoUnico.cs" />
+    <Compile Include="Entity\InstitucionSalud.cs" />
+    <Compile Include="Entity\InstitucionSaludAnoMes.cs" />
+    <Compile Include="Entity\InstitucionValorSeguro.cs" />
+    <Compile Include="Entity\InstitucionValorSeguroTipoAhorro.cs" />
+    <Compile Include="Entity\IPC.cs" />
+    <Compile Include="Entity\Mes.cs" />
+    <Compile Include="Entity\Moneda.cs" />
+    <Compile Include="Entity\MonedaDiaria.cs" />
+    <Compile Include="Entity\MonedaMensual.cs" />
+    <Compile Include="Entity\Mutual.cs" />
+    <Compile Include="Entity\Nacionalidad.cs" />
+    <Compile Include="Entity\NivelEducacional.cs" />
+    <Compile Include="Entity\ParametroPrevisional.cs" />
+    <Compile Include="Entity\Parentesco.cs" />
+    <Compile Include="Entity\Persona.cs" />
+    <Compile Include="Entity\Proveedor.cs" />
+    <Compile Include="Entity\PuebloIndigena.cs" />
+    <Compile Include="Entity\RegimenPrevisional.cs" />
+    <Compile Include="Entity\Region.cs" />
+    <Compile Include="Entity\SectorActividadEconomica.cs" />
+    <Compile Include="Entity\Secuencia.cs" />
+    <Compile Include="Entity\SecuenciaCentroCosto.cs" />
+    <Compile Include="Entity\SecuenciaEmpresa.cs" />
+    <Compile Include="Entity\Semana.cs" />
+    <Compile Include="Entity\Sexo.cs" />
+    <Compile Include="Entity\SituacionLaboral.cs" />
+    <Compile Include="Entity\TipoAdministracion.cs" />
+    <Compile Include="Entity\TipoAFC.cs" />
+    <Compile Include="Entity\TipoAhorro.cs" />
+    <Compile Include="Entity\TipoAtencionMedica.cs" />
+    <Compile Include="Entity\TipoCargaFamiliar.cs" />
+    <Compile Include="Entity\TipoCuenta.cs" />
+    <Compile Include="Entity\TipoEstablecimientoSalud.cs" />
+    <Compile Include="Entity\TipoInstitucionValorSeguro.cs" />
+    <Compile Include="Entity\TipoMoneda.cs" />
+    <Compile Include="Entity\TipoMonedaLegislacionLaboral.cs" />
+    <Compile Include="Entity\TipoMonedaTipoPrevision.cs" />
+    <Compile Include="Entity\TipoPrevision.cs" />
+    <Compile Include="Entity\TipoSubministroAgua.cs" />
+    <Compile Include="Entity\TipoVivienda.cs" />
+    <Compile Include="Entity\TramoAsignacionFamiliar.cs" />
+    <Compile Include="Entity\TramoCargaFamiliar.cs" />
+    <Compile Include="Entity\Unidad.cs" />
+    <Compile Include="FindType.cs" />
+    <Compile Include="Helper.cs" />
+    <Compile Include="Persistent\AFCAnoMes.cs" />
+    <Compile Include="Persistent\AFPAnoMes.cs" />
+    <Compile Include="Persistent\CentroCosto.cs" />
+    <Compile Include="Persistent\Cliente.cs" />
+    <Compile Include="Persistent\ConfiguracionContable.cs" />
+    <Compile Include="Persistent\Contacto.cs" />
+    <Compile Include="Persistent\CuentaIFRSClasificacion.cs" />
+    <Compile Include="Persistent\CuentaIFRS.cs" />
+    <Compile Include="Persistent\Departamento.cs" />
+    <Compile Include="Persistent\Empresa.cs" />
+    <Compile Include="Persistent\Feriado.cs" />
+    <Compile Include="Persistent\ImpuestoUnico.cs" />
+    <Compile Include="Persistent\IPC.cs" />
+    <Compile Include="Persistent\MonedaDiaria.cs" />
+    <Compile Include="Persistent\MonedaMensual.cs" />
+    <Compile Include="Persistent\ParametroPrevisional.cs" />
+    <Compile Include="Persistent\Persona.cs" />
+    <Compile Include="Persistent\Proveedor.cs" />
+    <Compile Include="Persistent\Secuencia.cs" />
+    <Compile Include="Persistent\SecuenciaCentroCosto.cs" />
+    <Compile Include="Persistent\SecuenciaEmpresa.cs" />
+    <Compile Include="Persistent\TramoCargaFamiliar.cs" />
+    <Compile Include="Persistent\Unidad.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProveedorPersona.cs" />
+    <Compile Include="Query.cs" />
+    <Compile Include="RegularExpressions.cs" />
+    <Compile Include="TipoCotizacionIsapre.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Office, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FluentLinqToSql\FluentLinqToSql.csproj">
+      <Project>{7814BE78-9A53-41F1-AF08-A845203C900A}</Project>
+      <Name>FluentLinqToSql</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Castellano.Membresia", "Castellano.Membresia\Castellano.Membresia.csproj", "{62FBCBD8-C58C-4AEE-AE95-CB59264EA7AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Castellano", "Castellano\Castellano.csproj", "{A5DCD881-6E17-44DC-A9A4-60C9CD6A9922}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentLinqToSql", "FluentLinqToSql\FluentLinqToSql.csproj", "{7814BE78-9A53-41F1-AF08-A845203C900A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Castellano.Web.UI", "Castellano.Web.UI\Castellano.Web.UI.csproj", "{4098AAD1-C7FC-488D-B8CE-BEEA0FB1CC1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Castellano.Helpers", "Castellano.Helpers\Castellano.Helpers.csproj", "{D939AD63-EBFD-4300-92B5-CDCFD789032B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{62FBCBD8-C58C-4AEE-AE95-CB59264EA7AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62FBCBD8-C58C-4AEE-AE95-CB59264EA7AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62FBCBD8-C58C-4AEE-AE95-CB59264EA7AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62FBCBD8-C58C-4AEE-AE95-CB59264EA7AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5DCD881-6E17-44DC-A9A4-60C9CD6A9922}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5DCD881-6E17-44DC-A9A4-60C9CD6A9922}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5DCD881-6E17-44DC-A9A4-60C9CD6A9922}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5DCD881-6E17-44DC-A9A4-60C9CD6A9922}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7814BE78-9A53-41F1-AF08-A845203C900A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7814BE78-9A53-41F1-AF08-A845203C900A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7814BE78-9A53-41F1-AF08-A845203C900A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7814BE78-9A53-41F1-AF08-A845203C900A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4098AAD1-C7FC-488D-B8CE-BEEA0FB1CC1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4098AAD1-C7FC-488D-B8CE-BEEA0FB1CC1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4098AAD1-C7FC-488D-B8CE-BEEA0FB1CC1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4098AAD1-C7FC-488D-B8CE-BEEA0FB1CC1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D939AD63-EBFD-4300-92B5-CDCFD789032B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D939AD63-EBFD-4300-92B5-CDCFD789032B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D939AD63-EBFD-4300-92B5-CDCFD789032B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D939AD63-EBFD-4300-92B5-CDCFD789032B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

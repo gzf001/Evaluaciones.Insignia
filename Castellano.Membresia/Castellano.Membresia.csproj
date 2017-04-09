@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{62FBCBD8-C58C-4AEE-AE95-CB59264EA7AB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Castellano.Membresia</RootNamespace>
+    <AssemblyName>Castellano.Membresia</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Account.cs" />
+    <Compile Include="Ambito.cs" />
+    <Compile Include="Business\Accion.cs" />
+    <Compile Include="Business\Aplicacion.cs" />
+    <Compile Include="Business\AplicacionPerfil.cs" />
+    <Compile Include="Business\Auditoria.cs" />
+    <Compile Include="Business\CentroCostoAplicacion.cs" />
+    <Compile Include="Business\EmpresaAplicacion.cs" />
+    <Compile Include="Business\Menu.cs" />
+    <Compile Include="Business\MenuItem.cs" />
+    <Compile Include="Business\MenuItemAccion.cs" />
+    <Compile Include="Business\Perfil.cs" />
+    <Compile Include="Business\PerfilUsuario.cs" />
+    <Compile Include="Business\Rol.cs" />
+    <Compile Include="Business\RolAccion.cs" />
+    <Compile Include="Business\RolPersona.cs" />
+    <Compile Include="Business\RolPersonaCentroCosto.cs" />
+    <Compile Include="Business\RolPersonaEmpresa.cs" />
+    <Compile Include="Business\Suscripcion.cs" />
+    <Compile Include="Business\Usuario.cs" />
+    <Compile Include="CentroCosto.cs" />
+    <Compile Include="ChangePasswordStatus.cs" />
+    <Compile Include="Context.cs" />
+    <Compile Include="Empresa.cs" />
+    <Compile Include="Entity\Accion.cs" />
+    <Compile Include="Entity\Aplicacion.cs" />
+    <Compile Include="Entity\AplicacionPerfil.cs" />
+    <Compile Include="Entity\Auditoria.cs" />
+    <Compile Include="Entity\CentroCostoAplicacion.cs" />
+    <Compile Include="Entity\EmpresaAplicacion.cs" />
+    <Compile Include="Entity\Menu.cs" />
+    <Compile Include="Entity\MenuItem.cs" />
+    <Compile Include="Entity\MenuItemAccion.cs" />
+    <Compile Include="Entity\Perfil.cs" />
+    <Compile Include="Entity\PerfilUsuario.cs" />
+    <Compile Include="Entity\Rol.cs" />
+    <Compile Include="Entity\RolAccion.cs" />
+    <Compile Include="Entity\RolPersona.cs" />
+    <Compile Include="Entity\RolPersonaCentroCosto.cs" />
+    <Compile Include="Entity\RolPersonaEmpresa.cs" />
+    <Compile Include="Entity\Suscripcion.cs" />
+    <Compile Include="Entity\Usuario.cs" />
+    <Compile Include="LoginStatus.cs" />
+    <Compile Include="PasswordRecoveryStatus.cs" />
+    <Compile Include="PerfilType.cs" />
+    <Compile Include="Persistent\Aplicacion.cs" />
+    <Compile Include="Persistent\AplicacionPerfil.cs" />
+    <Compile Include="Persistent\Auditoria.cs" />
+    <Compile Include="Persistent\CentroCostoAplicacion.cs" />
+    <Compile Include="Persistent\EmpresaAplicacion.cs" />
+    <Compile Include="Persistent\Menu.cs" />
+    <Compile Include="Persistent\MenuItem.cs" />
+    <Compile Include="Persistent\MenuItemAccion.cs" />
+    <Compile Include="Persistent\Perfil.cs" />
+    <Compile Include="Persistent\PerfilUsuario.cs" />
+    <Compile Include="Persistent\Rol.cs" />
+    <Compile Include="Persistent\RolAccion.cs" />
+    <Compile Include="Persistent\RolPersona.cs" />
+    <Compile Include="Persistent\RolPersonaCentroCosto.cs" />
+    <Compile Include="Persistent\RolPersonaEmpresa.cs" />
+    <Compile Include="Persistent\Suscripcion.cs" />
+    <Compile Include="Persistent\Usuario.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Query.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Web" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Castellano\Castellano.csproj">
+      <Project>{A5DCD881-6E17-44DC-A9A4-60C9CD6A9922}</Project>
+      <Name>Castellano</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FluentLinqToSql\FluentLinqToSql.csproj">
+      <Project>{7814BE78-9A53-41F1-AF08-A845203C900A}</Project>
+      <Name>FluentLinqToSql</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
