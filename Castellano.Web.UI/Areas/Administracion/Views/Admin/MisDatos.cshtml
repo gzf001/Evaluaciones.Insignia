@@ -1,0 +1,103 @@
+﻿@model Castellano.Web.UI.Areas.Administracion.Models.Persona
+
+@{
+    ViewBag.Title = "MisDatos";
+    Layout = "~/Views/Shared/_LayoutLogged.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-offset-1">
+            <div class="intro-message">
+                @*@using (Html.BeginForm("MisDatos", "MisDatos", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal" }))*@
+                @using (Html.BeginForm("MisDatos", "MisDatos", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Run, new { @for = "run", @class = "col-sm-2 control-label" })
+                            <div class="col-sm-2">
+                                @Html.TextBoxFor(x => x.Run, new { @class = "form-control", @id = "run", @placeholder = "R.U.N.", @maxLength = "11" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Nombres, new { @for = "nombres", @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(x => x.Nombres, new { @class = "form-control", @id = "run", @placeholder = "Nombres", @maxLength = "45" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.ApellidoPaterno, new { @for = "apellidoPaterno", @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(x => x.ApellidoPaterno, new { @class = "form-control", @id = "apellidoPaterno", @placeholder = "Apellido Paterno", @maxLength = "45" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.ApellidoMaterno, new { @for = "apellidoMaterno", @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(x => x.ApellidoMaterno, new { @class = "form-control", @id = "apellidoMaterno", @placeholder = "Apellido Materno", @maxLength = "45" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Email, new { @for = "email", @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @id = "email", @placeholder = "Apellido Materno", @maxLength = "70" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.SexoCodigo, new { @for = "sexo", @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.RadioButtonFor(x => x.SexoCodigo, new { @class = "form-control", @id = "sexo" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.FechaNacimiento, new { @for = "fechaNacimiento", @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(x => x.FechaNacimiento, new { @class = "form-control", @id = "fechaNacimiento", @placeholder = "Fecha de Nacimiento", @maxLength = "10" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.NacionalidadCodigo, new { @for = "nacionalidad", @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.DropDownListFor(x => x.NacionalidadCodigo, new Castellano.Web.UI.Areas.Administracion.Models.Persona().Nacionalidades, new { @class = "form-control", @id = "nacionalidad" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.EstadoCivilCodigo, new { @for = "estadoCivil", @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.DropDownListFor(x => x.EstadoCivilCodigo, new Castellano.Web.UI.Areas.Administracion.Models.Persona().EstadosCiviles, new { @class = "form-control", @id = "estadoCivil" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.NivelEducacionalCodigo, new { @for = "nivelEducacional", @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.DropDownListFor(x => x.NivelEducacionalCodigo, new Castellano.Web.UI.Areas.Administracion.Models.Persona().NivelesEducacionales, new { @class = "form-control", @id = "nivelEducacional" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.RegionCodigo, new { @for = "region", @class = "col-sm-2 control-label" })
+                            <div class="col-sm-4">
+                                @Html.DropDownListFor(x => x.RegionCodigo, new Castellano.Web.UI.Areas.Administracion.Models.Persona().Regiones, new { @class = "form-control", @id = "region" })
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(this).ready(
+        $('#fechaNacimiento').datetimepicker()
+    );
+
+    $(function () {
+
+        $.getJSON('/Administracion/Admin/Ciudades')
+    });
+
+
+</script>

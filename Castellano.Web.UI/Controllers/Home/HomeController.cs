@@ -58,18 +58,7 @@ namespace Castellano.Web.UI.Controllers.Home
                 return this.View(model);
             }
 
-            //Castellano.Web.UI.Models.Header.Header.Run = textoRun;
-
-            Castellano.Web.UI.Models.Header.Header header = new Castellano.Web.UI.Models.Header.Header
-            {
-                Run = textoRun,
-                UserName = "Guillermo Zuleta Flores"
-            };
-
-            this.ViewBag.Header = header;
-            //this.ViewBag.Header = Castellano.Web.UI.Models.Header.Header.Run = textoRun;
-
-            System.Web.Security.FormsAuthentication.SetAuthCookie(model.RUN, model.RememberMe);
+            System.Web.Security.FormsAuthentication.SetAuthCookie(string.Format("{0}{1}", runCuerpo, runDigito), model.RememberMe);
 
             return this.RedirectToAction("Index", "Admin", new { area = "Administracion" });
         }

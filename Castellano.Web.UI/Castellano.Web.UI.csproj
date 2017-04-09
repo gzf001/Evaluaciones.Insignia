@@ -124,7 +124,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Areas\Administracion\AdministracionAreaRegistration.cs" />
     <Compile Include="Areas\Administracion\Controllers\AdminController.cs" />
-    <Compile Include="Controllers\Header\HeaderController.cs" />
+    <Compile Include="Areas\Administracion\Models\Persona.cs" />
     <Compile Include="Controllers\Home\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -706,7 +706,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Administracion\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -791,6 +790,8 @@
     <Content Include="Content\assets\font-awesome\fonts\FontAwesome.otf" />
     <Content Include="Areas\Administracion\Views\Web.config" />
     <Content Include="Areas\Administracion\Views\Admin\Index.cshtml" />
+    <Content Include="Areas\Administracion\Views\Admin\ChangePassword.cshtml" />
+    <Content Include="Areas\Administracion\Views\Admin\MisDatos.cshtml" />
     <None Include="Properties\PublishProfiles\Guillermo.pubxml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
