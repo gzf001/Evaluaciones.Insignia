@@ -8,7 +8,7 @@ namespace Castellano.Web.UI.Models.Home
     public class Login
     {
         [Required(AllowEmptyStrings = false, ErrorMessage = "Debe ingresar el R.U.N.")]
-        public string RUN
+        public string Run
         {
             get;
             set;

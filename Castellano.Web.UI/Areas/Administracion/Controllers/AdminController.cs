@@ -21,6 +21,13 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
         {
             return this.View();
         }
+        
+        [Authorize]
+        [HttpPost]
+        public ActionResult MisDatos(Castellano.Web.UI.Areas.Administracion.Models.Persona model)
+        {
+            return this.View();
+        }
 
         [Authorize]
         [HttpGet]
@@ -30,17 +37,41 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
         }
 
         [Authorize]
-        [HttpPost]
-        public ActionResult MisDatos(Castellano.Web.UI.Areas.Administracion.Models.Persona model)
-        {
-            return this.View();
-        }
-
+        [HttpGet]
         public ActionResult Ciudades(string regionCodigo)
         {
             Castellano.Region region = Castellano.Region.Get(short.Parse(regionCodigo));
 
-            return this.View(Castellano.Ciudad.GetAll(region));
+            List<Castellano.Ciudad> ciudades = Castellano.Ciudad.GetAll(region);
+
+            SelectList selectList = new SelectList(ciudades, "Codigo", "Nombre");
+
+            IEnumerable<SelectListItem> defaultItem = Enumerable.Repeat(new SelectListItem
+            {
+                Value = "-1",
+                Text = "[Seleccione]"
+            }, count: 1);
+
+            return this.Json(defaultItem.Concat(selectList), JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult Comunas(string regionCodigo, string ciudadCodigo)
+        {
+            Castellano.Ciudad ciudad = Castellano.Ciudad.Get(short.Parse(regionCodigo), short.Parse(ciudadCodigo));
+
+            List<Castellano.Comuna> comunas = Castellano.Comuna.GetAll(ciudad);
+
+            SelectList selectList = new SelectList(comunas, "Codigo", "Nombre");
+
+            IEnumerable<SelectListItem> defaultItem = Enumerable.Repeat(new SelectListItem
+            {
+                Value = "-1",
+                Text = "[Seleccione]"
+            }, count: 1);
+
+            return this.Json(defaultItem.Concat(selectList), JsonRequestBehavior.AllowGet);
         }
 
         [Authorize]

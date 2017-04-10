@@ -14,9 +14,19 @@ namespace Castellano.Web.UI.Areas.Administracion
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
-            #region Ciudades
+            #region Ciudades y Comunas
 
-            context.MapRoute("Ciudades", "Administracion/Admin/Ciudades/{regionCodigo}", new { controller = "Admin", action = "Ciudades", regionCodigo = "" });
+            context.MapRoute(
+                name: "Ciudades",
+                url: "Administracion/Admin/Ciudades/{regionCodigo}",
+                defaults: new { area = "Administracion", controller = "Admin", action = "Ciudades", regionCodigo = "" }
+            );
+
+            context.MapRoute(
+                name: "Comunas",
+                url: "Administracion/Admin/Comunas/{regionCodigo}/{ciudadCodigo}",
+                defaults: new { area = "Administracion", controller = "Admin", action = "Comunas", regionCodigo = "", ciudadCodigo = "" }
+            );
 
             #endregion
 

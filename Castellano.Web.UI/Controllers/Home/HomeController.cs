@@ -26,7 +26,7 @@ namespace Castellano.Web.UI.Controllers.Home
                 return this.View(model);
             }
 
-            string textoRun = model.RUN.Replace(".", string.Empty).Replace("-", string.Empty);
+            string textoRun = model.Run.Replace(".", string.Empty).Replace("-", string.Empty);
 
             int runCuerpo = int.Parse(textoRun.Substring(0, textoRun.Length - 1));
             char runDigito = char.Parse(textoRun.Replace(runCuerpo.ToString(), string.Empty));
