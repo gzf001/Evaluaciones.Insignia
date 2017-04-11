@@ -26,7 +26,13 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
         [HttpPost]
         public ActionResult MisDatos(Castellano.Web.UI.Areas.Administracion.Models.Persona model)
         {
-            return this.View();
+            using(Castellano.Context context = new Castellano.Context())
+            {
+                string run = model.Run.Replace(".", string.Empty).Replace("-", string.Empty);
+
+            }
+
+            return this.View(model);
         }
 
         [Authorize]

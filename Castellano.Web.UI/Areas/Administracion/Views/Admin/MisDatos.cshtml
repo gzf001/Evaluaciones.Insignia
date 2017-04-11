@@ -93,11 +93,12 @@
                     <div class="panel panel-default panel-default-fe">
                         <div class="panel-heading panel-heading-fe"><h3>Mis datos</h3></div>
                         <div class="panel-body">
-                            @Html.ValidationSummary()
+                            @*@Html.ValidationSummary("", new { @class = "text-danger" })*@
                             <div class="form-group">
                                 @Html.LabelFor(x => x.Run, new { @for = "run", @class = "col-sm-2 control-label" })
                                 <div class="col-sm-3">
                                     @Html.TextBoxFor(x => x.Run, new { @class = "form-control", @id = "run", @placeholder = "R.U.N.", @maxLength = "11" })
+                                    @Html.ValidationMessageFor(x => x.Run, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="col-sm-3">
                                     @foreach (Castellano.Sexo sexo in Castellano.Sexo.GetAll())
@@ -105,19 +106,22 @@
                                         <div class="radio-inline">
                                             <label>
                                                 @Html.RadioButtonFor(x => x.SexoCodigo, sexo.Codigo, new { @id = "sexo" })
-                                                @sexo.Nombre
-                                            </label>
-                                        </div>
+                                                @sexo.Nombre 
+                                            </label>                                            
+                                        </div>                                       
                                     }
+                                    @Html.ValidationMessageFor(x => x.SexoCodigo, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(x => x.Nombres, new { @for = "nombres", @class = "col-sm-2 control-label" })
                                 <div class="col-sm-3">
                                     @Html.TextBoxFor(x => x.Nombres, new { @class = "form-control", @id = "run", @placeholder = "Nombres", @maxLength = "45" })
+                                    @Html.ValidationMessageFor(x => x.Nombres, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="col-sm-3">
                                     @Html.TextBoxFor(x => x.ApellidoPaterno, new { @class = "form-control", @id = "apellidoPaterno", @placeholder = "Apellido paterno", @maxLength = "45" })
+                                    @Html.ValidationMessageFor(x => x.ApellidoPaterno, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="col-sm-3">
                                     @Html.TextBoxFor(x => x.ApellidoMaterno, new { @class = "form-control", @id = "apellidoMaterno", @placeholder = "Apellido materno", @maxLength = "45" })
@@ -127,30 +131,32 @@
                                 @Html.LabelFor(x => x.Email, new { @for = "email", @class = "col-sm-2 control-label" })
                                 <div class="col-sm-3">
                                     @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @id = "email", @placeholder = "Email", @maxLength = "70" })
+                                    @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
                                 </div>
                                 @Html.LabelFor(x => x.FechaNacimiento, new { @for = "fechaNacimiento", @class = "col-sm-3 control-label" })
                                 <div class="col-sm-2">
                                     @Html.TextBoxFor(x => x.FechaNacimiento, new { @class = "form-control", @id = "fechaNacimiento", @placeholder = "Fecha de nacimiento", @maxLength = "10" })
+                                    @Html.ValidationMessageFor(x => x.FechaNacimiento, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(x => x.NacionalidadCodigo, new { @for = "nacionalidad", @class = "col-sm-2 control-label" })
                                 <div class="col-sm-3">
-                                    @Html.DropDownListFor(x => x.Nacionalidad, new { @class = "form-control", @id = "nacionalidad" })
+                                    @Html.DropDownListFor(x => x.NacionalidadCodigo, Castellano.Nacionalidad.Nacionalidades, new { @class = "form-control", @id = "nacionalidad" })
                                 </div>
                                 @Html.LabelFor(x => x.EstadoCivilCodigo, new { @for = "estadoCivil", @class = "col-sm-3 control-label" })
                                 <div class="col-sm-2">
-                                    @Html.DropDownListFor(x => x.EstadoCivil, new { @class = "form-control", @id = "estadoCivil" })
+                                    @Html.DropDownListFor(x => x.EstadoCivilCodigo, Castellano.EstadoCivil.EstadoCiviles, new { @class = "form-control", @id = "estadoCivil" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(x => x.NivelEducacionalCodigo, new { @for = "nivelEducacional", @class = "col-sm-2 control-label" })
                                 <div class="col-sm-3">
-                                    @Html.DropDownListFor(x => x.NivelEducacional, new { @class = "form-control", @id = "nivelEducacional" })
+                                    @Html.DropDownListFor(x => x.NivelEducacionalCodigo, Castellano.NivelEducacional.NivelesEducacionales, new { @class = "form-control", @id = "nivelEducacional" })
                                 </div>
                                 @Html.LabelFor(x => x.RegionCodigo, new { @for = "region", @class = "col-sm-3 control-label" })
                                 <div class="col-sm-2">
-                                    @Html.DropDownListFor(x => x.Comuna.Ciudad.Region, new { @class = "form-control", @id = "region" })
+                                    @Html.DropDownListFor(x => x.RegionCodigo, Castellano.Region.Regiones, new { @class = "form-control", @id = "region" })
                                 </div>
                             </div>
                             <div class="form-group">
@@ -160,7 +166,7 @@
                                 </div>
                                 @Html.LabelFor(x => x.CiudadCodigo, new { @for = "ciudad", @class = "col-sm-2 control-label" })
                                 <div class="col-sm-2">
-                                    @Html.DropDownListFor(x => x.Comuna.Ciudad, new { @class = "form-control", @id = "ciudad" })
+                                    @Html.DropDownListFor(x => x.CiudadCodigo, Castellano.Ciudad.Ciudades, new { @class = "form-control", @id = "ciudad" })
                                 </div>
                             </div>
                             <div class="form-group">
@@ -170,7 +176,7 @@
                                 </div>
                                 @Html.LabelFor(x => x.ComunaCodigo, new { @for = "comuna", @class = "col-sm-2 control-label" })
                                 <div class="col-sm-2">
-                                    @Html.DropDownListFor(x => x.Comuna, new { @class = "form-control", @id = "comuna" })
+                                    @Html.DropDownListFor(x => x.ComunaCodigo, Castellano.Ciudad.Ciudades, new { @class = "form-control", @id = "comuna" })
                                 </div>
                             </div>
                             <div class="form-group">
