@@ -6,7 +6,7 @@
             $(this).addClass('activeText');
         });
 
-        $('input:textarea').focus(function () {
+        $('textarea').focus(function () {
             $(this).addClass('activeText');
         });
 
@@ -18,7 +18,7 @@
             $(this).removeClass('activeText');
         });
 
-        $('input:textarea').blur(function () {
+        $('textarea').blur(function () {
             $(this).removeClass('activeText');
         });
 

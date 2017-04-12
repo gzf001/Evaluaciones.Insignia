@@ -19,17 +19,104 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
         [HttpGet]
         public ActionResult MisDatos()
         {
-            return this.View();
+            int runCuerpo = int.Parse(this.User.Identity.Name.Substring(0, this.User.Identity.Name.Length - 1));
+
+            char runDigito = char.Parse(this.User.Identity.Name.Remove(0, runCuerpo.ToString().Length));
+
+            Castellano.Persona persona = Castellano.Persona.Get(runCuerpo, runDigito);
+            
+            Castellano.Web.UI.Areas.Administracion.Models.Persona model = new Castellano.Web.UI.Areas.Administracion.Models.Persona
+            {
+                Id = persona.Id,
+                Run = persona.Run,
+                RunCuerpo = persona.RunCuerpo,
+                RunDigito = persona.RunDigito,
+                Nombres = persona.Nombres,
+                ApellidoPaterno = persona.ApellidoPaterno,
+                ApellidoMaterno = persona.ApellidoMaterno,
+                Email = persona.Email,
+                SexoCodigo = persona.SexoCodigo,
+                FechaNacimiento = persona.FechaNacimiento,
+                NacionalidadCodigo = persona.NacionalidadCodigo,
+                EstadoCivilCodigo = persona.EstadoCivilCodigo,
+                NivelEducacionalCodigo = persona.NivelEducacionalCodigo,
+                RegionCodigo = persona.RegionCodigo,
+                CiudadCodigo = persona.CiudadCodigo,
+                ComunaCodigo = persona.ComunaCodigo,
+                VillaPoblacion = persona.VillaPoblacion,
+                Direccion = persona.Direccion,
+                Telefono = persona.Telefono,
+                Celular = persona.Celular,
+                Observaciones = persona.Observaciones,
+                Ocupacion = persona.Ocupacion,
+                TelefonoLaboral = persona.TelefonoLaboral,
+                DireccionLaboral = persona.DireccionLaboral,
+            };
+
+            return this.View(model);
         }
-        
+
         [Authorize]
         [HttpPost]
         public ActionResult MisDatos(Castellano.Web.UI.Areas.Administracion.Models.Persona model)
         {
-            using(Castellano.Context context = new Castellano.Context())
+            if (!this.ModelState.IsValid)
             {
-                string run = model.Run.Replace(".", string.Empty).Replace("-", string.Empty);
+                return this.View(model);
+            }
 
+            string run = model.Run.Replace(".", string.Empty).Replace("-", string.Empty);
+
+            int runCuerpo;
+
+            if (!int.TryParse(run.Substring(0, run.Length - 1), out runCuerpo))
+            {
+                this.ModelState.AddModelError("errorRunCuerpo", "El R.U.N. es erróneo");
+
+                return this.View(model);
+            }
+
+            char runDigito = char.Parse(run.Replace(runCuerpo.ToString(), string.Empty));
+
+            if (!Castellano.Helper.ValidaRun(runCuerpo, runDigito))
+            {
+                this.ModelState.AddModelError("errorRunCuerpo", "El R.U.N. es erróneo");
+
+                return this.View(model);
+            }
+
+            Castellano.Persona persona = Castellano.Persona.Get(runCuerpo, runDigito);
+
+            using (Castellano.Context context = new Castellano.Context())
+            {
+                new Castellano.Persona
+                {
+                    Id = persona == null ? Guid.NewGuid() : persona.Id,
+                    RunCuerpo = runCuerpo,
+                    RunDigito = runDigito,
+                    Nombres = model.Nombres,
+                    ApellidoPaterno = model.ApellidoPaterno,
+                    ApellidoMaterno = string.IsNullOrEmpty(model.ApellidoMaterno) ? default(string) : model.ApellidoMaterno.Trim(),
+                    Email = string.IsNullOrEmpty(model.Email) ? default(string) : model.Email.Trim(),
+                    SexoCodigo = model.SexoCodigo,
+                    FechaNacimiento = model.FechaNacimiento.HasValue ? model.FechaNacimiento.Value : default(DateTime),
+                    NacionalidadCodigo = model.NacionalidadCodigo.HasValue ? model.NacionalidadCodigo.Value : default(short),
+                    EstadoCivilCodigo = model.EstadoCivilCodigo.HasValue ? model.EstadoCivilCodigo.Value : default(short),
+                    NivelEducacionalCodigo = model.NivelEducacionalCodigo.HasValue ? model.NivelEducacionalCodigo.Value : default(int),
+                    RegionCodigo = model.RegionCodigo.HasValue ? model.RegionCodigo.Value : default(short),
+                    CiudadCodigo = model.CiudadCodigo.HasValue ? model.CiudadCodigo.Value : default(short),
+                    ComunaCodigo = model.ComunaCodigo.HasValue ? model.ComunaCodigo.Value : default(short),
+                    VillaPoblacion = string.IsNullOrEmpty(model.VillaPoblacion) ? default(string) : model.VillaPoblacion.Trim(),
+                    Direccion = string.IsNullOrEmpty(model.Direccion) ? default(string) : model.Direccion.Trim(),
+                    Telefono = model.Telefono.HasValue ? model.Telefono.Value : default(int),
+                    Celular = model.Celular.HasValue ? model.Celular.Value : default(int),
+                    Observaciones = string.IsNullOrEmpty(model.Observaciones) ? default(string) : model.Observaciones.Trim(),
+                    Ocupacion = string.IsNullOrEmpty(model.Ocupacion) ? default(string) : model.Ocupacion.Trim(),
+                    TelefonoLaboral = model.TelefonoLaboral.HasValue ? model.TelefonoLaboral.Value : default(int),
+                    DireccionLaboral = string.IsNullOrEmpty(model.DireccionLaboral) ? default(string) : model.DireccionLaboral.Trim(),
+                }.Save(context);
+
+                context.SubmitChanges();
             }
 
             return this.View(model);

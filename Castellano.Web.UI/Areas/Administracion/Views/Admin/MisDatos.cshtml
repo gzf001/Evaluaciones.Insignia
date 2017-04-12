@@ -9,7 +9,10 @@
 
 @Scripts.Render("~/Content/js/rut")
 
+<link href="~/Content/assets/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+
 <script type="text/javascript">
+
 
     $(this).ready(
 
@@ -19,12 +22,7 @@
                 on_error: function () { alert('Rut incorrecto'); }
             });
 
-            $(function () {
-                $("#fechaNacimiento").datepicker({
-                    dateFormat: 'dd/mm/yyyy'
-                });
-            });
-
+            $("#fechaNacimiento").datepicker()
         }
     );
 
@@ -91,9 +89,9 @@
                     @Html.AntiForgeryToken()
 
                     <div class="panel panel-default panel-default-fe">
-                        <div class="panel-heading panel-heading-fe"><h3>Mis datos</h3></div>
+                        <div class="panel-heading panel-heading-fe"><h4>Mis datos</h4></div>
                         <div class="panel-body">
-                            @*@Html.ValidationSummary("", new { @class = "text-danger" })*@
+                            @Html.ValidationSummary("", new { @class = "bg-danger" })
                             <div class="form-group">
                                 @Html.LabelFor(x => x.Run, new { @for = "run", @class = "col-sm-2 control-label" })
                                 <div class="col-sm-3">
@@ -106,9 +104,9 @@
                                         <div class="radio-inline">
                                             <label>
                                                 @Html.RadioButtonFor(x => x.SexoCodigo, sexo.Codigo, new { @id = "sexo" })
-                                                @sexo.Nombre 
-                                            </label>                                            
-                                        </div>                                       
+                                                @sexo.Nombre
+                                            </label>
+                                        </div>
                                     }
                                     @Html.ValidationMessageFor(x => x.SexoCodigo, "", new { @class = "text-danger" })
                                 </div>
@@ -135,7 +133,7 @@
                                 </div>
                                 @Html.LabelFor(x => x.FechaNacimiento, new { @for = "fechaNacimiento", @class = "col-sm-3 control-label" })
                                 <div class="col-sm-2">
-                                    @Html.TextBoxFor(x => x.FechaNacimiento, new { @class = "form-control", @id = "fechaNacimiento", @placeholder = "Fecha de nacimiento", @maxLength = "10" })
+                                    @Html.TextBoxFor(x => x.FechaNacimiento, Model.FechaNacimiento.HasValue ? Model.FechaNacimiento.Value.ToShortDateString() : string.Empty, new { @class = "form-control", @id = "fechaNacimiento", @placeholder = "Fecha de nacimiento", @maxLength = "10" })
                                     @Html.ValidationMessageFor(x => x.FechaNacimiento, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -166,7 +164,7 @@
                                 </div>
                                 @Html.LabelFor(x => x.CiudadCodigo, new { @for = "ciudad", @class = "col-sm-2 control-label" })
                                 <div class="col-sm-2">
-                                    @Html.DropDownListFor(x => x.CiudadCodigo, Castellano.Ciudad.Ciudades, new { @class = "form-control", @id = "ciudad" })
+                                    @Html.DropDownListFor(x => x.CiudadCodigo, Model.CiudadCodigo.HasValue ? Castellano.Ciudad.Ciudades(Model.RegionCodigo.Value) : Castellano.Ciudad.DefaultItem, new { @class = "form-control", @id = "ciudad" })
                                 </div>
                             </div>
                             <div class="form-group">
@@ -176,7 +174,7 @@
                                 </div>
                                 @Html.LabelFor(x => x.ComunaCodigo, new { @for = "comuna", @class = "col-sm-2 control-label" })
                                 <div class="col-sm-2">
-                                    @Html.DropDownListFor(x => x.ComunaCodigo, Castellano.Ciudad.Ciudades, new { @class = "form-control", @id = "comuna" })
+                                    @Html.DropDownListFor(x => x.ComunaCodigo, Model.ComunaCodigo.HasValue ? Castellano.Comuna.Comunas(Model.RegionCodigo.Value, Model.CiudadCodigo.Value) : Castellano.Comuna.DefaultItem, new { @class = "form-control", @id = "comuna" })
                                 </div>
                             </div>
                             <div class="form-group">

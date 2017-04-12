@@ -541,7 +541,7 @@
     <Content Include="Content\assets\intro.js\minified\intro.min.js" />
     <Content Include="Content\assets\intro.js\minified\introjs-rtl.min.css" />
     <Content Include="Content\assets\intro.js\minified\introjs.min.css" />
-    <Content Include="Content\assets\jquery-ui\jquery-ui.min.js" />
+    <Content Include="Content\assets\jquery-ui\jquery-ui.min.css" />
     <Content Include="Content\assets\jquery.easypiechart\angular.easypiechart.js" />
     <Content Include="Content\assets\jquery.easypiechart\angular.easypiechart.min.js" />
     <Content Include="Content\assets\jquery.easypiechart\easypiechart.js" />
@@ -689,6 +689,8 @@
     <Content Include="Content\images\slide-2.jpg" />
     <Content Include="Content\images\slide-3.jpg" />
     <Content Include="Content\js\cleanzone.js" />
+    <Content Include="Content\js\jquery-ui.js" />
+    <Content Include="Content\js\jquery-ui.min.js" />
     <Content Include="Content\js\jquery.Rut.js" />
     <Content Include="Content\js\jquery-3.1.1.js" />
     <Content Include="Content\js\jquery.Rut.min.js" />

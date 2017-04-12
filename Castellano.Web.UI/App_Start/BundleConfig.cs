@@ -26,7 +26,7 @@ namespace Castellano.Web.UI.App_Start
             bundles.Add(new ScriptBundle("~/Content/js/jquery.flot").Include("~/Content/assets/jquery.flot/jquery.flot.js"));
             bundles.Add(new ScriptBundle("~/Content/js/jquery.flot.pie").Include("~/Content/assets/jquery.flot/jquery.flot.pie.js"));
             bundles.Add(new ScriptBundle("~/Content/js/jquery.flot.resize").Include("~/Content/assets/jquery.flot/jquery.flot.resize.js"));
-            bundles.Add(new ScriptBundle("~/Content/js/jquery-ui").Include("~/Content/assets/jquery-ui/jquery-ui.min.js"));
+            bundles.Add(new ScriptBundle("~/Content/js/jquery-ui").Include("~/Content/js/jquery-ui.min.js"));
             bundles.Add(new ScriptBundle("~/Content/js/page-dashboard").Include("~/Content/js/page-dashboard.js"));
 
             //script-js
