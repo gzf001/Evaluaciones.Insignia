@@ -25,8 +25,6 @@ namespace Castellano.Web.UI.Models.Header
         {
             get
             {
-                //string run = HttpContext.Current.Items[this.Run] == null ? string.Empty : HttpContext.Current.Items[this.Run] as string;
-                
                 int runCuerpo = int.Parse(run.Substring(0, this.Run.Length - 1));
 
                 char runDigito = char.Parse(run.Substring(this.Run.Length - 1, 1));

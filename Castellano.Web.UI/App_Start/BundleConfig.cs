@@ -32,11 +32,11 @@ namespace Castellano.Web.UI.App_Start
             //script-js
             bundles.Add(new ScriptBundle("~/js/Layout/layout").Include("~/js/Layout/layOut.js"));
 
-
             //CSS
             bundles.Add(new StyleBundle("~/Content/layout").Include("~/Content/assets/css/layout.css"));
             bundles.Add(new StyleBundle("~/Content/bootstrap").Include("~/Content/assets/bootstrap/css/bootstrap.css"));
 
+            bundles.Add(new StyleBundle("~/Content/style-jquery-ui").Include("~/Content/assets/jquery-ui/jquery-ui.min.css"));
             bundles.Add(new StyleBundle("~/Content/font-awesome").Include("~/Content/assets/font-awesome/css/font-awesome.min.css"));
             bundles.Add(new StyleBundle("~/Content/jquery.nanoscroller").Include("~/Content/assets/jquery.nanoscroller/css/nanoscroller.css"));
             bundles.Add(new StyleBundle("~/Content/jquery.gritter").Include("~/Content/assets/jquery.gritter/css/jquery.gritter.css"));

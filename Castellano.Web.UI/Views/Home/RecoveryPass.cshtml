@@ -14,6 +14,7 @@
             @Html.TextBoxFor(m => m.RUN, new { @id = "run", @placeholder = "R.U.N.", @class = "form-control" })
         </div>
         <div class="form-group">
+            @Html.ActionLink("Cancelar", "Login", "Home", new { @class = "btn btn-danger" })
             <button type="submit" class="btn btn-success">Recuperar contraseña</button>
         </div>
     </div>

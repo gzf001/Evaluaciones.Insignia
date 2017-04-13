@@ -119,6 +119,8 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
                 context.SubmitChanges();
             }
 
+            this.ViewBag.Message = "Sus información ha sido guardada correctamente!";
+
             return this.View(model);
         }
 
@@ -126,6 +128,18 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
         [HttpGet]
         public ActionResult ChangePassword()
         {
+            return this.View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult ChangePassword(Castellano.Web.UI.Areas.Administracion.Models.ChangePassword model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
             return this.View();
         }
 

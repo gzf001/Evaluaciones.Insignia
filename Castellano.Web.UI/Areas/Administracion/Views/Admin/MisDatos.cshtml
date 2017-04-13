@@ -9,10 +9,7 @@
 
 @Scripts.Render("~/Content/js/rut")
 
-<link href="~/Content/assets/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
-
 <script type="text/javascript">
-
 
     $(this).ready(
 
@@ -22,7 +19,7 @@
                 on_error: function () { alert('Rut incorrecto'); }
             });
 
-            $("#fechaNacimiento").datepicker()
+            $("#fechaNacimiento").datepicker();
         }
     );
 
@@ -92,6 +89,14 @@
                         <div class="panel-heading panel-heading-fe"><h4>Mis datos</h4></div>
                         <div class="panel-body">
                             @Html.ValidationSummary("", new { @class = "bg-danger" })
+                            @{
+                                if (!string.IsNullOrEmpty(this.ViewBag.Message))
+                                {
+                                    <div class="alert alert-success">
+                                        @this.ViewBag.Message
+                                    </div>
+                                }
+                            }
                             <div class="form-group">
                                 @Html.LabelFor(x => x.Run, new { @for = "run", @class = "col-sm-2 control-label" })
                                 <div class="col-sm-3">
@@ -180,11 +185,11 @@
                             <div class="form-group">
                                 @Html.LabelFor(x => x.Telefono, new { @for = "telefono", @class = "col-sm-2 control-label" })
                                 <div class="col-sm-3">
-                                    @Html.TextBoxFor(x => x.Telefono, new { @class = "form-control", @id = "telefono", @placeholder = "Teléfono" })
+                                    @Html.TextBoxFor(x => x.Telefono, new { @class = "form-control", @id = "telefono", @placeholder = "Teléfono", @onlyNumbers = "true" })
                                 </div>
                                 @Html.LabelFor(x => x.Celular, new { @for = "celular", @class = "col-sm-3 control-label" })
                                 <div class="col-sm-3">
-                                    @Html.TextBoxFor(x => x.Celular, new { @class = "form-control", @id = "celular", @placeholder = "Celular" })
+                                    @Html.TextBoxFor(x => x.Celular, new { @class = "form-control", @id = "celular", @placeholder = "Celular", @onlyNumbers = "true" })
                                 </div>
                             </div>
                             <div class="form-group">
@@ -194,7 +199,7 @@
                                 </div>
                                 @Html.LabelFor(x => x.TelefonoLaboral, new { @for = "telefonoLaboral", @class = "col-sm-3 control-label" })
                                 <div class="col-sm-3">
-                                    @Html.TextBoxFor(x => x.TelefonoLaboral, new { @class = "form-control", @id = "telefonoLaboral", @placeholder = "Teléfono laboral" })
+                                    @Html.TextBoxFor(x => x.TelefonoLaboral, new { @class = "form-control", @id = "telefonoLaboral", @placeholder = "Teléfono laboral", @onlyNumbers = "true" })
                                 </div>
                             </div>
                             <div class="form-group">
@@ -209,8 +214,8 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-offset-9 col-xs-9">
-                                    <input type="reset" class="btn btn-default" value="Cancelar">
-                                    <input type="submit" class="btn btn-primary" value="Guardar">
+                                    @Html.ActionLink("Cancelar", "MisDatos", "Admin", new { area = "Administracion", @class = "btn btn-danger" })
+                                    <button type="submit" class="btn btn-primary">Guardar</button>
                                 </div>
                             </div>
                         </div>

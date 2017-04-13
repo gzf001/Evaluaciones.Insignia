@@ -125,6 +125,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Areas\Administracion\AdministracionAreaRegistration.cs" />
     <Compile Include="Areas\Administracion\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Administracion\Models\ChangePassword.cs" />
     <Compile Include="Areas\Administracion\Models\Persona.cs" />
     <Compile Include="Controllers\Home\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -541,7 +542,15 @@
     <Content Include="Content\assets\intro.js\minified\intro.min.js" />
     <Content Include="Content\assets\intro.js\minified\introjs-rtl.min.css" />
     <Content Include="Content\assets\intro.js\minified\introjs.min.css" />
+    <Content Include="Content\assets\jquery-ui\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\assets\jquery-ui\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\assets\jquery-ui\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\assets\jquery-ui\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\assets\jquery-ui\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\assets\jquery-ui\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\assets\jquery-ui\jquery-ui.min.css" />
+    <Content Include="Content\assets\jquery-ui\jquery-ui.structure.min.css" />
+    <Content Include="Content\assets\jquery-ui\jquery-ui.theme.min.css" />
     <Content Include="Content\assets\jquery.easypiechart\angular.easypiechart.js" />
     <Content Include="Content\assets\jquery.easypiechart\angular.easypiechart.min.js" />
     <Content Include="Content\assets\jquery.easypiechart\easypiechart.js" />
