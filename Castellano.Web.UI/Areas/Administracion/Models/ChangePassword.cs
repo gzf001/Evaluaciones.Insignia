@@ -26,6 +26,7 @@ namespace Castellano.Web.UI.Areas.Administracion.Models
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Debe repetir el nuevo password.")]
         [Display(Name = "Confirme Contraseña:")]
+        [Compare("Password1", ErrorMessage="La nueva contraseña y su confirmación son diferentes")]
         public string Password2
         {
             get;

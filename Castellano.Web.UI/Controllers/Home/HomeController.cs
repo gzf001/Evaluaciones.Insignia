@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Castellano.Web.UI.Controllers.Home
 {
-    public class HomeController : Controller
+    public class HomeController : Castellano.Helpers.Controller
     {
         [AllowAnonymous]
         public ActionResult Login()
@@ -31,7 +31,9 @@ namespace Castellano.Web.UI.Controllers.Home
             int runCuerpo = int.Parse(textoRun.Substring(0, textoRun.Length - 1));
             char runDigito = char.Parse(textoRun.Replace(runCuerpo.ToString(), string.Empty));
 
-            Castellano.Membresia.LoginStatus loginStatus = Castellano.Membresia.Account.DoLogin(runCuerpo, runDigito, model.Password);
+            Castellano.Persona persona = Castellano.Persona.Get(runCuerpo, runDigito);
+
+            Castellano.Membresia.LoginStatus loginStatus = Castellano.Membresia.Account.DoLogin(persona, model.Password);
 
             if (loginStatus == Castellano.Membresia.LoginStatus.InvalidRunOrPassword)
             {
@@ -58,7 +60,15 @@ namespace Castellano.Web.UI.Controllers.Home
                 return this.View(model);
             }
 
-            System.Web.Security.FormsAuthentication.SetAuthCookie(string.Format("{0}{1}", runCuerpo, runDigito), model.RememberMe);
+            System.Web.Security.FormsAuthenticationTicket ticket = new System.Web.Security.FormsAuthenticationTicket(1, persona.Id.ToString(), DateTime.Now, DateTime.Now.AddYears(1), model.RememberMe, "CASTELLANO_AUTHENTICATE");
+
+            string cookie = System.Web.Security.FormsAuthentication.Encrypt(ticket);
+
+            HttpCookie httpCookie = new HttpCookie(System.Web.Security.FormsAuthentication.FormsCookieName, cookie);
+
+            System.Web.Security.FormsAuthentication.SetAuthCookie(persona.Id.ToString(), model.RememberMe);
+
+            this.Response.Cookies.Add(httpCookie);
 
             return this.RedirectToAction("Index", "Admin", new { area = "Administracion" });
         }
@@ -73,6 +83,28 @@ namespace Castellano.Web.UI.Controllers.Home
         [ValidateAntiForgeryToken]
         public ActionResult RecoveryPass(Castellano.Web.UI.Models.Home.RecoveryPass model)
         {
+            string textoRun = model.RUN.Replace(".", string.Empty).Replace("-", string.Empty);
+
+            int runCuerpo = int.Parse(textoRun.Substring(0, textoRun.Length - 1));
+            char runDigito = char.Parse(textoRun.Replace(runCuerpo.ToString(), string.Empty));
+
+            Castellano.Membresia.PasswordRecoveryStatus passwordRecoveryStatus = Castellano.Membresia.Account.DoPasswordRecovery(runCuerpo, runDigito);
+
+            if (passwordRecoveryStatus == Castellano.Membresia.PasswordRecoveryStatus.EmailNotRegistered)
+            {
+                this.ModelState.AddModelError("recoveryError", "El usuario no tiene un correo electrónico registrado. Comuniquese con soporte@netcore.cl para asistirle en la restitución de su contraseña.");
+
+                return this.View(model);
+            }
+            else if (passwordRecoveryStatus == Castellano.Membresia.PasswordRecoveryStatus.UserNotFound)
+            {
+                this.ModelState.AddModelError("recoveryError", "No se ha encontrado el usuario especificado. Verifique que haya escrito correctamente su R.U.N. o contacte al administrador del sistema.");
+
+                return this.View(model);
+            }
+
+            this.ViewBag.Message = "Sus datos de acceso han sido enviados a su casilla de correo. Por favor revise el mensaje enviado y siga las intrucciones especificadas.";
+
             return this.View();
         }
     }

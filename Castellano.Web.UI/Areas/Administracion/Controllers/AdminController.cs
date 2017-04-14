@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Castellano.Web.UI.Areas.Administracion.Controllers
 {
-    public class AdminController : Controller
+    public class AdminController : Castellano.Helpers.Controller
     {
         [Authorize]
         [HttpGet]
@@ -19,11 +19,7 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
         [HttpGet]
         public ActionResult MisDatos()
         {
-            int runCuerpo = int.Parse(this.User.Identity.Name.Substring(0, this.User.Identity.Name.Length - 1));
-
-            char runDigito = char.Parse(this.User.Identity.Name.Remove(0, runCuerpo.ToString().Length));
-
-            Castellano.Persona persona = Castellano.Persona.Get(runCuerpo, runDigito);
+            Castellano.Persona persona = Castellano.Persona.Get(new Guid(this.User.Identity.Name));
             
             Castellano.Web.UI.Areas.Administracion.Models.Persona model = new Castellano.Web.UI.Areas.Administracion.Models.Persona
             {
@@ -85,43 +81,59 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
                 return this.View(model);
             }
 
-            Castellano.Persona persona = Castellano.Persona.Get(runCuerpo, runDigito);
-
-            using (Castellano.Context context = new Castellano.Context())
+            try
             {
-                new Castellano.Persona
+                using (Castellano.Context context = new Castellano.Context())
                 {
-                    Id = persona == null ? Guid.NewGuid() : persona.Id,
-                    RunCuerpo = runCuerpo,
-                    RunDigito = runDigito,
-                    Nombres = model.Nombres,
-                    ApellidoPaterno = model.ApellidoPaterno,
-                    ApellidoMaterno = string.IsNullOrEmpty(model.ApellidoMaterno) ? default(string) : model.ApellidoMaterno.Trim(),
-                    Email = string.IsNullOrEmpty(model.Email) ? default(string) : model.Email.Trim(),
-                    SexoCodigo = model.SexoCodigo,
-                    FechaNacimiento = model.FechaNacimiento.HasValue ? model.FechaNacimiento.Value : default(DateTime),
-                    NacionalidadCodigo = model.NacionalidadCodigo.HasValue ? model.NacionalidadCodigo.Value : default(short),
-                    EstadoCivilCodigo = model.EstadoCivilCodigo.HasValue ? model.EstadoCivilCodigo.Value : default(short),
-                    NivelEducacionalCodigo = model.NivelEducacionalCodigo.HasValue ? model.NivelEducacionalCodigo.Value : default(int),
-                    RegionCodigo = model.RegionCodigo.HasValue ? model.RegionCodigo.Value : default(short),
-                    CiudadCodigo = model.CiudadCodigo.HasValue ? model.CiudadCodigo.Value : default(short),
-                    ComunaCodigo = model.ComunaCodigo.HasValue ? model.ComunaCodigo.Value : default(short),
-                    VillaPoblacion = string.IsNullOrEmpty(model.VillaPoblacion) ? default(string) : model.VillaPoblacion.Trim(),
-                    Direccion = string.IsNullOrEmpty(model.Direccion) ? default(string) : model.Direccion.Trim(),
-                    Telefono = model.Telefono.HasValue ? model.Telefono.Value : default(int),
-                    Celular = model.Celular.HasValue ? model.Celular.Value : default(int),
-                    Observaciones = string.IsNullOrEmpty(model.Observaciones) ? default(string) : model.Observaciones.Trim(),
-                    Ocupacion = string.IsNullOrEmpty(model.Ocupacion) ? default(string) : model.Ocupacion.Trim(),
-                    TelefonoLaboral = model.TelefonoLaboral.HasValue ? model.TelefonoLaboral.Value : default(int),
-                    DireccionLaboral = string.IsNullOrEmpty(model.DireccionLaboral) ? default(string) : model.DireccionLaboral.Trim(),
-                }.Save(context);
+                    new Castellano.Persona
+                    {
+                        Id = this.CurrentUsuario.Id,
+                        RunCuerpo = runCuerpo,
+                        RunDigito = runDigito,
+                        Nombres = model.Nombres,
+                        ApellidoPaterno = model.ApellidoPaterno,
+                        ApellidoMaterno = string.IsNullOrEmpty(model.ApellidoMaterno) ? default(string) : model.ApellidoMaterno.Trim(),
+                        Email = string.IsNullOrEmpty(model.Email) ? default(string) : model.Email.Trim(),
+                        SexoCodigo = model.SexoCodigo,
+                        FechaNacimiento = model.FechaNacimiento.HasValue ? model.FechaNacimiento.Value : default(DateTime),
+                        NacionalidadCodigo = model.NacionalidadCodigo.HasValue ? model.NacionalidadCodigo.Value : default(short),
+                        EstadoCivilCodigo = model.EstadoCivilCodigo.HasValue ? model.EstadoCivilCodigo.Value : default(short),
+                        NivelEducacionalCodigo = model.NivelEducacionalCodigo.HasValue ? model.NivelEducacionalCodigo.Value : default(int),
+                        RegionCodigo = model.RegionCodigo.HasValue ? model.RegionCodigo.Value : default(short),
+                        CiudadCodigo = model.CiudadCodigo.HasValue ? model.CiudadCodigo.Value : default(short),
+                        ComunaCodigo = model.ComunaCodigo.HasValue ? model.ComunaCodigo.Value : default(short),
+                        VillaPoblacion = string.IsNullOrEmpty(model.VillaPoblacion) ? default(string) : model.VillaPoblacion.Trim(),
+                        Direccion = string.IsNullOrEmpty(model.Direccion) ? default(string) : model.Direccion.Trim(),
+                        Telefono = model.Telefono.HasValue ? model.Telefono.Value : default(int),
+                        Celular = model.Celular.HasValue ? model.Celular.Value : default(int),
+                        Observaciones = string.IsNullOrEmpty(model.Observaciones) ? default(string) : model.Observaciones.Trim(),
+                        Ocupacion = string.IsNullOrEmpty(model.Ocupacion) ? default(string) : model.Ocupacion.Trim(),
+                        TelefonoLaboral = model.TelefonoLaboral.HasValue ? model.TelefonoLaboral.Value : default(int),
+                        DireccionLaboral = string.IsNullOrEmpty(model.DireccionLaboral) ? default(string) : model.DireccionLaboral.Trim(),
+                    }.Save(context);
 
-                context.SubmitChanges();
+                    context.SubmitChanges();
+                }
+
+                this.ViewBag.Message = "Sus información ha sido guardada correctamente!";
+                
+                return this.View(model);
             }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("UK_Persona_RunCuerpo"))
+                {
+                    this.ModelState.AddModelError("errorRun", "El R.U.N. ingresado se encuentra registrado para otro usuario");
 
-            this.ViewBag.Message = "Sus información ha sido guardada correctamente!";
+                    return this.View(model);
+                }
+                else
+                {
+                    this.ModelState.AddModelError("errorGeneral", ex.Message);
 
-            return this.View(model);
+                    return this.View(model);
+                }
+            }
         }
 
         [Authorize]
@@ -139,6 +151,19 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
             {
                 return this.View(model);
             }
+
+            string password = Castellano.Membresia.Account.EncryptPassword(model.Password);
+
+            if (!this.CurrentUsuario.Password.Equals(password))
+            {
+                this.ModelState.AddModelError("errorPassword", "La contraseña actual no es correcta");
+
+                return this.View(model);
+            }
+
+            Castellano.Membresia.Account.DoChangePassword(this.CurrentUsuario, model.Password1, model.Password2);
+
+            this.ViewBag.Message = "Sus contraseña fue cambiada correctamente!";
 
             return this.View();
         }
@@ -179,6 +204,13 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
             }, count: 1);
 
             return this.Json(defaultItem.Concat(selectList), JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult About()
+        {
+            return this.View();
         }
 
         [Authorize]

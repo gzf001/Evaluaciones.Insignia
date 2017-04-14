@@ -2,6 +2,11 @@
     background-color:#222222;
 }
 
+.body{
+
+    background-color:#f6f6f6;
+}
+
 div#logo {
     background-image: url(../../images/logo_netcore3.png);
     background-position: right top;

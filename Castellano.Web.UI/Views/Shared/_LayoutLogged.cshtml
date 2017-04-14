@@ -21,7 +21,7 @@
     @Scripts.Render("~/Content/js/jquery")
     @Scripts.Render("~/Content/js/jquery-ui")
 </head>
-<body>
+<body class="body">
 
     <div id="head-nav" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
@@ -31,11 +31,11 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#about">Acerca de...</a></li>
+                    <li>@Html.ActionLink("Acerca de...", "About", "Admin", new { area = "Administracion" })</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right user-nav">
                     <li class="dropdown profile_menu">
-                        @Html.Partial("../Header/_Index", new Castellano.Web.UI.Models.Header.Header { Run = this.User.Identity.Name })
+                        @Html.Partial("../Header/_Index", new Castellano.Web.UI.Models.Header.Header { Id = new Guid(this.User.Identity.Name) })
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Mis Datos", "MisDatos", "Admin", new { area = "Administracion" })</li>
                             <li>@Html.ActionLink("Cambiar Contraseña", "ChangePassword", "Admin", new { area = "Administracion" })</li>

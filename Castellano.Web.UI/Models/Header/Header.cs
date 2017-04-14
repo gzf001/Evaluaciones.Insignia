@@ -7,17 +7,17 @@ namespace Castellano.Web.UI.Models.Header
 {
     public class Header
     {
-        private string run;
-       
-        public string Run
+        private Guid id;
+
+        public Guid Id
         {
             get
             {
-                return run;
+                return id;
             }
             set
             {
-                run = value;
+                id = value;
             }
         }
 
@@ -25,17 +25,9 @@ namespace Castellano.Web.UI.Models.Header
         {
             get
             {
-                int runCuerpo = int.Parse(run.Substring(0, this.Run.Length - 1));
-
-                char runDigito = char.Parse(run.Substring(this.Run.Length - 1, 1));
-
-                Castellano.Persona persona = Castellano.Persona.Get(runCuerpo, runDigito);
+                Castellano.Persona persona = Castellano.Persona.Get(this.id);
 
                 return string.Format("{0} {1} {2}", persona.Nombres, persona.ApellidoPaterno, string.IsNullOrEmpty(persona.ApellidoMaterno) ? persona.ApellidoMaterno : string.Empty);
-            }
-            set
-            {
-                HttpContext.Current.Items[this.Run] = this.Run;
             }
         }
     }
