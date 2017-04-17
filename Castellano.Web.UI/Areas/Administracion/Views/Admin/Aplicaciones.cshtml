@@ -1,0 +1,36 @@
+﻿@model Castellano.Web.UI.Areas.Administracion.Models.Aplicacion
+
+@{
+    ViewBag.Title = "Aplicaciones";
+    Layout = "~/Views/Shared/_LayoutLogged.cshtml";
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        var ejemplo_1 = {
+            class: 'table-striped table-bordered',
+            columnas: [
+                { leyenda: 'Aplicacion', style: 'width:200px;', columna: 'Nombre' },
+            ],
+            modelo: [
+                { propiedad: 'Aplicacion.nombre' },
+                {
+                    formato: function (tr, obj, valor) {
+                        return obj.Nombre;
+                    }
+                },
+            ],
+            url: 'http://www.evaluaciones.web/Administracion/Admin/aplicaciones1',
+            limite: 20,
+            columna: 'id',
+            columna_orden: 'DESC'
+        };
+
+        $("#ejemplo-1").anexGrid(ejemplo_1);
+    })
+
+</script>
+
+<div id="ejemplo-1"></div>

@@ -71,6 +71,7 @@
     <Compile Include="Controller.cs" />
     <Compile Include="DropDownListExtensions.cs" />
     <Compile Include="ImageLink.cs" />
+    <Compile Include="MenuExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

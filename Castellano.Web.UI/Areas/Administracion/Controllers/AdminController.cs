@@ -20,7 +20,7 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
         public ActionResult MisDatos()
         {
             Castellano.Persona persona = Castellano.Persona.Get(new Guid(this.User.Identity.Name));
-            
+
             Castellano.Web.UI.Areas.Administracion.Models.Persona model = new Castellano.Web.UI.Areas.Administracion.Models.Persona
             {
                 Id = persona.Id,
@@ -116,7 +116,7 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
                 }
 
                 this.ViewBag.Message = "Sus información ha sido guardada correctamente!";
-                
+
                 return this.View(model);
             }
             catch (Exception ex)
@@ -222,6 +222,59 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
             this.Session.Abandon();
 
             return this.RedirectToAction("Login", "Home", new { area = string.Empty });
+        }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult Aplicaciones()
+        {
+            return this.View();
+        }
+
+        //[Authorize]
+        [HttpPost]
+        public ActionResult Aplicaciones1()
+        {
+            /*
+              List<Castellano.Membresia.Aplicacion> aplicaciones = Castellano.Membresia.Aplicacion.GetAll();
+
+            Json
+
+            return this.Json(aplicaciones.Select<Castellano.Membresia.Aplicacion, string>(x => x.Nombre), JsonRequestBehavior.DenyGet);
+             */
+
+            List<Castellano.Membresia.Aplicacion> aplicaciones = Castellano.Membresia.Aplicacion.GetAll();
+
+            List<string> lista = aplicaciones.Select<Castellano.Membresia.Aplicacion, string>(x => x.Nombre).ToList<string>();
+
+            string data = "{\"data\": [";
+
+            bool primero = true;
+
+            foreach (string item in lista)
+            {
+                if (primero)
+                {
+                    data += "{\"nombre\":" + "\"" + item + "\"}";
+
+                    primero = false;
+                }
+                else
+                {
+                    data += ",{\"nombre\":" + "\"" + item + "\"}";
+                }
+            }
+
+            data += "], \"total\":\"27\"}";
+
+
+            //int b =0;
+
+            //string a = "{data: [{\"id\":\"580\",\"Correo\":\"jvizconde.paredez@outlook.pe\",\"Nombre\":\"Juan\",\"Apellido\":\"Vizconde Paredez\",\"Sexo\":\"1\",\"Sueldo\":\"5581.00\",\"Profesion_id\":\"5\",\"FechaNacimiento\":\"1981-07-01\",\"FechaRegistro\":\"2014-07-20\",\"Profesion\":{\"id\":\"5\",\"Nombre\":\"Ingeniero de Sistemas\"}}],total: 600}";
+
+            Newtonsoft.Json.Linq.JObject json = Newtonsoft.Json.Linq.JObject.Parse(data);
+
+            return this.Json(data);
         }
     }
 }

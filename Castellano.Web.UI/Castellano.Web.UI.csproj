@@ -121,6 +121,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Areas\Administracion\AdministracionAreaRegistration.cs" />
     <Compile Include="Areas\Administracion\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Administracion\Models\Aplicacion.cs" />
     <Compile Include="Areas\Administracion\Models\ChangePassword.cs" />
     <Compile Include="Areas\Administracion\Models\Persona.cs" />
     <Compile Include="Controllers\Home\HomeController.cs" />
@@ -182,6 +183,9 @@
     <Content Include="Content\assets\bootstrap.datetimepicker\js\locales\bootstrap-datetimepicker.zh-TW.js" />
     <Content Include="Content\assets\bootstrap.slider\css\bootstrap-slider.css" />
     <Content Include="Content\assets\bootstrap.slider\js\bootstrap-slider.js" />
+    <Content Include="Content\assets\bootstrap.sweetalert\sweetalert.css" />
+    <Content Include="Content\assets\bootstrap.sweetalert\sweetalert.js" />
+    <Content Include="Content\assets\bootstrap.sweetalert\sweetalert.min.js" />
     <Content Include="Content\assets\bootstrap.switch\css\bootstrap2\bootstrap-switch.css" />
     <Content Include="Content\assets\bootstrap.switch\css\bootstrap2\bootstrap-switch.min.css" />
     <Content Include="Content\assets\bootstrap.switch\css\bootstrap3\bootstrap-switch.css" />
@@ -547,6 +551,8 @@
     <Content Include="Content\assets\jquery-ui\jquery-ui.min.css" />
     <Content Include="Content\assets\jquery-ui\jquery-ui.structure.min.css" />
     <Content Include="Content\assets\jquery-ui\jquery-ui.theme.min.css" />
+    <Content Include="Content\assets\jquery.anexgrid\jquery.anexgrid.js" />
+    <Content Include="Content\assets\jquery.anexgrid\jquery.anexgrid.min.js" />
     <Content Include="Content\assets\jquery.easypiechart\angular.easypiechart.js" />
     <Content Include="Content\assets\jquery.easypiechart\angular.easypiechart.min.js" />
     <Content Include="Content\assets\jquery.easypiechart\easypiechart.js" />
@@ -703,6 +709,7 @@
     <Content Include="Content\js\voice-recognition.js" />
     <Content Include="Global.asax" />
     <Content Include="js\Layout\layOut.js" />
+    <Content Include="js\Layout\menu-principal.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -801,6 +808,7 @@
     <Content Include="Areas\Administracion\Views\Admin\ChangePassword.cshtml" />
     <Content Include="Areas\Administracion\Views\Admin\MisDatos.cshtml" />
     <Content Include="Areas\Administracion\Views\Admin\About.cshtml" />
+    <Content Include="Areas\Administracion\Views\Admin\Aplicaciones.cshtml" />
     <None Include="Properties\PublishProfiles\Guillermo.pubxml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
