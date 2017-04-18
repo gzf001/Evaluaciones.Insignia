@@ -551,8 +551,8 @@
     <Content Include="Content\assets\jquery-ui\jquery-ui.min.css" />
     <Content Include="Content\assets\jquery-ui\jquery-ui.structure.min.css" />
     <Content Include="Content\assets\jquery-ui\jquery-ui.theme.min.css" />
-    <Content Include="Content\assets\jquery.anexgrid\jquery.anexgrid.js" />
-    <Content Include="Content\assets\jquery.anexgrid\jquery.anexgrid.min.js" />
+    <Content Include="Content\assets\jquery.datatable\jquery.dataTables.min.css" />
+    <Content Include="Content\assets\jquery.datatable\jquery.dataTables.min.js" />
     <Content Include="Content\assets\jquery.easypiechart\angular.easypiechart.js" />
     <Content Include="Content\assets\jquery.easypiechart\angular.easypiechart.min.js" />
     <Content Include="Content\assets\jquery.easypiechart\easypiechart.js" />

@@ -29,8 +29,7 @@ namespace Castellano.Web.UI.App_Start
             bundles.Add(new ScriptBundle("~/Content/js/jquery-ui").Include("~/Content/js/jquery-ui.min.js"));
             bundles.Add(new ScriptBundle("~/Content/js/page-dashboard").Include("~/Content/js/page-dashboard.js"));
             bundles.Add(new ScriptBundle("~/Content/js/sweetalert").Include("~/Content/assets/bootstrap.sweetalert/sweetalert.min.js"));
-            //bundles.Add(new ScriptBundle("~/Content/js/jquery.anexgrid").Include("~/Content/assets/jquery.anexgrid/jquery.anexgrid.min.js"));
-            bundles.Add(new ScriptBundle("~/Content/js/jquery.anexgrid").Include("~/Content/assets/jquery.anexgrid/jquery.anexgrid.js"));
+            bundles.Add(new ScriptBundle("~/Content/js/jquery.datatable").Include("~/Content/assets/jquery.datatable/jquery.dataTables.min.js"));
 
             //script-js
             bundles.Add(new ScriptBundle("~/js/Layout/layout").Include("~/js/Layout/layOut.js"));
@@ -51,6 +50,7 @@ namespace Castellano.Web.UI.App_Start
             bundles.Add(new StyleBundle("~/Content/intro").Include("~/Content/assets/intro.js/introjs.css"));
             bundles.Add(new StyleBundle("~/Content/style").Include("~/Content/assets/css/style.css"));
             bundles.Add(new StyleBundle("~/Content/sweetalert").Include("~/Content/assets/bootstrap.sweetalert/sweetalert.css"));
+            bundles.Add(new StyleBundle("~/Content/jquery.datatable").Include("~/Content/assets/jquery.datatable/jquery.dataTables.min.css"));
         }
     }
 }

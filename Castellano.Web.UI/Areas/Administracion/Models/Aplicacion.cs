@@ -7,5 +7,6 @@ namespace Castellano.Web.UI.Areas.Administracion.Models
 {
     public class Aplicacion : Castellano.Membresia.Aplicacion
     {
+        
     }
 }

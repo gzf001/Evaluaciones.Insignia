@@ -1,4 +1,6 @@
-﻿@model Castellano.Web.UI.Areas.Administracion.Models.Aplicacion
+﻿@using Castellano.Membresia
+
+@model Castellano.Web.UI.Areas.Administracion.Models.Aplicacion
 
 @{
     ViewBag.Title = "Aplicaciones";
@@ -9,28 +11,41 @@
 
     $(document).ready(function () {
 
-        var ejemplo_1 = {
-            class: 'table-striped table-bordered',
-            columnas: [
-                { leyenda: 'Aplicacion', style: 'width:200px;', columna: 'Nombre' },
-            ],
-            modelo: [
-                { propiedad: 'Aplicacion.nombre' },
-                {
-                    formato: function (tr, obj, valor) {
-                        return obj.Nombre;
-                    }
-                },
-            ],
-            url: 'http://www.evaluaciones.web/Administracion/Admin/aplicaciones1',
-            limite: 20,
-            columna: 'id',
-            columna_orden: 'DESC'
-        };
-
-        $("#ejemplo-1").anexGrid(ejemplo_1);
+        $('#gridView').DataTable({
+        });
     })
 
 </script>
 
-<div id="ejemplo-1"></div>
+<p>
+    <table id="gridView" class="display">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Orden</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Nombre</th>
+                <th>Orden</th>
+                <th>Acciones</th>
+            </tr>
+        </tfoot>
+        <tbody>
+            @foreach (Castellano.Membresia.Aplicacion aplicacion in Castellano.Membresia.Aplicacion.GetAll())
+            {
+
+                <tr>
+                    <td>@aplicacion.Nombre</td>
+                    <td>@aplicacion.Orden</td>
+                    <td>
+                        <a href="#">Prueba</a>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</p>
