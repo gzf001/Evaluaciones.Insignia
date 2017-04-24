@@ -29,9 +29,11 @@ namespace Castellano.Web.UI.App_Start
             bundles.Add(new ScriptBundle("~/Content/js/jquery-ui").Include("~/Content/js/jquery-ui.min.js"));
             bundles.Add(new ScriptBundle("~/Content/js/page-dashboard").Include("~/Content/js/page-dashboard.js"));
             bundles.Add(new ScriptBundle("~/Content/js/sweetalert").Include("~/Content/assets/bootstrap.sweetalert/sweetalert.min.js"));
-            bundles.Add(new ScriptBundle("~/Content/js/jquery.datatable").Include("~/Content/assets/jquery.datatable/jquery.dataTables.min.js"));
+            bundles.Add(new ScriptBundle("~/Content/js/jquery.datatable").Include("~/Content/assets/jquery.datatable/js/jquery.dataTables.min.js"));
+            bundles.Add(new ScriptBundle("~/Content/js/dataTables.bootstrap").Include("~/Content/assets/jquery.datatable/plugins/bootstrap/3/dataTables.bootstrap.min.js"));
+            bundles.Add(new ScriptBundle("~/Content/js/niftymodalsJs").Include("~/Content/assets/jquery.niftymodals/js/jquery.modalEffects.js"));
+            bundles.Add(new ScriptBundle("~/Content/js/jquery.parsley").Include("~/Content/assets/jquery.parsley/dist/parsley.min.js"));
 
-            //script-js
             bundles.Add(new ScriptBundle("~/js/Layout/layout").Include("~/js/Layout/layOut.js"));
             bundles.Add(new ScriptBundle("~/js/Layout/menu-principal").Include("~/js/Layout/menu-principal.js"));
 
@@ -50,7 +52,8 @@ namespace Castellano.Web.UI.App_Start
             bundles.Add(new StyleBundle("~/Content/intro").Include("~/Content/assets/intro.js/introjs.css"));
             bundles.Add(new StyleBundle("~/Content/style").Include("~/Content/assets/css/style.css"));
             bundles.Add(new StyleBundle("~/Content/sweetalert").Include("~/Content/assets/bootstrap.sweetalert/sweetalert.css"));
-            bundles.Add(new StyleBundle("~/Content/jquery.datatable").Include("~/Content/assets/jquery.datatable/jquery.dataTables.min.css"));
+            bundles.Add(new StyleBundle("~/Content/bootstrap.datatable").Include("~/Content/assets/jquery.datatable/plugins/bootstrap/3/dataTables.bootstrap.css"));
+            bundles.Add(new StyleBundle("~/Content/niftymodals").Include("~/Content/assets/jquery.niftymodals/css/component.css"));
         }
     }
 }

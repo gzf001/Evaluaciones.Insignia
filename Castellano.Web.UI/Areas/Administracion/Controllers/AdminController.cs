@@ -230,5 +230,38 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
         {
             return this.View();
         }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult Aplicacion(Guid id)
+        {
+            Castellano.Membresia.Aplicacion aplicacion = Castellano.Membresia.Aplicacion.Get(id);
+
+            return this.Json(new Castellano.Membresia.Aplicacion
+            {
+                Nombre = aplicacion.Nombre,
+                Clave = aplicacion.Clave,
+                Orden = aplicacion.Orden
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult Aplicaciones(Castellano.Web.UI.Areas.Administracion.Models.Aplicacion model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            return this.View(model);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult Auditoria()
+        {
+            return this.View();
+        }
     }
 }

@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -551,8 +552,33 @@
     <Content Include="Content\assets\jquery-ui\jquery-ui.min.css" />
     <Content Include="Content\assets\jquery-ui\jquery-ui.structure.min.css" />
     <Content Include="Content\assets\jquery-ui\jquery-ui.theme.min.css" />
-    <Content Include="Content\assets\jquery.datatable\jquery.dataTables.min.css" />
-    <Content Include="Content\assets\jquery.datatable\jquery.dataTables.min.js" />
+    <Content Include="Content\assets\jquery.datatable\css\jquery.dataTables.css" />
+    <Content Include="Content\assets\jquery.datatable\css\jquery.dataTables.min.css" />
+    <Content Include="Content\assets\jquery.datatable\css\jquery.dataTables_themeroller.css" />
+    <Content Include="Content\assets\jquery.datatable\images\favicon.ico" />
+    <Content Include="Content\assets\jquery.datatable\images\sort_asc.png" />
+    <Content Include="Content\assets\jquery.datatable\images\sort_asc_disabled.png" />
+    <Content Include="Content\assets\jquery.datatable\images\sort_both.png" />
+    <Content Include="Content\assets\jquery.datatable\images\sort_desc.png" />
+    <Content Include="Content\assets\jquery.datatable\images\sort_desc_disabled.png" />
+    <Content Include="Content\assets\jquery.datatable\js\jquery.dataTables.js" />
+    <Content Include="Content\assets\jquery.datatable\js\jquery.dataTables.min.js" />
+    <Content Include="Content\assets\jquery.datatable\js\jquery.js" />
+    <Content Include="Content\assets\jquery.datatable\plugins\bootstrap\1\dataTables.bootstrap.css" />
+    <Content Include="Content\assets\jquery.datatable\plugins\bootstrap\1\dataTables.bootstrap.js" />
+    <Content Include="Content\assets\jquery.datatable\plugins\bootstrap\2\dataTables.bootstrap.css" />
+    <Content Include="Content\assets\jquery.datatable\plugins\bootstrap\2\dataTables.bootstrap.js" />
+    <Content Include="Content\assets\jquery.datatable\plugins\bootstrap\2\dataTables.bootstrap.min.js" />
+    <Content Include="Content\assets\jquery.datatable\plugins\bootstrap\2\index.html" />
+    <Content Include="Content\assets\jquery.datatable\plugins\bootstrap\3\dataTables.bootstrap.css" />
+    <Content Include="Content\assets\jquery.datatable\plugins\bootstrap\3\dataTables.bootstrap.js" />
+    <Content Include="Content\assets\jquery.datatable\plugins\bootstrap\3\dataTables.bootstrap.min.js" />
+    <Content Include="Content\assets\jquery.datatable\plugins\bootstrap\3\index.html" />
+    <Content Include="Content\assets\jquery.datatable\plugins\bootstrap\images\sort_asc.png" />
+    <Content Include="Content\assets\jquery.datatable\plugins\bootstrap\images\sort_asc_disabled.png" />
+    <Content Include="Content\assets\jquery.datatable\plugins\bootstrap\images\sort_both.png" />
+    <Content Include="Content\assets\jquery.datatable\plugins\bootstrap\images\sort_desc.png" />
+    <Content Include="Content\assets\jquery.datatable\plugins\bootstrap\images\sort_desc_disabled.png" />
     <Content Include="Content\assets\jquery.easypiechart\angular.easypiechart.js" />
     <Content Include="Content\assets\jquery.easypiechart\angular.easypiechart.min.js" />
     <Content Include="Content\assets\jquery.easypiechart\easypiechart.js" />
@@ -641,6 +667,55 @@
     <Content Include="Content\assets\jquery.nanoscroller\javascripts\main.js" />
     <Content Include="Content\assets\jquery.nanoscroller\javascripts\overthrow.min.js" />
     <Content Include="Content\assets\jquery.nanoscroller\readme.html" />
+    <Content Include="Content\assets\jquery.niftymodals\css\component.css" />
+    <Content Include="Content\assets\jquery.niftymodals\css\default.css" />
+    <Content Include="Content\assets\jquery.niftymodals\fonts\codropsicons\codropsicons.svg" />
+    <Content Include="Content\assets\jquery.niftymodals\fonts\codropsicons\license.txt" />
+    <Content Include="Content\assets\jquery.niftymodals\index.html" />
+    <Content Include="Content\assets\jquery.niftymodals\js\classie.js" />
+    <Content Include="Content\assets\jquery.niftymodals\js\css-filters-polyfill.js" />
+    <Content Include="Content\assets\jquery.niftymodals\js\cssParser.js" />
+    <Content Include="Content\assets\jquery.niftymodals\js\jquery.modalEffects.js" />
+    <Content Include="Content\assets\jquery.niftymodals\js\modalEffects.js" />
+    <Content Include="Content\assets\jquery.niftymodals\js\modernizr.custom.js" />
+    <Content Include="Content\assets\jquery.parsley\dist\parsley+remote.js" />
+    <Content Include="Content\assets\jquery.parsley\dist\parsley+remote.min.js" />
+    <Content Include="Content\assets\jquery.parsley\dist\parsley.js" />
+    <Content Include="Content\assets\jquery.parsley\dist\parsley.min.js" />
+    <Content Include="Content\assets\jquery.parsley\src\config.js" />
+    <Content Include="Content\assets\jquery.parsley\src\extra\dateiso.js" />
+    <Content Include="Content\assets\jquery.parsley\src\i18n\bg.js" />
+    <Content Include="Content\assets\jquery.parsley\src\i18n\de.js" />
+    <Content Include="Content\assets\jquery.parsley\src\i18n\en.extra.js" />
+    <Content Include="Content\assets\jquery.parsley\src\i18n\en.js" />
+    <Content Include="Content\assets\jquery.parsley\src\i18n\es.js" />
+    <Content Include="Content\assets\jquery.parsley\src\i18n\fr.extra.js" />
+    <Content Include="Content\assets\jquery.parsley\src\i18n\fr.js" />
+    <Content Include="Content\assets\jquery.parsley\src\i18n\it.extra.js" />
+    <Content Include="Content\assets\jquery.parsley\src\i18n\it.js" />
+    <Content Include="Content\assets\jquery.parsley\src\i18n\ja.js" />
+    <Content Include="Content\assets\jquery.parsley\src\i18n\pl.js" />
+    <Content Include="Content\assets\jquery.parsley\src\i18n\sv.extra.js" />
+    <Content Include="Content\assets\jquery.parsley\src\i18n\sv.js" />
+    <Content Include="Content\assets\jquery.parsley\src\i18n\zh_cn.extra.js" />
+    <Content Include="Content\assets\jquery.parsley\src\i18n\zh_cn.js" />
+    <Content Include="Content\assets\jquery.parsley\src\main.js" />
+    <Content Include="Content\assets\jquery.parsley\src\parsley.css" />
+    <Content Include="Content\assets\jquery.parsley\src\parsley.js" />
+    <Content Include="Content\assets\jquery.parsley\src\parsley.remote.js" />
+    <Content Include="Content\assets\jquery.parsley\src\parsley\abstract.js" />
+    <Content Include="Content\assets\jquery.parsley\src\parsley\defaults.js" />
+    <Content Include="Content\assets\jquery.parsley\src\parsley\factory\constraint.js" />
+    <Content Include="Content\assets\jquery.parsley\src\parsley\factory\options.js" />
+    <Content Include="Content\assets\jquery.parsley\src\parsley\field.js" />
+    <Content Include="Content\assets\jquery.parsley\src\parsley\form.js" />
+    <Content Include="Content\assets\jquery.parsley\src\parsley\multiple.js" />
+    <Content Include="Content\assets\jquery.parsley\src\parsley\pubsub.js" />
+    <Content Include="Content\assets\jquery.parsley\src\parsley\ui.js" />
+    <Content Include="Content\assets\jquery.parsley\src\parsley\utils.js" />
+    <Content Include="Content\assets\jquery.parsley\src\parsley\validator.js" />
+    <Content Include="Content\assets\jquery.parsley\src\wrap\append.js" />
+    <Content Include="Content\assets\jquery.parsley\src\wrap\prepend.js" />
     <Content Include="Content\assets\jquery.select2\select2-bootstrap.css" />
     <Content Include="Content\assets\jquery.select2\select2-spinner.gif" />
     <Content Include="Content\assets\jquery.select2\select2.css" />
@@ -809,6 +884,15 @@
     <Content Include="Areas\Administracion\Views\Admin\MisDatos.cshtml" />
     <Content Include="Areas\Administracion\Views\Admin\About.cshtml" />
     <Content Include="Areas\Administracion\Views\Admin\Aplicaciones.cshtml" />
+    <Content Include="Content\assets\jquery.datatable\images\Sorting icons.psd" />
+    <Content Include="Content\assets\jquery.niftymodals\bower.json" />
+    <Content Include="Content\assets\jquery.niftymodals\fonts\codropsicons\codropsicons.eot" />
+    <Content Include="Content\assets\jquery.niftymodals\fonts\codropsicons\codropsicons.ttf" />
+    <Content Include="Content\assets\jquery.niftymodals\fonts\codropsicons\codropsicons.woff" />
+    <Content Include="Content\assets\jquery.niftymodals\README.md" />
+    <Content Include="Areas\Administracion\Views\Admin\Auditoria.cshtml" />
+    <Content Include="Content\assets\jquery.parsley\bower.json" />
+    <Content Include="Content\assets\jquery.parsley\LICENSE" />
     <None Include="Properties\PublishProfiles\Guillermo.pubxml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />

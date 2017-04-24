@@ -34,8 +34,8 @@ namespace Castellano.Web.UI.Areas.Administracion
 
             context.MapRoute(
                 name: "Aplicaciones",
-                url: "Administracion/Admin/Aplicaciones1",
-                defaults: new { area = "Administracion", controller = "Admin", action = "Aplicaciones1" }
+                url: "Administracion/Admin/Aplicacion",
+                defaults: new { area = "Administracion", controller = "Admin", action = "Aplicacion" }
             );
 
             #endregion
