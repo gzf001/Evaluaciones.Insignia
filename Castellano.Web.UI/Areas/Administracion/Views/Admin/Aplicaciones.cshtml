@@ -17,35 +17,103 @@
 
 </script>
 
-<p>
-    <table id="gridView" class="display">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Orden</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tfoot>
-            <tr>
-                <th>Nombre</th>
-                <th>Orden</th>
-                <th>Acciones</th>
-            </tr>
-        </tfoot>
-        <tbody>
-            @foreach (Castellano.Membresia.Aplicacion aplicacion in Castellano.Membresia.Aplicacion.GetAll())
-            {
+<div class="cl-mcont">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="block-flat">
+                <div class="header">
+                    <h3>Aplicaciones</h3>
+                </div>
+                <div class="content">
+                    <table id="gridView" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Orden</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Orden</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach (Castellano.Membresia.Aplicacion aplicacion in Castellano.Membresia.Aplicacion.GetAll())
+                            {
 
-                <tr>
-                    <td>@aplicacion.Nombre</td>
-                    <td>@aplicacion.Orden</td>
-                    <td>
-                        <a href="#">Prueba</a>
-                    </td>
-                </tr>
+                                <tr>
+                                    <td>@aplicacion.Nombre</td>
+                                    <td>@aplicacion.Orden</td>
+                                    <td>
+                                        <a class="btn btn-primary btn-xs btn-flat md-trigger" data-value="@aplicacion.Id" data-modal="form-primary" href="#" data-original-title="Editar" data-toggle="tooltip"><i class="fa fa-pencil"></i></a>
+                                        <a class="btn btn-danger btn-xs" href="#" data-original-title="Eliminar" data-toggle="tooltip"><i class="fa fa-times"></i></a>
+                                    </td>
+                                </tr>
 
-            }
-        </tbody>
-    </table>
-</p>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form action="/Administracion/Admin/Aplicaciones" data-parsley-validate="" method="post" role="form">
+@*<form action="/Administracion/Admin/MisDatos" class="form-horizontal" method="post" role="form">*@
+    @Html.AntiForgeryToken()
+
+    <div id="form-primary" class="md-modal colored-header custom-width md-effect-9">
+        <div class="md-content">
+            <div class="modal-header">
+                <h3>Aplicación</h3>
+                <button type="button" data-dismiss="modal" aria-hidden="true" class="close md-close">×</button>
+            </div>
+            <div class="modal-body form">
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Nombre, new { @for = "nombre" })
+                    @Html.TextBoxFor(x => x.Nombre, new { @class = "form-control", @id = "nombre", @placeholder = "Nombre", @required = "dsssffssassadasasdad", @maxLength = "60" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Clave, new { @for = "clave" })
+                    @Html.TextBoxFor(x => x.Clave, new { @class = "form-control", @id = "clave", @placeholder = "Clave", @required = "", @maxLength = "50" })
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12 no-margin">
+                        @Html.LabelFor(x => x.Orden, new { @for = "orden" })
+                    </div>
+                </div>
+                <div class="row no-margin-y">
+                    <div class="form-group col-md-3 col-sm-3 col-xs-3 no-margin">
+                        @Html.TextBoxFor(x => x.Orden, new { @class = "form-control", @id = "orden", @placeholder = "Orden", @required = "", @maxLength = "2", @onlyNumbers = true })
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" data-dismiss="modal" class="btn btn-primary btn-flat">Guardar</button>
+                <button type="button" data-dismiss="modal" class="btn btn-danger btn-flat md-close">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    <div class="md-overlay"></div>
+</form>
+
+<script type="text/javascript">
+
+    $(function () {
+
+        $('a[data-original-title=Editar]').click(function () {
+
+            $.getJSON('/Administracion/Admin/Aplicacion/' + $(this).attr('data-value'), function (data) {
+
+                $('#nombre').val(data.Nombre);
+                $('#clave').val(data.Clave);
+                $('#orden').val(data.Orden);
+            });
+        });
+    })
+
+</script>
