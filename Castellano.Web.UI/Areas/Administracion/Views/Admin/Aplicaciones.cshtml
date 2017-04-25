@@ -62,8 +62,8 @@
     </div>
 </div>
 
-<form action="/Administracion/Admin/Aplicaciones" data-parsley-validate="" method="post" role="form">
-@*<form action="/Administracion/Admin/MisDatos" class="form-horizontal" method="post" role="form">*@
+<form id="modalForm" data-parsley-validate="" method="post" role="form">
+    @*<form action="/Administracion/Admin/MisDatos" class="form-horizontal" method="post" role="form">*@
     @Html.AntiForgeryToken()
 
     <div id="form-primary" class="md-modal colored-header custom-width md-effect-9">
@@ -93,7 +93,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" data-dismiss="modal" class="btn btn-primary btn-flat">Guardar</button>
+                <button type="button" id="save" data-dismiss="modal" class="btn btn-primary btn-flat">Guardar</button>
                 <button type="button" data-dismiss="modal" class="btn btn-danger btn-flat md-close">Cancelar</button>
             </div>
         </div>
@@ -107,13 +107,40 @@
 
         $('a[data-original-title=Editar]').click(function () {
 
-            $.getJSON('/Administracion/Admin/Aplicacion/' + $(this).attr('data-value'), function (data) {
+            $.getJSON('/Administracion/Admin/GetAplicacion/' + $(this).attr('data-value'), function (data) {
 
                 $('#nombre').val(data.Nombre);
                 $('#clave').val(data.Clave);
                 $('#orden').val(data.Orden);
             });
         });
-    })
+
+        $("#save").click(function () {
+
+            var obj = {
+                Nombre: $('#nombre').val(),
+                Clave: $('#clave').val(),
+                Orden: $('#orden').val()
+            };
+
+            $.ajax({
+                type: "POST",
+                url: '/Administracion/Admin/Aplicaciones',
+                data: JSON.stringify(obj),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: true,
+                success: function (resultado) {
+                    //var num = resultado.d;
+
+                    alert('aqui');
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    var error = eval("(" + XMLHttpRequest.responseText + ")");
+                    aler(error.Message);
+                }
+            });
+        });
+    });
 
 </script>

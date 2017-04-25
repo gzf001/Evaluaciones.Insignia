@@ -17,5 +17,26 @@ namespace Castellano.Helpers
                 return usuario;
             }
         }
+
+        public class ResponseModel
+        {
+            public bool Respuesta
+            {
+                get;
+                set;
+            }
+
+            public string Redirect
+            {
+                get;
+                set;
+            }
+
+            public string Error
+            {
+                get;
+                set;
+            }
+        }
     }
 }

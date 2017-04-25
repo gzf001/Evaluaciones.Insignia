@@ -233,7 +233,7 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
 
         [Authorize]
         [HttpGet]
-        public ActionResult Aplicacion(Guid id)
+        public ActionResult GetAplicacion(Guid id)
         {
             Castellano.Membresia.Aplicacion aplicacion = Castellano.Membresia.Aplicacion.Get(id);
 
@@ -247,14 +247,16 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult Aplicaciones(Castellano.Web.UI.Areas.Administracion.Models.Aplicacion model)
+        public JsonResult Aplicaciones(Castellano.Web.UI.Areas.Administracion.Models.Aplicacion model)
         {
-            if (!this.ModelState.IsValid)
+            var respuesta = new Castellano.Helpers.Controller.ResponseModel
             {
-                return this.View(model);
-            }
+                Respuesta = true,
+                Redirect = "/Administracion/Admin/Aplicaciones#",
+                Error = ""
+            };
 
-            return this.View(model);
+            return this.Json(respuesta, JsonRequestBehavior.DenyGet);
         }
 
         [Authorize]
