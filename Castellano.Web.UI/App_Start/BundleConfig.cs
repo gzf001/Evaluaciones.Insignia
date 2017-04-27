@@ -32,7 +32,7 @@ namespace Castellano.Web.UI.App_Start
             bundles.Add(new ScriptBundle("~/Content/js/jquery.datatable").Include("~/Content/assets/jquery.datatable/js/jquery.dataTables.min.js"));
             bundles.Add(new ScriptBundle("~/Content/js/dataTables.bootstrap").Include("~/Content/assets/jquery.datatable/plugins/bootstrap/3/dataTables.bootstrap.min.js"));
             bundles.Add(new ScriptBundle("~/Content/js/niftymodalsJs").Include("~/Content/assets/jquery.niftymodals/js/jquery.modalEffects.js"));
-            bundles.Add(new ScriptBundle("~/Content/js/jquery.parsley").Include("~/Content/assets/jquery.parsley/dist/parsley.min.js"));
+            bundles.Add(new ScriptBundle("~/Content/js/jquery.validation").Include("~/Content/assets/jquery.validate/jquery.validate.min.js"));
 
             bundles.Add(new ScriptBundle("~/js/Layout/layout").Include("~/js/Layout/layOut.js"));
             bundles.Add(new ScriptBundle("~/js/Layout/menu-principal").Include("~/js/Layout/menu-principal.js"));

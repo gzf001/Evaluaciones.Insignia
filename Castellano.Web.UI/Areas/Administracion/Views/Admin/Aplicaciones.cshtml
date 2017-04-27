@@ -44,14 +44,14 @@
                             @foreach (Castellano.Membresia.Aplicacion aplicacion in Castellano.Membresia.Aplicacion.GetAll())
                             {
 
-                                <tr>
-                                    <td>@aplicacion.Nombre</td>
-                                    <td>@aplicacion.Orden</td>
-                                    <td>
-                                        <a class="btn btn-primary btn-xs btn-flat md-trigger" data-value="@aplicacion.Id" data-modal="form-primary" href="#" data-original-title="Editar" data-toggle="tooltip"><i class="fa fa-pencil"></i></a>
-                                        <a class="btn btn-danger btn-xs" href="#" data-original-title="Eliminar" data-toggle="tooltip"><i class="fa fa-times"></i></a>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>@aplicacion.Nombre</td>
+                                <td>@aplicacion.Orden</td>
+                                <td>
+                                    <a class="btn btn-primary btn-xs btn-flat md-trigger" data-value="@aplicacion.Id" data-modal="form-primary" href="#" data-original-title="Editar" data-toggle="tooltip"><i class="fa fa-pencil"></i></a>
+                                    <a class="btn btn-danger btn-xs" href="#" data-original-title="Eliminar" data-toggle="tooltip"><i class="fa fa-times"></i></a>
+                                </td>
+                            </tr>
 
                             }
                         </tbody>
@@ -62,8 +62,8 @@
     </div>
 </div>
 
-<form id="modalForm" data-parsley-validate="" method="post" role="form">
-    @*<form action="/Administracion/Admin/MisDatos" class="form-horizontal" method="post" role="form">*@
+<form id="modalForm">
+
     @Html.AntiForgeryToken()
 
     <div id="form-primary" class="md-modal colored-header custom-width md-effect-9">
@@ -75,11 +75,11 @@
             <div class="modal-body form">
                 <div class="form-group">
                     @Html.LabelFor(x => x.Nombre, new { @for = "nombre" })
-                    @Html.TextBoxFor(x => x.Nombre, new { @class = "form-control", @id = "nombre", @placeholder = "Nombre", @required = "dsssffssassadasasdad", @maxLength = "60" })
+                    @Html.TextBoxFor(x => x.Nombre, new { @class = "form-control", @id = "nombre", @placeholder = "Nombre", @maxLength = "60" })
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(x => x.Clave, new { @for = "clave" })
-                    @Html.TextBoxFor(x => x.Clave, new { @class = "form-control", @id = "clave", @placeholder = "Clave", @required = "", @maxLength = "50" })
+                    @Html.TextBoxFor(x => x.Clave, new { @class = "form-control", @id = "clave", @placeholder = "Clave", @maxLength = "50" })
                 </div>
                 <div class="row">
                     <div class="form-group col-md-12 no-margin">
@@ -88,12 +88,12 @@
                 </div>
                 <div class="row no-margin-y">
                     <div class="form-group col-md-3 col-sm-3 col-xs-3 no-margin">
-                        @Html.TextBoxFor(x => x.Orden, new { @class = "form-control", @id = "orden", @placeholder = "Orden", @required = "", @maxLength = "2", @onlyNumbers = true })
+                        @Html.TextBoxFor(x => x.Orden, new { @class = "form-control", @id = "orden", @placeholder = "Orden", @maxLength = "2", @onlyNumbers = true })
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="save" data-dismiss="modal" class="btn btn-primary btn-flat">Guardar</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-primary btn-flat">Guardar</button>
                 <button type="button" data-dismiss="modal" class="btn btn-danger btn-flat md-close">Cancelar</button>
             </div>
         </div>
@@ -103,44 +103,84 @@
 
 <script type="text/javascript">
 
-    $(function () {
+    jQuery(document).ready(function () {
+
+        var validator = $('#modalForm').validate({
+
+            errorClass: 'errorText',
+            validClass: 'validText',
+            errorElement: 'em',
+            rules: {
+                Nombre: {
+                    required: true,
+                },
+                Clave: {
+                    required: true
+                },
+                Orden: {
+                    required: true,
+                    number: true,
+                    min: 1,
+                    max: 20
+                }
+            },
+            messages: {
+                Nombre: {
+                    required: 'Ingrese el nombre'
+                },
+                Clave: {
+                    required: 'Ingrese la clave'
+                },
+                Orden: {
+                    required: 'Ingrese el orden',
+                    min: 'El mínimo valor a ingresar es 1',
+                    max: 'El máximo valor a ingresar es 20'
+                }
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).closest('.form-control').addClass(errorClass).removeClass(validClass);
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).closest('.form-control').removeClass(errorClass).addClass(validClass);
+            },
+            errorPlacement: function (error, element) {
+                error.insertAfter(element.parent());
+            },
+            submitHandler: function (form) {
+
+                var obj = {
+                    id: $('#aplicacionId').val(),
+                    nombre: $('#nombre').val(),
+                    clave: $('#clave').val(),
+                    orden: $('#orden').val()
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Administracion/Admin/Aplicaciones',
+                    data: obj,
+                    success: function () {
+                    }
+                });
+            }
+        });
 
         $('a[data-original-title=Editar]').click(function () {
 
             $.getJSON('/Administracion/Admin/GetAplicacion/' + $(this).attr('data-value'), function (data) {
 
+                var form = $('#modalForm');
+
                 $('#nombre').val(data.Nombre);
                 $('#clave').val(data.Clave);
                 $('#orden').val(data.Orden);
-            });
-        });
 
-        $("#save").click(function () {
+                validator.resetForm();
 
-            var obj = {
-                Nombre: $('#nombre').val(),
-                Clave: $('#clave').val(),
-                Orden: $('#orden').val()
-            };
-
-            $.ajax({
-                type: "POST",
-                url: '/Administracion/Admin/Aplicaciones',
-                data: JSON.stringify(obj),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                async: true,
-                success: function (resultado) {
-                    //var num = resultado.d;
-
-                    alert('aqui');
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    var error = eval("(" + XMLHttpRequest.responseText + ")");
-                    aler(error.Message);
-                }
+                form.find(".state-error").removeClass("state-error");
+                form.find(".state-success").removeClass("state-success");
+                form.find("em").remove();
             });
         });
     });
-
 </script>

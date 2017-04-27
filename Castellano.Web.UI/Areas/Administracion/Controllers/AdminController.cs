@@ -247,12 +247,17 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
 
         [Authorize]
         [HttpPost]
-        public JsonResult Aplicaciones(Castellano.Web.UI.Areas.Administracion.Models.Aplicacion model)
+        public ActionResult Aplicaciones(Castellano.Web.UI.Areas.Administracion.Models.Aplicacion model)
         {
+            if(!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
             var respuesta = new Castellano.Helpers.Controller.ResponseModel
             {
                 Respuesta = true,
-                Redirect = "/Administracion/Admin/Aplicaciones#",
+                Redirect = "/Administracion/Admin/Aplicaciones",
                 Error = ""
             };
 
