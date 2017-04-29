@@ -7,16 +7,6 @@
     Layout = "~/Views/Shared/_LayoutLogged.cshtml";
 }
 
-<script type="text/javascript">
-
-    $(document).ready(function () {
-
-        $('#gridView').DataTable({
-        });
-    })
-
-</script>
-
 <div class="cl-mcont">
     <div class="row">
         <div class="col-md-12">
@@ -40,21 +30,22 @@
                                 <th>Acciones</th>
                             </tr>
                         </tfoot>
-                        <tbody>
-                            @foreach (Castellano.Membresia.Aplicacion aplicacion in Castellano.Membresia.Aplicacion.GetAll())
-                            {
+                                                @*<tbody>
+        @foreach (Castellano.Membresia.Aplicacion aplicacion in Castellano.Membresia.Aplicacion.GetAll())
+        {
 
-                            <tr>
-                                <td>@aplicacion.Nombre</td>
-                                <td>@aplicacion.Orden</td>
-                                <td>
-                                    <a class="btn btn-primary btn-xs btn-flat md-trigger" data-value="@aplicacion.Id" data-modal="form-primary" href="#" data-original-title="Editar" data-toggle="tooltip"><i class="fa fa-pencil"></i></a>
-                                    <a class="btn btn-danger btn-xs" href="#" data-original-title="Eliminar" data-toggle="tooltip"><i class="fa fa-times"></i></a>
-                                </td>
-                            </tr>
+        <tr>
+            <td>@aplicacion.Nombre</td>
+            <td>@aplicacion.Orden</td>
+            <td>
+                <a class="btn btn-primary btn-xs btn-flat md-trigger" data-value="@aplicacion.Id" data-modal="form-primary" href="#" data-original-title="Editar" data-toggle="tooltip"><i class="fa fa-pencil"></i></a>
+                <a class="btn btn-primary btn-xs btn-flat md-trigger"                             data-modal="form-primary" href="#" data-original-title="Editar" data-toggle="tooltip"onclick="clickEdicion(this)" title="Editar" typeButton="Edit"><i class='fa fa-pencil'></i></a>
+                <a class="btn btn-danger btn-xs" href="#" data-original-title="Eliminar" data-toggle="tooltip"><i class="fa fa-times"></i></a>
+            </td>
+        </tr>
 
-                            }
-                        </tbody>
+        }
+    </tbody>*@
                     </table>
                 </div>
             </div>
@@ -134,7 +125,7 @@
                 Orden: {
                     required: 'Ingrese el orden',
                     min: 'El mínimo valor a ingresar es 1',
-                    max: 'El máximo valor a ingresar es 20'
+                    max: 'El máximo valor a ingresar es 30'
                 }
             },
             highlight: function (element, errorClass, validClass) {
@@ -165,22 +156,72 @@
             }
         });
 
-        $('a[data-original-title=Editar]').click(function () {
+        gridView();
 
-            $.getJSON('/Administracion/Admin/GetAplicacion/' + $(this).attr('data-value'), function (data) {
-
-                var form = $('#modalForm');
-
-                $('#nombre').val(data.Nombre);
-                $('#clave').val(data.Clave);
-                $('#orden').val(data.Orden);
-
-                validator.resetForm();
-
-                form.find(".state-error").removeClass("state-error");
-                form.find(".state-success").removeClass("state-success");
-                form.find("em").remove();
-            });
-        });
     });
+
+    function gridView() {
+
+        $('#gridView').DataTable({
+            "ajax": "/Administracion/Admin/GetAplicaciones",
+            "columns": [
+                { "data": "Nombre" },
+                { "data": "Orden" },
+                { "data": "Accion" }
+            ],
+            "order": [[1, "asc"]],
+            "columnDefs": [
+                {
+                    "targets": [2],
+                    "searchable": false,
+                    "sortable": false
+                }
+            ],
+            "iDisplayLength": 15,
+            "aLengthMenu": [
+                [15, 20, 25, 30, -1],
+                [15, 20, 25, 30, "All"]
+            ],
+            "createdRow": function (row, data, dataIndex) {
+
+                var edit = $(row).children().last().children()[0];
+                var del = $(row).children().last().children()[1];
+
+                $(edit).attr('data-value', data.Id);
+                $(del).attr('data-value', data.Id);
+            }
+        });
+    }
+
+    function clickEdicion(e) {
+
+
+        $.magnificPopup.open({
+            removalDelay: 500,
+            items: {
+                src: "#modal-form"
+            },
+            callbacks: {
+                beforeOpen: function (e) {
+
+                    $.getJSON('/Administracion/Admin/GetAplicacion/' + $(e).attr('data-value'), function (data) {
+
+                        var form = $('#modalForm');
+
+                        $('#nombre').val(data.Nombre);
+                        $('#clave').val(data.Clave);
+                        $('#orden').val(data.Orden);
+
+                        //validator.resetForm();
+
+                        //form.find(".state-error").removeClass("state-error");
+                        //form.find(".state-success").removeClass("state-success");
+                        form.find("em").remove();
+                    });
+                }
+            },
+            midClick: true
+        });
+    }
+
 </script>

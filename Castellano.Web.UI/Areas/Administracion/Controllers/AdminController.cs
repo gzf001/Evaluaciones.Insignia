@@ -245,6 +245,36 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
+        //[Authorize]
+        [HttpGet]
+        public JsonResult GetAplicaciones()
+        {
+            Castellano.Web.UI.Areas.Administracion.Models.Aplicacion.Aplicaciones aplicaciones = new Castellano.Web.UI.Areas.Administracion.Models.Aplicacion.Aplicaciones();
+
+            aplicaciones.data = new List<Castellano.Web.UI.Areas.Administracion.Models.Aplicacion>();
+
+            //@Html.ActionLink(null, null, null, null, TypeButton.Edit, aplicacion.Id, null)
+
+            foreach (Castellano.Membresia.Aplicacion aplicacion in Castellano.Membresia.Aplicacion.GetAll())
+            {
+                aplicaciones.data.Add(new Castellano.Web.UI.Areas.Administracion.Models.Aplicacion
+                {
+                    Id = aplicacion.Id,
+                    Nombre = aplicacion.Nombre,
+                    Clave = aplicacion.Clave,
+                    Orden = aplicacion.Orden,
+                    //Editar = Bluei.Helpers.ActionLinkExtension.ActionLink(null, null, null, null, null, Bluei.Helpers.TypeButton.Edit, aplicacion.Id, null).ToString(),
+                    //Eliminar = Bluei.Helpers.ActionLinkExtension.ActionLink(null, null, null, null, null, Bluei.Helpers.TypeButton.Delete, aplicacion.Id, null).ToString()
+                    Accion = string.Format("{0}{1}", Castellano.Helpers.ActionLinkExtension.ActionLinkGridView(Castellano.Helpers.TypeButton.Edit),
+                                                     Castellano.Helpers.ActionLinkExtension.ActionLinkGridView(Castellano.Helpers.TypeButton.Delete))
+                });
+            }
+
+            //var a = this.Json(aplicaciones, JsonRequestBehavior.AllowGet);
+
+            return this.Json(aplicaciones, JsonRequestBehavior.AllowGet);
+        }
+
         [Authorize]
         [HttpPost]
         public ActionResult Aplicaciones(Castellano.Web.UI.Areas.Administracion.Models.Aplicacion model)
@@ -254,14 +284,7 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
                 return this.View(model);
             }
 
-            var respuesta = new Castellano.Helpers.Controller.ResponseModel
-            {
-                Respuesta = true,
-                Redirect = "/Administracion/Admin/Aplicaciones",
-                Error = ""
-            };
-
-            return this.Json(respuesta, JsonRequestBehavior.DenyGet);
+            return this.Json("200 ok", JsonRequestBehavior.DenyGet);
         }
 
         [Authorize]

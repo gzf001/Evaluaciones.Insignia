@@ -31,7 +31,7 @@ namespace Castellano.Web.UI.App_Start
             bundles.Add(new ScriptBundle("~/Content/js/sweetalert").Include("~/Content/assets/bootstrap.sweetalert/sweetalert.min.js"));
             bundles.Add(new ScriptBundle("~/Content/js/jquery.datatable").Include("~/Content/assets/jquery.datatable/js/jquery.dataTables.min.js"));
             bundles.Add(new ScriptBundle("~/Content/js/dataTables.bootstrap").Include("~/Content/assets/jquery.datatable/plugins/bootstrap/3/dataTables.bootstrap.min.js"));
-            bundles.Add(new ScriptBundle("~/Content/js/niftymodalsJs").Include("~/Content/assets/jquery.niftymodals/js/jquery.modalEffects.js"));
+            bundles.Add(new ScriptBundle("~/Content/js/magnificPopUpJS").Include("~/Content/assets/magnific/jquery.magnific-popup.min.js"));
             bundles.Add(new ScriptBundle("~/Content/js/jquery.validation").Include("~/Content/assets/jquery.validate/jquery.validate.min.js"));
 
             bundles.Add(new ScriptBundle("~/js/Layout/layout").Include("~/js/Layout/layOut.js"));
@@ -53,7 +53,7 @@ namespace Castellano.Web.UI.App_Start
             bundles.Add(new StyleBundle("~/Content/style").Include("~/Content/assets/css/style.css"));
             bundles.Add(new StyleBundle("~/Content/sweetalert").Include("~/Content/assets/bootstrap.sweetalert/sweetalert.css"));
             bundles.Add(new StyleBundle("~/Content/bootstrap.datatable").Include("~/Content/assets/jquery.datatable/plugins/bootstrap/3/dataTables.bootstrap.css"));
-            bundles.Add(new StyleBundle("~/Content/niftymodals").Include("~/Content/assets/jquery.niftymodals/css/component.css"));
+            bundles.Add(new StyleBundle("~/Content/magnificPopUp").Include("~/Content/assets/magnific/magnific-popup.css"));
         }
     }
 }

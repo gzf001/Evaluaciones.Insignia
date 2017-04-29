@@ -33,15 +33,15 @@ namespace Castellano.Web.UI.Areas.Administracion
             #region Aplicaciones
 
             context.MapRoute(
-                name: "Aplicaciones",
-                url: "Administracion/Admin/Aplicacion",
-                defaults: new { area = "Administracion", controller = "Admin", action = "Aplicacion" }
+                name: "GetAplicacion",
+                url: "Administracion/Admin/GetAplicacion",
+                defaults: new { area = "Administracion", controller = "Admin", action = "GetAplicacion" }
             );
 
             context.MapRoute(
-                name: "GetAplicacion",
-                url: "Administracion/Admin/GetAplicacion",
-                defaults: new { area = "Administracion", controller = "Admin", action = "Aplicacion" }
+                name: "GetAplicaciones",
+                url: "Administracion/Admin/GetAplicaciones",
+                defaults: new { area = "Administracion", controller = "Admin", action = "GetAplicaciones" }
             );
 
             #endregion
