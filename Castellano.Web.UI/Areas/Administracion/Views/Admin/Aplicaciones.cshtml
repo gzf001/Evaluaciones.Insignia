@@ -23,6 +23,21 @@
                                 <th>Acciones</th>
                             </tr>
                         </thead>
+                        @*<tbody>
+                                @foreach (Castellano.Membresia.Aplicacion aplicacion in Castellano.Membresia.Aplicacion.GetAll())
+                                {
+
+                                <tr>
+                                    <td>@aplicacion.Nombre</td>
+                                    <td>@aplicacion.Orden</td>
+                                    <td>
+                                        <a class="btn btn-primary btn-xs btn-flat md-trigger" data-value="@aplicacion.Id" data-modal="form-primary" href="#" data-original-title="Editar" data-toggle="tooltip"><i class="fa fa-pencil"></i></a>
+                                        <a class="btn btn-danger btn-xs" href="#" data-original-title="Eliminar" data-toggle="tooltip"><i class="fa fa-times"></i></a>
+                                    </td>
+                                </tr>
+
+                                }
+                            </tbody>*@
                         <tfoot>
                             <tr>
                                 <th>Nombre</th>
@@ -30,22 +45,6 @@
                                 <th>Acciones</th>
                             </tr>
                         </tfoot>
-                                                @*<tbody>
-        @foreach (Castellano.Membresia.Aplicacion aplicacion in Castellano.Membresia.Aplicacion.GetAll())
-        {
-
-        <tr>
-            <td>@aplicacion.Nombre</td>
-            <td>@aplicacion.Orden</td>
-            <td>
-                <a class="btn btn-primary btn-xs btn-flat md-trigger" data-value="@aplicacion.Id" data-modal="form-primary" href="#" data-original-title="Editar" data-toggle="tooltip"><i class="fa fa-pencil"></i></a>
-                <a class="btn btn-primary btn-xs btn-flat md-trigger"                             data-modal="form-primary" href="#" data-original-title="Editar" data-toggle="tooltip"onclick="clickEdicion(this)" title="Editar" typeButton="Edit"><i class='fa fa-pencil'></i></a>
-                <a class="btn btn-danger btn-xs" href="#" data-original-title="Eliminar" data-toggle="tooltip"><i class="fa fa-times"></i></a>
-            </td>
-        </tr>
-
-        }
-    </tbody>*@
                     </table>
                 </div>
             </div>
@@ -56,6 +55,8 @@
 <form id="modalForm">
 
     @Html.AntiForgeryToken()
+
+    @Html.Hidden("aplicacionId")
 
     <div id="form-primary" class="md-modal colored-header custom-width md-effect-9">
         <div class="md-content">
@@ -94,7 +95,9 @@
 
 <script type="text/javascript">
 
-    jQuery(document).ready(function () {
+    $(document).ready(function () {
+
+        var table = gridView();
 
         var validator = $('#modalForm').validate({
 
@@ -151,18 +154,42 @@
                     url: '/Administracion/Admin/Aplicaciones',
                     data: obj,
                     success: function () {
+
+                        table.ajax.reload();
+                    },
+                    error: function (data) {
+
+                        alert('error');
                     }
                 });
             }
         });
+    });
 
-        gridView();
+    $('#gridView').on('draw.dt', function () {
+        $('.md-trigger').modalEffects();
+    });
 
+    $(document).on('click', 'a[data-original-title=Editar]', function () {
+
+        $.getJSON('/Administracion/Admin/GetAplicacion/' + $(this).attr('data-value'), function (data) {
+
+            var form = $('#modalForm');
+
+            $('#aplicacionId').val(data.Id);
+            $('#nombre').val(data.Nombre);
+            $('#clave').val(data.Clave);
+            $('#orden').val(data.Orden);
+
+            form.find(".errorText").removeClass("errorText");
+            form.find(".validText").removeClass("validText");
+            form.find("em").remove();
+        });
     });
 
     function gridView() {
 
-        $('#gridView').DataTable({
+        var table = $('#gridView').DataTable({
             "ajax": "/Administracion/Admin/GetAplicaciones",
             "columns": [
                 { "data": "Nombre" },
@@ -191,37 +218,8 @@
                 $(del).attr('data-value', data.Id);
             }
         });
-    }
 
-    function clickEdicion(e) {
-
-
-        $.magnificPopup.open({
-            removalDelay: 500,
-            items: {
-                src: "#modal-form"
-            },
-            callbacks: {
-                beforeOpen: function (e) {
-
-                    $.getJSON('/Administracion/Admin/GetAplicacion/' + $(e).attr('data-value'), function (data) {
-
-                        var form = $('#modalForm');
-
-                        $('#nombre').val(data.Nombre);
-                        $('#clave').val(data.Clave);
-                        $('#orden').val(data.Orden);
-
-                        //validator.resetForm();
-
-                        //form.find(".state-error").removeClass("state-error");
-                        //form.find(".state-success").removeClass("state-success");
-                        form.find("em").remove();
-                    });
-                }
-            },
-            midClick: true
-        });
+        return table;
     }
 
 </script>

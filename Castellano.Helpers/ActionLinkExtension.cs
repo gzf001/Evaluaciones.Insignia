@@ -115,7 +115,7 @@ namespace Castellano.Helpers
                     }
             }
 
-            t.MergeAttribute("onclick", "clickEdicion(this)");
+            //t.MergeAttribute("onclick", "clickEdicion(this)");
 
             t.MergeAttribute("typeButton", typeButton.ToString());
 
