@@ -126,6 +126,7 @@
     <Compile Include="Areas\Administracion\Models\ChangePassword.cs" />
     <Compile Include="Areas\Administracion\Models\Persona.cs" />
     <Compile Include="Controllers\Home\HomeController.cs" />
+    <Compile Include="Controllers\Utils\UtilsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -138,6 +139,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="js\Administracion\aplicacion.js" />
     <Content Include="Content\assets\bootstrap.datetimepicker\css\bootstrap-datetimepicker.css" />
     <Content Include="Content\assets\bootstrap.datetimepicker\css\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\assets\bootstrap.datetimepicker\js\bootstrap-datetimepicker.js" />
@@ -736,17 +738,6 @@
     <None Include="Content\assets\jquery.validate\jquery.validate-vsdoc.js" />
     <Content Include="Content\assets\jquery.validate\jquery.validate.js" />
     <Content Include="Content\assets\jquery.validate\jquery.validate.min.js" />
-    <Content Include="Content\assets\magnific\example_thumbs\1.jpg" />
-    <Content Include="Content\assets\magnific\example_thumbs\2.jpg" />
-    <Content Include="Content\assets\magnific\example_thumbs\3.jpg" />
-    <Content Include="Content\assets\magnific\example_thumbs\4.jpg" />
-    <Content Include="Content\assets\magnific\example_thumbs\5.jpg" />
-    <Content Include="Content\assets\magnific\example_thumbs\6.jpg" />
-    <Content Include="Content\assets\magnific\example_thumbs\7.jpg" />
-    <Content Include="Content\assets\magnific\example_thumbs\8.jpg" />
-    <Content Include="Content\assets\magnific\example_thumbs\9.jpg" />
-    <Content Include="Content\assets\magnific\jquery.magnific-popup.min.js" />
-    <Content Include="Content\assets\magnific\magnific-popup.css" />
     <Content Include="Content\assets\skycons\index.html" />
     <Content Include="Content\assets\skycons\skycons.js" />
     <Content Include="Content\images\Logo_netcore1.jpg" />
@@ -783,6 +774,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Utils\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

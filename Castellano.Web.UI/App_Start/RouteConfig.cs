@@ -18,6 +18,16 @@ namespace Castellano.Web.UI
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Login", id = UrlParameter.Optional }
             );
+
+            #region Utilidades
+
+            routes.MapRoute(
+                name: "Utils",
+                url: "{controller}/{action}",
+                defaults: new { controller = "Utils", action = "GenerateId" }
+            );
+
+            #endregion
         }
     }
 }

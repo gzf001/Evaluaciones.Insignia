@@ -38,6 +38,12 @@ namespace Castellano.Web.UI.App_Start
             bundles.Add(new ScriptBundle("~/js/Layout/layout").Include("~/js/Layout/layOut.js"));
             bundles.Add(new ScriptBundle("~/js/Layout/menu-principal").Include("~/js/Layout/menu-principal.js"));
 
+            #region Administración
+
+            bundles.Add(new ScriptBundle("~/js/aplicacion").Include("~/js/Administracion/aplicacion.js"));
+
+            #endregion
+
             //CSS
             bundles.Add(new StyleBundle("~/Content/layout").Include("~/Content/assets/css/layout.css"));
             bundles.Add(new StyleBundle("~/Content/bootstrap").Include("~/Content/assets/bootstrap/css/bootstrap.css"));

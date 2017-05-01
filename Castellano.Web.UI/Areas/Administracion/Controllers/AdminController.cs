@@ -54,6 +54,7 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
 
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult MisDatos(Castellano.Web.UI.Areas.Administracion.Models.Persona model)
         {
             if (!this.ModelState.IsValid)
@@ -145,6 +146,7 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
 
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult ChangePassword(Castellano.Web.UI.Areas.Administracion.Models.ChangePassword model)
         {
             if (!this.ModelState.IsValid)
@@ -232,46 +234,8 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
         }
 
         [Authorize]
-        [HttpGet]
-        public JsonResult GetAplicacion(Guid id)
-        {
-            Castellano.Membresia.Aplicacion aplicacion = Castellano.Membresia.Aplicacion.Get(id);
-
-            return this.Json(new Castellano.Membresia.Aplicacion
-            {
-                Id = aplicacion.Id,
-                Nombre = aplicacion.Nombre,
-                Clave = aplicacion.Clave,
-                Orden = aplicacion.Orden
-            }, JsonRequestBehavior.AllowGet);
-        }
-
-        [Authorize]
-        [HttpGet]
-        public JsonResult GetAplicaciones()
-        {
-            Castellano.Web.UI.Areas.Administracion.Models.Aplicacion.Aplicaciones aplicaciones = new Castellano.Web.UI.Areas.Administracion.Models.Aplicacion.Aplicaciones();
-
-            aplicaciones.data = new List<Castellano.Web.UI.Areas.Administracion.Models.Aplicacion>();
-
-            foreach (Castellano.Membresia.Aplicacion aplicacion in Castellano.Membresia.Aplicacion.GetAll())
-            {
-                aplicaciones.data.Add(new Castellano.Web.UI.Areas.Administracion.Models.Aplicacion
-                {
-                    Id = aplicacion.Id,
-                    Nombre = aplicacion.Nombre,
-                    Clave = aplicacion.Clave,
-                    Orden = aplicacion.Orden,
-                    Accion = string.Format("{0}{1}", Castellano.Helpers.ActionLinkExtension.ActionLinkGridView(Castellano.Helpers.TypeButton.Edit),
-                                                     Castellano.Helpers.ActionLinkExtension.ActionLinkGridView(Castellano.Helpers.TypeButton.Delete))
-                });
-            }
-
-            return this.Json(aplicaciones, JsonRequestBehavior.AllowGet);
-        }
-
-        [Authorize]
         [HttpPost]
+        //[ValidateAntiForgeryToken]
         public ActionResult Aplicaciones(Castellano.Web.UI.Areas.Administracion.Models.Aplicacion model)
         {
             if (!this.ModelState.IsValid)
@@ -297,6 +261,69 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
             }
 
             return this.Json("200 ok", JsonRequestBehavior.DenyGet);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public JsonResult GetAplicacion(Guid id)
+        {
+            Castellano.Membresia.Aplicacion aplicacion = Castellano.Membresia.Aplicacion.Get(id);
+
+            return this.Json(new Castellano.Membresia.Aplicacion
+            {
+                Id = aplicacion.Id,
+                Nombre = aplicacion.Nombre,
+                Clave = aplicacion.Clave,
+                Orden = aplicacion.Orden
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public JsonResult DeleteAplicacion(Guid id)
+        {
+            Castellano.Membresia.Aplicacion aplicacion = Castellano.Membresia.Aplicacion.Get(id);
+
+            using (Castellano.Membresia.Context context = new Castellano.Membresia.Context())
+            {
+                new Castellano.Membresia.Aplicacion
+                {
+                    Id = aplicacion.Id,
+                    MenuId = aplicacion.MenuId,
+                    MenuItemId = aplicacion.MenuItemId,
+                    Nombre = aplicacion.Nombre,
+                    Clave = aplicacion.Clave,
+                    Orden = aplicacion.Orden
+                }.Delete(context);
+
+                context.SubmitChanges();
+            }
+
+            return this.Json("200 ok", JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public JsonResult GetAplicaciones()
+        {
+            Castellano.Web.UI.Areas.Administracion.Models.Aplicacion.Aplicaciones aplicaciones = new Castellano.Web.UI.Areas.Administracion.Models.Aplicacion.Aplicaciones();
+
+            aplicaciones.data = new List<Castellano.Web.UI.Areas.Administracion.Models.Aplicacion>();
+
+            foreach (Castellano.Membresia.Aplicacion aplicacion in Castellano.Membresia.Aplicacion.GetAll())
+            {
+                aplicaciones.data.Add(new Castellano.Web.UI.Areas.Administracion.Models.Aplicacion
+                {
+                    Id = aplicacion.Id,
+                    Nombre = aplicacion.Nombre,
+                    Clave = aplicacion.Clave,
+                    Orden = aplicacion.Orden,
+                    Accion = string.Format("{0}{1}", Castellano.Helpers.ActionLinkExtension.ActionLinkGridView(Castellano.Helpers.TypeButton.Edit),
+                                                     Castellano.Helpers.ActionLinkExtension.ActionLinkGridView(Castellano.Helpers.TypeButton.Delete))
+                });
+            }
+
+            return this.Json(aplicaciones, JsonRequestBehavior.AllowGet);
         }
 
         [Authorize]

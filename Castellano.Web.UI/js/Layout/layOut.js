@@ -41,3 +41,26 @@
         $('.md-trigger').modalEffects();
     }
 );
+
+function generateId() {
+
+    var id = "";
+
+    $.ajax({
+        async: false,
+        dataType: "json",
+        url: '/Utils/GenerateId',
+        success: function (data) {
+
+            id = data;
+
+        },
+        error: function () {
+
+            alert('error');
+
+        }
+    });
+
+    return id;
+}

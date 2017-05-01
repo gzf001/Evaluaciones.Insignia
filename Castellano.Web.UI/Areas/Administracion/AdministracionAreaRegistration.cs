@@ -44,6 +44,12 @@ namespace Castellano.Web.UI.Areas.Administracion
                 defaults: new { area = "Administracion", controller = "Admin", action = "GetAplicaciones" }
             );
 
+            context.MapRoute(
+                name: "DeleteAplicacion",
+                url: "Administracion/Admin/DeleteAplicacion",
+                defaults: new { area = "Administracion", controller = "Admin", action = "DeleteAplicacion" }
+            );
+
             #endregion
 
             context.MapRoute(

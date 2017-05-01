@@ -87,8 +87,6 @@ namespace Castellano.Helpers
         {
             TagBuilder t = new TagBuilder("a");
 
-            t.MergeAttribute("data-toggle", "tooltip");
-
             switch (typeButton)
             {
                 case Castellano.Helpers.TypeButton.Edit:
@@ -99,7 +97,7 @@ namespace Castellano.Helpers
 
                         t.MergeAttribute("href", "#");
 
-                        t.MergeAttribute("data-original-title", "Editar");
+                        t.MergeAttribute("title", "Editar");
 
                         t.InnerHtml = "<i class='fa fa-pencil'></i>";
 
@@ -109,13 +107,13 @@ namespace Castellano.Helpers
                     {
                         t.AddCssClass("btn btn-danger btn-xs");
 
+                        t.MergeAttribute("title", "Eliminar");
+
                         t.InnerHtml = "<i class='fa fa-times'></i>";
 
                         break;
                     }
             }
-
-            //t.MergeAttribute("onclick", "clickEdicion(this)");
 
             t.MergeAttribute("typeButton", typeButton.ToString());
 

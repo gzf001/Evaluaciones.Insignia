@@ -14,8 +14,6 @@ namespace Castellano.Web.UI.Controllers.Home
             return this.View();
         }
 
-        //
-        // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
