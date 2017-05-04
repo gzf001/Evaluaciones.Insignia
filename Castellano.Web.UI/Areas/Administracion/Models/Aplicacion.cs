@@ -11,7 +11,7 @@ namespace Castellano.Web.UI.Areas.Administracion.Models
     {
         public Aplicacion()
         {
-            this.SelectedPerfil = new List<string>();
+            this.SelectedPerfil = new List<Guid>();
 
             this.Perfiles = new List<SelectListItem>();
         }
@@ -22,7 +22,7 @@ namespace Castellano.Web.UI.Areas.Administracion.Models
             set;
         }
 
-        public List<string> SelectedPerfil
+        public List<Guid> SelectedPerfil
         {
             get;
             set;

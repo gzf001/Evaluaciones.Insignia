@@ -49,11 +49,20 @@
         },
         submitHandler: function (form) {
 
+            var selectedPerfil = null;
+
+            selectedPerfil = [];
+
+            $(":checkbox:checked").each(function () {
+                selectedPerfil.push($(this).attr('value'));
+            });
+
             var obj = {
                 id: $('#aplicacionId').val(),
                 nombre: $('#nombre').val(),
                 clave: $('#clave').val(),
-                orden: $('#orden').val()
+                orden: $('#orden').val(),
+                selectedPerfil: selectedPerfil
             };
 
             $.ajax({
@@ -90,6 +99,12 @@
             $('#nombre').val(data.Nombre);
             $('#clave').val(data.Clave);
             $('#orden').val(data.Orden);
+
+            $.each(data.SelectedPerfil, function (i, item) {
+
+                $('[value=' + item + ']').prop('checked', true);
+
+            });
         });
     });
 
@@ -174,6 +189,12 @@ function limpiar() {
     $('#nombre').val("");
     $('#clave').val("");
     $('#orden').val("");
+
+    $(":checkbox").each(function () {
+
+        $(this).prop('checked', false);
+
+    });
 
     form.find(".errorText").removeClass("errorText");
     form.find(".validText").removeClass("validText");

@@ -234,7 +234,11 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
 
             foreach (Castellano.Membresia.Perfil perfil in Castellano.Membresia.Perfil.GetAll())
             {
-                model.Perfiles.Add(new SelectListItem { Text = perfil.Nombre, Value = perfil.Id.ToString() });
+                model.Perfiles.Add(new SelectListItem
+                {
+                    Text = perfil.Nombre,
+                    Value = perfil.Id.ToString()
+                });
             }
 
             return this.View(model);
@@ -242,7 +246,6 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
 
         [Authorize]
         [HttpPost]
-        //[ValidateAntiForgeryToken]
         public ActionResult Aplicaciones(Castellano.Web.UI.Areas.Administracion.Models.Aplicacion model)
         {
             if (!this.ModelState.IsValid)
@@ -251,7 +254,21 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
             }
 
             Castellano.Membresia.Aplicacion aplicacion = Castellano.Membresia.Aplicacion.Get(model.Id);
-            
+
+            using (Castellano.Membresia.Context context = new Castellano.Membresia.Context())
+            {
+                foreach (Castellano.Membresia.Perfil perfil in Castellano.Membresia.Perfil.GetAll())
+                {
+                    new Castellano.Membresia.AplicacionPerfil
+                    {
+                        AplicacionId = model.Id,
+                        PerfilId = perfil.Id
+                    }.Delete(context);
+                }
+
+                context.SubmitChanges();
+            }
+
             using (Castellano.Membresia.Context context = new Castellano.Membresia.Context())
             {
                 new Castellano.Membresia.Aplicacion
@@ -263,6 +280,15 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
                     Clave = model.Clave.Trim(),
                     Orden = model.Orden
                 }.Save(context);
+
+                foreach (Guid perfilId in model.SelectedPerfil)
+                {
+                    new Castellano.Membresia.AplicacionPerfil
+                    {
+                        AplicacionId = model.Id,
+                        PerfilId = perfilId
+                    }.Save(context);
+                }
 
                 context.SubmitChanges();
             }
@@ -276,12 +302,15 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
         {
             Castellano.Membresia.Aplicacion aplicacion = Castellano.Membresia.Aplicacion.Get(id);
 
-            return this.Json(new Castellano.Membresia.Aplicacion
+            List<Castellano.Membresia.AplicacionPerfil> aplicacionPerfiles = Castellano.Membresia.AplicacionPerfil.GetAll(aplicacion);
+
+            return this.Json(new Castellano.Web.UI.Areas.Administracion.Models.Aplicacion
             {
                 Id = aplicacion.Id,
                 Nombre = aplicacion.Nombre,
                 Clave = aplicacion.Clave,
-                Orden = aplicacion.Orden
+                Orden = aplicacion.Orden,
+                SelectedPerfil = aplicacionPerfiles.Any() ? aplicacionPerfiles.Select<Castellano.Membresia.AplicacionPerfil, Guid>(x => x.PerfilId).ToList<Guid>() : null
             }, JsonRequestBehavior.AllowGet);
         }
 
