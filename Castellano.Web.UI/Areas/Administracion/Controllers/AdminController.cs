@@ -230,7 +230,14 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
         [HttpGet]
         public ActionResult Aplicaciones()
         {
-            return this.View();
+            Castellano.Web.UI.Areas.Administracion.Models.Aplicacion model = new Castellano.Web.UI.Areas.Administracion.Models.Aplicacion();
+
+            foreach (Castellano.Membresia.Perfil perfil in Castellano.Membresia.Perfil.GetAll())
+            {
+                model.Perfiles.Add(new SelectListItem { Text = perfil.Nombre, Value = perfil.Id.ToString() });
+            }
+
+            return this.View(model);
         }
 
         [Authorize]
@@ -244,7 +251,7 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
             }
 
             Castellano.Membresia.Aplicacion aplicacion = Castellano.Membresia.Aplicacion.Get(model.Id);
-
+            
             using (Castellano.Membresia.Context context = new Castellano.Membresia.Context())
             {
                 new Castellano.Membresia.Aplicacion

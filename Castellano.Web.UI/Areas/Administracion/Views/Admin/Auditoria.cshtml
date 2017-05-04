@@ -7,36 +7,15 @@
     Layout = "~/Views/Shared/_LayoutLogged.cshtml";
 }
 
-<form action="/Administracion/Admin/Aplicaciones" data-parsley-validate="">
-
-    @Html.AntiForgeryToken()
-
-    <div class="md-content">
-        <div class="modal-body form">
-            <div class="form-group">
-                @Html.LabelFor(x => x.Nombre, new { @for = "nombre" })
-                @Html.TextBoxFor(x => x.Nombre, new { @class = "form-control", @id = "nombre", @placeholder = "Nombre", @required = "", @maxLength = "60" })
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(x => x.Clave, new { @for = "clave" })
-                @Html.TextBoxFor(x => x.Clave, new { @class = "form-control", @id = "clave", @placeholder = "Clave", @required = "", @maxLength = "50" })
-            </div>
-            <div class="row">
-                <div class="form-group col-md-12 no-margin">
-                    @Html.LabelFor(x => x.Orden, new { @for = "orden" })
-                </div>
-            </div>
-            <div class="row no-margin-y">
-                <div class="form-group col-md-3 col-sm-3 col-xs-3 no-margin">
-                    @Html.TextBoxFor(x => x.Orden, new { @class = "form-control", @id = "orden", @placeholder = "Orden", @required = "", @maxLength = "2", @onlyNumbers = true })
-                </div>
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 stackem">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
         </div>
-        
-        <div class="modal-footer">
-            <button type="submit" data-dismiss="modal" class="btn btn-primary btn-flat md-close">Guardar</button>
-            <button type="button" data-dismiss="modal" class="btn btn-danger btn-flat md-close">Cancelar</button>
+        <div class="col-md-8">
+            aqui
         </div>
     </div>
-
-</form>
+</div>
