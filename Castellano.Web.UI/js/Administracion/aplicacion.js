@@ -168,15 +168,7 @@ function gridView() {
         "aLengthMenu": [
             [15, 20, 25, 30, -1],
             [15, 20, 25, 30, "All"]
-        ],
-        "createdRow": function (row, data, dataIndex) {
-
-            var edit = $(row).children().last().children()[0];
-            var del = $(row).children().last().children()[1];
-
-            $(edit).attr('data-value', data.Id);
-            $(del).attr('data-value', data.Id);
-        }
+        ]
     });
 
     return table;

@@ -1,0 +1,11 @@
+﻿@using Castellano.Helpers
+
+@model Castellano.Web.UI.Areas.Administracion.Models.Aplicacion
+
+@{
+    ViewBag.Title = "ItemsMenu";
+    Layout = "~/Views/Shared/_LayoutLogged.cshtml";
+}
+
+@Html.MenuOrderable(null)
+

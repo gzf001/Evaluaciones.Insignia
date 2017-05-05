@@ -124,6 +124,7 @@
     <Compile Include="Areas\Administracion\Controllers\AdminController.cs" />
     <Compile Include="Areas\Administracion\Models\Aplicacion.cs" />
     <Compile Include="Areas\Administracion\Models\ChangePassword.cs" />
+    <Compile Include="Areas\Administracion\Models\MenuItem.cs" />
     <Compile Include="Areas\Administracion\Models\Persona.cs" />
     <Compile Include="Controllers\Home\HomeController.cs" />
     <Compile Include="Controllers\Utils\UtilsController.cs" />
@@ -735,6 +736,7 @@
     <Content Include="Content\assets\jquery.niftymodals\fonts\codropsicons\codropsicons.ttf" />
     <Content Include="Content\assets\jquery.niftymodals\fonts\codropsicons\codropsicons.woff" />
     <Content Include="Content\assets\jquery.niftymodals\README.md" />
+    <Content Include="Areas\Administracion\Views\Admin\ItemsMenu.cshtml" />
     <None Include="Content\assets\jquery.validate\jquery.validate-vsdoc.js" />
     <Content Include="Content\assets\jquery.validate\jquery.validate.js" />
     <Content Include="Content\assets\jquery.validate\jquery.validate.min.js" />

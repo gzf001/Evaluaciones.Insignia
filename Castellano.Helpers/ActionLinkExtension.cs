@@ -83,9 +83,11 @@ namespace Castellano.Helpers
             return new MvcHtmlString(t.ToString(TagRenderMode.Normal));
         }
 
-        public static MvcHtmlString ActionLinkGridView(Castellano.Helpers.TypeButton typeButton)
+        public static MvcHtmlString ActionLinkGridView(Guid id, Castellano.Helpers.TypeButton typeButton)
         {
             TagBuilder t = new TagBuilder("a");
+
+            t.MergeAttribute("data-value", id.ToString());
 
             switch (typeButton)
             {

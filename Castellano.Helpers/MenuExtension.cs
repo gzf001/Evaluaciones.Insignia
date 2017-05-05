@@ -98,5 +98,54 @@ namespace Castellano.Helpers
 
             return retorno;
         }
+
+        public static MvcHtmlString MenuOrderable(this HtmlHelper helper, Castellano.Membresia.Aplicacion aplicacion)
+        {
+            aplicacion = Castellano.Membresia.Aplicacion.Get(new Guid("f9b2fdfc-abcc-430d-9aca-f3af2d01d767"));
+
+            TagBuilder t = new TagBuilder("div");
+
+            t.AddCssClass("dd mb35");
+
+            t.InnerHtml += "<ol class='dd-list'>";
+
+            t.InnerHtml += "<li class='dd-item' data-id='" + aplicacion.Inicio.Id.ToString() + "'>";
+
+            t.InnerHtml += string.Format("<div class='dd-handle'>{0}</div>", aplicacion.Inicio.Nombre);
+
+            t.InnerHtml += MenuExtension.MenuOrderable(aplicacion.Inicio);
+
+            t.InnerHtml += "</li></ol>";
+
+            return new MvcHtmlString(t.ToString(TagRenderMode.Normal));
+        }
+
+        private static string MenuOrderable(Castellano.Membresia.MenuItem menuItem)
+        {
+            string retorno = string.Empty;
+
+            foreach (Castellano.Membresia.MenuItem m in Castellano.Membresia.MenuItem.GetAll(menuItem))
+            {
+                List<Castellano.Membresia.MenuItem> items = Castellano.Membresia.MenuItem.GetAll(m);
+
+                if (items.Any())
+                {
+                    retorno += "<ol class='dd-list'>";
+                    retorno += string.Format("<li class='dd-item' data-id='{0}'>", m.Id);
+                    retorno += string.Format("<div class='dd-handle'>{0}</div>", m.Nombre);
+                    retorno += MenuExtension.MenuOrderable(m);
+                    retorno += "</li></ol>";
+                }
+                else
+                {
+                    retorno += string.Format("<li class='dd-item' data-id='{0}'>", m.Id);
+                    retorno += string.Format("<div class='dd-handle'>{0}</div>", m.Nombre);
+                    retorno += "</li>";
+                }
+            }
+
+            return retorno;
+        }
+
     }
 }

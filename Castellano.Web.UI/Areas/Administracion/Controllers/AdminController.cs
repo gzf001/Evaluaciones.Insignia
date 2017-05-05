@@ -226,6 +226,8 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
             return this.RedirectToAction("Login", "Home", new { area = string.Empty });
         }
 
+        #region Aplicaciones
+
         [Authorize]
         [HttpGet]
         public ActionResult Aplicaciones()
@@ -354,12 +356,21 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
                     Nombre = aplicacion.Nombre,
                     Clave = aplicacion.Clave,
                     Orden = aplicacion.Orden,
-                    Accion = string.Format("{0}{1}", Castellano.Helpers.ActionLinkExtension.ActionLinkGridView(Castellano.Helpers.TypeButton.Edit),
-                                                     Castellano.Helpers.ActionLinkExtension.ActionLinkGridView(Castellano.Helpers.TypeButton.Delete))
+                    Accion = string.Format("{0}{1}", Castellano.Helpers.ActionLinkExtension.ActionLinkGridView(aplicacion.Id, Castellano.Helpers.TypeButton.Edit),
+                                                     Castellano.Helpers.ActionLinkExtension.ActionLinkGridView(aplicacion.Id, Castellano.Helpers.TypeButton.Delete))
                 });
             }
 
             return this.Json(aplicaciones, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult ItemsMenu()
+        {
+            return this.View();
         }
 
         [Authorize]
