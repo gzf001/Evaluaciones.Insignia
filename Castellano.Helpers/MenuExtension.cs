@@ -36,7 +36,7 @@ namespace Castellano.Helpers
 
                     if (items.Any())
                     {
-                        if(primero)
+                        if (primero)
                         {
                             t.InnerHtml += "<li class='active'><a href='#'><span>" + menuItem.Nombre + "</span><i class='fa fa-chevron-down'></i></a>";
 
@@ -46,7 +46,7 @@ namespace Castellano.Helpers
                         {
                             t.InnerHtml += "<li><a href='#'>" + menuItem.Nombre + "<i class='fa fa-chevron-down'></i></a>";
                         }
-                        
+
                         t.InnerHtml += "<ul class='sub-menu'>";
                         t.InnerHtml += MenuExtension.MenuString(menuItem, 10);
                         t.InnerHtml += "</ul></li>";
@@ -105,7 +105,9 @@ namespace Castellano.Helpers
 
             TagBuilder t = new TagBuilder("div");
 
-            t.AddCssClass("dd mb35");
+            t.Attributes.Add("id", "menu");
+
+            t.AddCssClass("dd");
 
             t.InnerHtml += "<ol class='dd-list'>";
 
@@ -126,22 +128,22 @@ namespace Castellano.Helpers
 
             foreach (Castellano.Membresia.MenuItem m in Castellano.Membresia.MenuItem.GetAll(menuItem))
             {
-                List<Castellano.Membresia.MenuItem> items = Castellano.Membresia.MenuItem.GetAll(m);
+                //List<Castellano.Membresia.MenuItem> items = Castellano.Membresia.MenuItem.GetAll(m);
 
-                if (items.Any())
-                {
-                    retorno += "<ol class='dd-list'>";
-                    retorno += string.Format("<li class='dd-item' data-id='{0}'>", m.Id);
-                    retorno += string.Format("<div class='dd-handle'>{0}</div>", m.Nombre);
-                    retorno += MenuExtension.MenuOrderable(m);
-                    retorno += "</li></ol>";
-                }
-                else
-                {
-                    retorno += string.Format("<li class='dd-item' data-id='{0}'>", m.Id);
-                    retorno += string.Format("<div class='dd-handle'>{0}</div>", m.Nombre);
-                    retorno += "</li>";
-                }
+                //if (items.Any())
+                //{
+                retorno += "<ol class='dd-list'>";
+                retorno += string.Format("<li class='dd-item' data-id='{0}'>", m.Id);
+                retorno += string.Format("<div class='dd-handle'>{0}</div>", m.Nombre);
+                retorno += MenuExtension.MenuOrderable(m);
+                retorno += "</li></ol>";
+                //}
+                //else
+                //{
+                //    retorno += string.Format("<li class='dd-item' data-id='{0}'>", m.Id);
+                //    retorno += string.Format("<div class='dd-handle'>{0}</div>", m.Nombre);
+                //    retorno += "</li>";
+                //}
             }
 
             return retorno;

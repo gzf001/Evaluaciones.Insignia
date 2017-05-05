@@ -9,3 +9,169 @@
 
 @Html.MenuOrderable(null)
 
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+        App.nestableLists();
+    });
+</script>
+
+<script src="~/Content/assets/jquery.nestable/jquery.nestable.js"></script>
+<script src="~/js/Administracion/menuItem.js"></script>
+
+@*<div class="dd">
+    <ol class='dd-list'>
+        <li class='dd-item' data-id='b1a415cb-2f0f-4762-92f9-92bb497974f5'>
+            <div class='dd-handle'>Inicio</div>
+            <ol class='dd-list'>
+                <li class='dd-item' data-id='9e4b7bd6-10cb-4664-9f32-e953ea4a0eb7'>
+                    <div class='dd-handle'>Aplicación</div>
+                    <ol class='dd-list'>
+                        <li class='dd-item' data-id='681b893a-f03d-4f9b-afdb-6c27eb69b2b3'>
+                            <div class='dd-handle'>Aplicaciones</div>
+                        </li>
+                    </ol>
+                    <ol class='dd-list'>
+                        <li class='dd-item' data-id='eed65d29-db11-42d0-801e-1f725b0b4a2f'>
+                            <div class='dd-handle'>Items de menús</div>
+                        </li>
+                    </ol>
+                    <ol class='dd-list'>
+                        <li class='dd-item' data-id='192dde33-dbcd-49be-9d19-138c00f14bcf'>
+                            <div class='dd-handle'>Roles y permisos</div>
+                        </li>
+                    </ol>
+                    <ol class='dd-list'>
+                        <li class='dd-item' data-id='f831e9bd-ff02-4030-9532-5aee3aa12aeb'>
+                            <div class='dd-handle'>Parámetros</div>
+                            <ol class='dd-list'>
+                                <li class='dd-item' data-id='2dbd8e61-c2ad-477f-8c3c-2291608145ab'>
+                                    <div class='dd-handle'>Indicadores</div>
+                                    <ol class='dd-list'>
+                                        <li class='dd-item' data-id='76acbbc3-21bc-4924-a65a-bfb4722213ce'>
+                                            <div class='dd-handle'>Indicadores del día</div>
+                                        </li>
+                                    </ol>
+                                    <ol class='dd-list'>
+                                        <li class='dd-item' data-id='136ab32f-7443-4ae1-a0e7-1bcaa1869da9'>
+                                            <div class='dd-handle'>Indicadores por periodo</div>
+                                        </li>
+                                    </ol>
+                                    <ol class='dd-list'>
+                                        <li class='dd-item'
+                                            data-id='b7949246-a464-4316-9d11-c1f1e9bf2e82'>
+                                            <div class='dd-handle'>Valor de la UTM</div>
+                                        </li>
+                                    </ol>
+                                    <ol class='dd-list'>
+                                        <li class='dd-item' data-id='4e8b42a5-f59c-4db1-98e3-d8faa73ae818'>
+                                            <div class='dd-handle'>Valor de la UF</div>
+                                        </li>
+                                    </ol>
+                                    <ol class='dd-list'>
+                                        <li class='dd-item' data-id='a51c3fd1-9284-4fd9-a0f6-81f9a157b060'>
+                                            <div class='dd-handle'>Valor del IPC</div>
+                                        </li>
+                                    </ol>
+                                </li>
+                            </ol>
+                            <ol class='dd-list'>
+                                <li class='dd-item' data-id='556fdf01-a1d6-4515-9793-4ac2d0517db6'>
+                                    <div class='dd-handle'>Tasa cotización obligatoria AFP</div>
+                                </li>
+                            </ol>
+                            <ol class='dd-list'>
+                                <li class='dd-item' data-id='b568cbeb-a4d0-44ee-91e8-0beeb2ecb427'>
+                                    <div class='dd-handle'>Parámetros previsionales</div>
+                                </li>
+                            </ol>
+                            <ol class='dd-list'>
+                                <li class='dd-item' data-id='daa651de-6b4e-4b2a-a1eb-ce6e7064edeb'>
+                                    <div class='dd-handle'>Seguro de cesantía (AFC)</div>
+                                </li>
+                            </ol>
+                            <ol class='dd-list'>
+                                <li class='dd-item' data-id='a144d7b9-0852-4c95-a49e-1d88801e7bfd'>
+                                    <div class='dd-handle'>Asignación familiar</div>
+                                </li>
+                            </ol>
+                        </li>
+                    </ol>
+                    <ol class='dd-list'>
+                        <li class='dd-item' data-id='7f947b39-4b4a-4ec2-ab07-0854eec68d63'>
+                            <div class='dd-handle'>Feriados</div>
+                        </li>
+                    </ol>
+                    <ol class='dd-list'>
+                        <li class='dd-item' data-id='e7246052-cbbf-4f14-8371-e157d0c290ae'>
+                            <div class='dd-handle'>Usuarios Conectados</div>
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+            <ol class='dd-list'>
+                <li class='dd-item' data-id='80692c85-e625-4ab7-ad7c-557fa862dcf0'>
+                    <div class='dd-handle'>Auditoría</div>
+                </li>
+            </ol>
+            <ol class='dd-list'>
+                <li class='dd-item' data-id='ecc8f31e-fd4b-4849-b371-b262a3856ab9'>
+                    <div class='dd-handle'>Empresas</div>
+                    <ol class='dd-list'>
+                        <li class='dd-item' data-id='48162ad7-25bc-49aa-9e54-4b578497ba99'>
+                            <div class='dd-handle'>Empresas</div>
+                        </li>
+                    </ol>
+                    <ol class='dd-list'>
+                        <li class='dd-item' data-id='5de5726f-5677-41f1-a9d8-5d1b3d817218'>
+                            <div class='dd-handle'>Unidades administrativas</div>
+                        </li>
+                    </ol>
+                    <ol class='dd-list'>
+                        <li class='dd-item' data-id='f863426c-d7cf-4a95-a705-d22e891db479'>
+                            <div class='dd-handle'>Departamentos</div>
+                        </li>
+                    </ol>
+                    <ol class='dd-list'>
+                        <li class='dd-item' data-id='79272449-82be-4ed8-9a6c-3648f9f7f572'>
+                            <div class='dd-handle'>Centros de costos</div>
+                        </li>
+                    </ol>
+                    <ol class='dd-list'>
+                        <li class='dd-item' data-id='e10742c8-f89d-43ef-b927-3e125ab93f1f'>
+                            <div class='dd-handle'>Funcionarios</div>
+                        </li>
+                    </ol>
+                    <ol class='dd-list'>
+                        <li class='dd-item' data-id='c4142226-f966-4ff0-8a80-83d8d8338fa2'>
+                            <div class='dd-handle'>Generación de certificados de renta</div>
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+            <ol class='dd-list'>
+                <li class='dd-item' data-id='0cd7c01a-7506-46b3-8348-f17bc4afed3d'>
+                    <div class='dd-handle'>Educación</div>
+                    <ol class='dd-list'>
+                        <li class='dd-item' data-id='a4c92a91-9cbd-4cfb-88ac-cdcf761f73e7'>
+                            <div class='dd-handle'>Sostenedores</div>
+                        </li>
+                    </ol>
+                    <ol class='dd-list'>
+                        <li class='dd-item' data-id='d33db432-72bb-4563-b228-2a6d8ad54970'>
+                            <div class='dd-handle'>Establecimientos</div>
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+            <ol class='dd-list'>
+                <li class='dd-item' data-id='f1853963-f7a7-459c-8f91-7970df894872'>
+                    <div class='dd-handle'>Usuario</div>
+                </li>
+            </ol>
+        </li>
+    </ol>
+</div>*@
+

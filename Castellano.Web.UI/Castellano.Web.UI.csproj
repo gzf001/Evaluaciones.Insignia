@@ -140,6 +140,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\assets\jquery.nestable\index.html" />
+    <Content Include="Content\assets\jquery.nestable\jquery.nestable.js" />
     <Content Include="js\Administracion\aplicacion.js" />
     <Content Include="Content\assets\bootstrap.datetimepicker\css\bootstrap-datetimepicker.css" />
     <Content Include="Content\assets\bootstrap.datetimepicker\css\bootstrap-datetimepicker.min.css" />
@@ -737,6 +739,8 @@
     <Content Include="Content\assets\jquery.niftymodals\fonts\codropsicons\codropsicons.woff" />
     <Content Include="Content\assets\jquery.niftymodals\README.md" />
     <Content Include="Areas\Administracion\Views\Admin\ItemsMenu.cshtml" />
+    <Content Include="Content\assets\jquery.nestable\bower.json" />
+    <Content Include="Content\assets\jquery.nestable\README.md" />
     <None Include="Content\assets\jquery.validate\jquery.validate-vsdoc.js" />
     <Content Include="Content\assets\jquery.validate\jquery.validate.js" />
     <Content Include="Content\assets\jquery.validate\jquery.validate.min.js" />
@@ -757,6 +761,7 @@
     <Content Include="Content\js\page-dashboard.js" />
     <Content Include="Content\js\voice-recognition.js" />
     <Content Include="Global.asax" />
+    <Content Include="js\Administracion\menuItem.js" />
     <Content Include="js\Layout\layOut.js" />
     <Content Include="js\Layout\menu-principal.js" />
     <None Include="Scripts\jquery-1.4.4-vsdoc.js" />
