@@ -52,6 +52,22 @@ namespace Castellano.Web.UI.Areas.Administracion
 
             #endregion
 
+            #region Items de menú
+
+            context.MapRoute(
+                name: "GetItemsMenu",
+                url: "Administracion/Admin/GetItemsMenu/{aplicacionId}",
+                defaults: new { area = "Administracion", controller = "Admin", action = "GetItemsMenu", aplicacionId = "" }
+            );
+
+            context.MapRoute(
+                name: "GetOrder",
+                url: "Administracion/Admin/GetOrder/{data}",
+                defaults: new { area = "Administracion", controller = "Admin", action = "GetOrder", data = "" }
+            );
+
+            #endregion
+
             context.MapRoute(
                 "Administracion_default",
                 "Administracion/{controller}/{action}/{id}",

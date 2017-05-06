@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -373,11 +375,55 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
             return this.View();
         }
 
+        //[Authorize]
+        //[HttpGet]
+        [HttpPost]
+        public ActionResult GetOrder(string data)
+        {
+            var a = JsonConvert.DeserializeObject(data);
+
+            var b = a.GetType();
+
+            foreach (var c in (a as JArray))
+            {
+            }
+
+            //foreach (var b in a)
+            //{
+            //}
+
+            return this.Json("200 ok", JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public JsonResult GetItemsMenu(Guid aplicacionId)
+        {
+            Castellano.Membresia.Aplicacion aplicacion = Castellano.Membresia.Aplicacion.Get(aplicacionId);
+
+            return this.Json(Castellano.Helpers.MenuExtension.MenuOrderable(null, aplicacion).ToString(), JsonRequestBehavior.AllowGet);
+        }
+
         [Authorize]
         [HttpGet]
         public ActionResult Auditoria()
         {
             return this.View();
+        }
+
+        private class Prueba
+        {
+            public List<Guid> children
+            {
+                get;
+                set;
+            }
+
+            public Guid id
+            {
+                get;
+                set;
+            }
         }
     }
 }
