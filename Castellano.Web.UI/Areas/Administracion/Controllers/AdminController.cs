@@ -358,8 +358,8 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
                     Nombre = aplicacion.Nombre,
                     Clave = aplicacion.Clave,
                     Orden = aplicacion.Orden,
-                    Accion = string.Format("{0}{1}", Castellano.Helpers.ActionLinkExtension.ActionLinkGridView(aplicacion.Id, Castellano.Helpers.TypeButton.Edit),
-                                                     Castellano.Helpers.ActionLinkExtension.ActionLinkGridView(aplicacion.Id, Castellano.Helpers.TypeButton.Delete))
+                    Accion = string.Format("{0}{1}", Castellano.Helpers.ActionLinkExtension.ActionLinkEmbedded(aplicacion.Id, Castellano.Helpers.TypeButton.Edit),
+                                                     Castellano.Helpers.ActionLinkExtension.ActionLinkEmbedded(aplicacion.Id, Castellano.Helpers.TypeButton.Delete))
                 });
             }
 
@@ -375,8 +375,7 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
             return this.View();
         }
 
-        //[Authorize]
-        //[HttpGet]
+        [Authorize]
         [HttpPost]
         public ActionResult GetOrder(string data)
         {

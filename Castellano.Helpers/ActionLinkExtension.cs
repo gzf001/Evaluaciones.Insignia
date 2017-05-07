@@ -83,7 +83,7 @@ namespace Castellano.Helpers
             return new MvcHtmlString(t.ToString(TagRenderMode.Normal));
         }
 
-        public static MvcHtmlString ActionLinkGridView(Guid id, Castellano.Helpers.TypeButton typeButton)
+        public static MvcHtmlString ActionLinkEmbedded(Guid id, Castellano.Helpers.TypeButton typeButton)
         {
             TagBuilder t = new TagBuilder("a");
 
@@ -91,6 +91,20 @@ namespace Castellano.Helpers
 
             switch (typeButton)
             {
+                case Castellano.Helpers.TypeButton.Add:
+                    {
+                        t.AddCssClass("btn btn-success btn-xs btn-flat md-trigger");
+
+                        t.MergeAttribute("data-modal", "form-primary");
+
+                        t.MergeAttribute("href", "#");
+
+                        t.MergeAttribute("title", "Agregar");
+
+                        t.InnerHtml = "<i class='fa fa-plus'></i>";
+
+                        break;
+                    }
                 case Castellano.Helpers.TypeButton.Edit:
                     {
                         t.AddCssClass("btn btn-primary btn-xs btn-flat md-trigger");

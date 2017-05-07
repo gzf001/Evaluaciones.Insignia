@@ -114,14 +114,18 @@ namespace Castellano.Helpers
             t.Attributes.Add("id", "menu");
 
             t.AddCssClass("dd");
-
+            
             t.InnerHtml += "<ol class='dd-list'>";
 
             foreach (Castellano.Membresia.MenuItem menuItem in Castellano.Membresia.MenuItem.GetAll(Castellano.Membresia.Menu.MenuPrincipal, aplicacion, aplicacion.Inicio, false))
             {
                 t.InnerHtml += "<li class='dd-item' data-id='" + menuItem.Id.ToString() + "'>";
 
+                //t.InnerHtml += string.Format("<div class='form-inline'><div class='form-group'><div class='dd-handle'>{0}</div></div><div class='form-group'>{1}</div><div class='form-group'>{2}</div><div class='form-group'>{3}</div></div>", menuItem.Nombre, Castellano.Helpers.ActionLinkExtension.ActionLinkEmbedded(menuItem.Id, TypeButton.Add), Castellano.Helpers.ActionLinkExtension.ActionLinkEmbedded(menuItem.Id, TypeButton.Edit), Castellano.Helpers.ActionLinkExtension.ActionLinkEmbedded(menuItem.Id, TypeButton.Delete));
+
                 t.InnerHtml += string.Format("<div class='dd-handle'>{0}</div>", menuItem.Nombre);
+
+                t.InnerHtml += string.Format("<div>{0}{1}{2}</div>", Castellano.Helpers.ActionLinkExtension.ActionLinkEmbedded(menuItem.Id, TypeButton.Add), Castellano.Helpers.ActionLinkExtension.ActionLinkEmbedded(menuItem.Id, TypeButton.Edit), Castellano.Helpers.ActionLinkExtension.ActionLinkEmbedded(menuItem.Id, TypeButton.Delete));
 
                 string html = MenuExtension.MenuOrderable(menuItem);
 
@@ -155,7 +159,9 @@ namespace Castellano.Helpers
                 if (items.Any())
                 {
                     retorno += string.Format("<li class='dd-item' data-id='{0}'>", m.Id);
+                    //retorno += string.Format("<div class='form-inline'><div class='form-group'><div class='dd-handle'>{0}</div></div><div class='form-group'>{1}</div><div class='form-group'>{2}</div><div class='form-group'>{3}</div></div>", m.Nombre, Castellano.Helpers.ActionLinkExtension.ActionLinkEmbedded(m.Id, TypeButton.Add), Castellano.Helpers.ActionLinkExtension.ActionLinkEmbedded(m.Id, TypeButton.Edit), Castellano.Helpers.ActionLinkExtension.ActionLinkEmbedded(m.Id, TypeButton.Delete));
                     retorno += string.Format("<div class='dd-handle'>{0}</div>", m.Nombre);
+                    retorno += string.Format("<div>{0}{1}{2}</div>", Castellano.Helpers.ActionLinkExtension.ActionLinkEmbedded(menuItem.Id, TypeButton.Add), Castellano.Helpers.ActionLinkExtension.ActionLinkEmbedded(menuItem.Id, TypeButton.Edit), Castellano.Helpers.ActionLinkExtension.ActionLinkEmbedded(menuItem.Id, TypeButton.Delete));
                     retorno += "<ol class='dd-list'>";
                     retorno += MenuExtension.MenuOrderable(m);
                     retorno += "</ol></li>";
@@ -163,7 +169,9 @@ namespace Castellano.Helpers
                 else
                 {
                     retorno += string.Format("<li class='dd-item' data-id='{0}'>", m.Id);
+                    //retorno += string.Format("<div class='form-inline'><div class='form-group'><div class='dd-handle'>{0}</div></div><div class='form-group'>{1}</div><div class='form-group'>{2}</div></div>", m.Nombre, Castellano.Helpers.ActionLinkExtension.ActionLinkEmbedded(m.Id, TypeButton.Edit), Castellano.Helpers.ActionLinkExtension.ActionLinkEmbedded(m.Id, TypeButton.Delete));
                     retorno += string.Format("<div class='dd-handle'>{0}</div>", m.Nombre);
+                    retorno += string.Format("<div>{0}{1}</div>", Castellano.Helpers.ActionLinkExtension.ActionLinkEmbedded(menuItem.Id, TypeButton.Edit), Castellano.Helpers.ActionLinkExtension.ActionLinkEmbedded(menuItem.Id, TypeButton.Delete));
                     retorno += "</li>";
                 }
             }
