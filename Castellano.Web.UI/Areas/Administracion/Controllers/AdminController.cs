@@ -380,17 +380,7 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
         [HttpPost]
         public ActionResult GetOrder(string data)
         {
-            var a = JsonConvert.DeserializeObject(data);
-
-            var b = a.GetType();
-
-            foreach (var c in (a as JArray))
-            {
-            }
-
-            //foreach (var b in a)
-            //{
-            //}
+            Castellano.Membresia.MenuItem.OrderMenu(data);
 
             return this.Json("200 ok", JsonRequestBehavior.AllowGet);
         }
@@ -409,21 +399,6 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
         public ActionResult Auditoria()
         {
             return this.View();
-        }
-
-        private class Prueba
-        {
-            public List<Guid> children
-            {
-                get;
-                set;
-            }
-
-            public Guid id
-            {
-                get;
-                set;
-            }
         }
     }
 }

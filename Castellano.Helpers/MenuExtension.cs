@@ -32,6 +32,9 @@ namespace Castellano.Helpers
 
                 foreach (Castellano.Membresia.MenuItem menuItem in itemPadre)
                 {
+                    if (menuItem.Id.Equals(new Guid("80692c85-e625-4ab7-ad7c-557fa862dcf0")))
+                    {
+                    }
                     List<Castellano.Membresia.MenuItem> items = Castellano.Membresia.MenuItem.GetAll(menuItem);
 
                     if (items.Any())
@@ -55,13 +58,13 @@ namespace Castellano.Helpers
                     {
                         if (primero)
                         {
-                            t.InnerHtml += "<li class='active'><a href='#'>" + menuItem.Nombre + "</a></li>";
+                            t.InnerHtml += string.Format("<li class='active'><a href='{0}'>{1}</a></li>", menuItem.Url, menuItem.Nombre);
 
                             primero = false;
                         }
                         else
                         {
-                            t.InnerHtml += "<li><a href='#'>" + menuItem.Nombre + "</a></li>";
+                            t.InnerHtml += string.Format("<li><a href='{0}'>{1}</a></li>", menuItem.Url, menuItem.Nombre);
                         }
                     }
                 }
@@ -112,20 +115,31 @@ namespace Castellano.Helpers
 
             t.AddCssClass("dd");
 
-            foreach (Castellano.Membresia.MenuItem menuItem in Castellano.Membresia.MenuItem.GetRooItems(aplicacion))
-            {
-                t.InnerHtml += "<ol class='dd-list'>";
+            t.InnerHtml += "<ol class='dd-list'>";
 
+            foreach (Castellano.Membresia.MenuItem menuItem in Castellano.Membresia.MenuItem.GetAll(Castellano.Membresia.Menu.MenuPrincipal, aplicacion, aplicacion.Inicio, false))
+            {
                 t.InnerHtml += "<li class='dd-item' data-id='" + menuItem.Id.ToString() + "'>";
 
                 t.InnerHtml += string.Format("<div class='dd-handle'>{0}</div>", menuItem.Nombre);
 
-                t.InnerHtml += "<ol class='dd-list'>";
+                string html = MenuExtension.MenuOrderable(menuItem);
 
-                t.InnerHtml += MenuExtension.MenuOrderable(menuItem);
+                if (string.IsNullOrEmpty(html))
+                {
+                    t.InnerHtml += "</li>";
+                }
+                else
+                {
+                    t.InnerHtml += "<ol class='dd-list'>";
 
-                t.InnerHtml += "</ol></li></ol>";
+                    t.InnerHtml += html;
+
+                    t.InnerHtml += "</ol></li>";
+                }
             }
+
+            t.InnerHtml += "</ol>";
 
             return new MvcHtmlString(t.ToString(TagRenderMode.Normal));
         }
