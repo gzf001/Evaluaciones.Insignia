@@ -56,9 +56,21 @@
             }
         })
 
-        $(document).on('click', 'button[typeButton=prueba]', function () {
+        $(document).on('click', 'a[typeButton=Add]', function () {
 
-            alert('aqui');
+            alert('add');
+
+        });
+
+        $(document).on('click', 'a[typeButton=Edit]', function () {
+
+            alert('edit');
+
+        });
+
+        $(document).on('click', 'a[typeButton=Delete]', function () {
+
+            alert('delete');
 
         });
 

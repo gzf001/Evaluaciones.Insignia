@@ -34,7 +34,7 @@ namespace Castellano.Web.UI.Areas.Administracion.Models
             set;
         }
 
-        public class Aplicaciones
+        public new class Aplicaciones
         {
             public List<Aplicacion> data
             {

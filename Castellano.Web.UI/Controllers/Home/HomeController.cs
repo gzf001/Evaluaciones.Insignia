@@ -8,7 +8,9 @@ namespace Castellano.Web.UI.Controllers.Home
 {
     public class HomeController : Castellano.Helpers.Controller
     {
+        [HttpGet]
         [AllowAnonymous]
+        [OutputCache(NoStore = true, Duration = 0)]
         public ActionResult Login()
         {
             return this.View();

@@ -1,124 +1,108 @@
 ﻿@using Castellano.Helpers
 
-@model Castellano.Web.UI.Areas.Administracion.Models.Aplicacion
+@model Castellano.Web.UI.Areas.Administracion.Models.MenuItem
 
 @{
     ViewBag.Title = "Auditoria";
     Layout = "~/Views/Shared/_LayoutLogged.cshtml";
 }
 
-@*@Html.MenuOrderable(Castellano.Membresia.Aplicacion.Get(new Guid("F9B2FDFC-ABCC-430D-9ACA-F3AF2D01D767")))*@
+@using (Html.BeginForm("MisDatos", "Admin", new { area = "Administracion", ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
 
+    @Html.Hidden("menuItemId");
 
-<button typeButton='prueba' class='btn btn-primary'>prueba</button>
-
-<div class="dd" id="menu">
-    <ol class='dd-list'>
-        <li class='dd-item' data-id='9e4b7bd6-10cb-4664-9f32-e953ea4a0eb7'>
-            <div class='dd-handle'>Aplicación</div>
-            <ol class='dd-list'>
-                <li class='dd-item' data-id='681b893a-f03d-4f9b-afdb-6c27eb69b2b3'>
-                    <div class='dd-handle'>Aplicaciones</div>
-                </li>
-                <li class='dd-item' data-id='eed65d29-db11-42d0-801e-1f725b0b4a2f'>
-                    <div class='dd-handle'>Items de menús</div>
-                </li>
-                <li class='dd-item' data-id='192dde33-dbcd-49be-9d19-138c00f14bcf'>
-                    <div class='dd-handle'>Roles y permisos</div>
-                </li>
-                <li class='dd-item' data-id='f831e9bd-ff02-4030-9532-5aee3aa12aeb'>
-                    <div class='dd-handle'>Parámetros</div>
-                    <ol class='dd-list'>
-                        <li class='dd-item' data-id='2dbd8e61-c2ad-477f-8c3c-2291608145ab'>
-                            <div class='dd-handle'>Indicadores</div>
-                            <ol class='dd-list'>
-                                <li class='dd-item' data-id='76acbbc3-21bc-4924-a65a-bfb4722213ce'>
-                                    <div class='dd-handle'>Indicadores del día</div>
-                                </li>
-                                <li class='dd-item' data-id='136ab32f-7443-4ae1-a0e7-1bcaa1869da9'>
-                                    <div class='dd-handle'>Indicadores por periodo</div>
-                                </li>
-                                <li class='dd-item' data-id='b7949246-a464-4316-9d11-c1f1e9bf2e82'>
-                                    <div class='dd-handle'>Valor de la UTM</div>
-                                </li>
-                                <li class='dd-item' data-id='4e8b42a5-f59c-4db1-98e3-d8faa73ae818'>
-                                    <div class='dd-handle'>Valor de la UF</div>
-                                </li>
-                                <li class='dd-item' data-id='a51c3fd1-9284-4fd9-a0f6-81f9a157b060'>
-                                    <div class='dd-handle'>Valor del IPC</div>
-                                </li>
-                            </ol>
-                        </li>
-                        <li class='dd-item' data-id='556fdf01-a1d6-4515-9793-4ac2d0517db6'>
-                            <div class='dd-handle'>Tasa cotización obligatoria AFP</div>
-                        </li>
-                        <li class='dd-item' data-id='b568cbeb-a4d0-44ee-91e8-0beeb2ecb427'>
-                            <div class='dd-handle'>Parámetros previsionales</div>
-                        </li>
-                        <li class='dd-item' data-id='daa651de-6b4e-4b2a-a1eb-ce6e7064edeb'>
-                            <div class='dd-handle'>Seguro de cesantía (AFC)</div>
-                        </li>
-                        <li class='dd-item' data-id='a144d7b9-0852-4c95-a49e-1d88801e7bfd'>
-                            <div class='dd-handle'>Asignación familiar</div>
-                        </li>
-                    </ol>
-                </li>
-                <li class='dd-item' data-id='7f947b39-4b4a-4ec2-ab07-0854eec68d63'>
-                    <div class='dd-handle'>Feriados</div>
-                </li>
-                <li class='dd-item' data-id='e7246052-cbbf-4f14-8371-e157d0c290ae'>
-                    <div class='dd-handle'>Usuarios Conectados</div>
-                </li>
-            </ol>
-        </li>
-        <li class='dd-item' data-id='80692c85-e625-4ab7-ad7c-557fa862dcf0'>
-            <div class='dd-handle'>Auditoría</div>
-        </li>
-        <li class='dd-item' data-id='ecc8f31e-fd4b-4849-b371-b262a3856ab9'>
-            <div class='dd-handle'>Empresas</div>
-            <ol class='dd-list'>
-                <li class='dd-item' data-id='48162ad7-25bc-49aa-9e54-4b578497ba99'>
-                    <div class='dd-handle'>Empresas</div>
-                </li>
-                <li class='dd-item' data-id='5de5726f-5677-41f1-a9d8-5d1b3d817218'>
-                    <div class='dd-handle'>Unidades administrativas</div>
-                </li>
-                <li class='dd-item' data-id='f863426c-d7cf-4a95-a705-d22e891db479'>
-                    <div class='dd-handle'>Departamentos</div>
-                </li>
-                <li class='dd-item' data-id='79272449-82be-4ed8-9a6c-3648f9f7f572'>
-                    <div class='dd-handle'>Centros de costos</div>
-                </li>
-                <li class='dd-item' data-id='e10742c8-f89d-43ef-b927-3e125ab93f1f'>
-                    <div class='dd-handle'>Funcionarios</div>
-                </li>
-                <li class='dd-item' data-id='c4142226-f966-4ff0-8a80-83d8d8338fa2'>
-                    <div class='dd-handle'>Generación de certificados de renta</div>
-                </li>
-            </ol>
-        </li>
-        <li class='dd-item' data-id='0cd7c01a-7506-46b3-8348-f17bc4afed3d'>
-            <div class='dd-handle'>Educación</div>
-            <ol class='dd-list'>
-                <li class='dd-item' data-id='a4c92a91-9cbd-4cfb-88ac-cdcf761f73e7'>
-                    <div class='dd-handle'>Sostenedores</div>
-                </li>
-                <li class='dd-item' data-id='d33db432-72bb-4563-b228-2a6d8ad54970'>
-                    <div class='dd-handle'>Establecimientos</div>
-                </li>
-            </ol>
-        </li>
-        <li class='dd-item' data-id='f1853963-f7a7-459c-8f91-7970df894872'>
-            <div class='dd-handle'>Usuario</div>
-        </li>
-    </ol>
-</div>
-
-<div class='form-inline'>
-    <div class='form-group'>
-        <div class='dd-handle'>{0}</div>
+    <div class="panel panel-default panel-default-fe">
+        <div class="panel-heading panel-heading-fe"><h4>Administración de ítems de menú</h4></div>
+        <div class="modal-body form-horizontal">
+            <div class="row">
+                <div class="col-md-10">
+                    @{
+                        if (!string.IsNullOrEmpty(this.ViewBag.Message))
+                        {
+                            <div class="alert alert-success">
+                                <script type="text/javascript">
+                                    $(function () {
+                                        swal("Listo!",
+                                            "Su información fue guardada correctamente",
+                                            "success");
+                                    });
+                                </script>
+                            </div>
+                        }
+                    }
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.AplicacionId, new { @for = "aplicacionLabel", @class = "col-sm-2 control-label" })
+                        <div class="col-sm-3">
+                            @Html.TextBoxFor(x => x.AplicacionId, new { @class = "form-control", @id = "aplicacion", @disabled = "false" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Titulo, new { @for = "titulo", @class = "col-sm-2 control-label" })
+                        <div class="col-sm-3">
+                            @Html.TextBoxFor(x => x.Titulo, new { @class = "form-control", @id = "titulo", @placeholder = "Titulo", @maxLength = "80" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.ToolTip, new { @for = "toolTip", @class = "col-sm-2 control-label" })
+                        <div class="col-sm-3">
+                            @Html.TextAreaFor(x => x.ToolTip, new { @class = "form-control", @id = "toolTip", @placeholder = "ToolTip" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Informacion, new { @for = "informacion", @class = "col-sm-2 control-label" })
+                        <div class="col-sm-3">
+                            @Html.TextAreaFor(x => x.Informacion, new { @class = "form-control", @id = "informacion", @placeholder = "Información" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Icono, new { @for = "icono", @class = "col-sm-2 control-label" })
+                        <div class="col-sm-3">
+                            @Html.TextBoxFor(x => x.Icono, new { @class = "form-control", @id = "icono", @placeholder = "Ícono", @maxLength = "70" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Url, new { @for = "url", @class = "col-sm-2 control-label" })
+                        <div class="col-sm-3">
+                            @Html.TextBoxFor(x => x.Url, new { @class = "form-control", @id = "url", @placeholder = "URL", @maxLength = "256" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <div class="checkbox">
+                                <label>
+                                    @Html.CheckBoxFor(m => m.Visible)
+                                    @Html.LabelFor(m => m.Visible)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <div class="checkbox">
+                                <label>
+                                    @Html.CheckBoxFor(m => m.MuestraMenus)
+                                    @Html.LabelFor(m => m.MuestraMenus)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <div class="checkbox">
+                                <label>
+                                    @Html.CheckBoxFor(m => m.Publico)
+                                    @Html.LabelFor(m => m.Publico)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    @Html.TreeView()
+                </div>
+            </div>
+        </div>
     </div>
-    <div class='form-group'>{1}</div>
-    <div class='form-group'>{2}</div>
-    <div class='form-group'>{3}</div>
-</div>
+}

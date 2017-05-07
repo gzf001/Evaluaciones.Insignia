@@ -125,6 +125,8 @@
     <Compile Include="Areas\Administracion\Models\ChangePassword.cs" />
     <Compile Include="Areas\Administracion\Models\MenuItem.cs" />
     <Compile Include="Areas\Administracion\Models\Persona.cs" />
+    <Compile Include="Areas\Evaluaciones\Controllers\IndexController.cs" />
+    <Compile Include="Areas\Evaluaciones\EvaluacionesAreaRegistration.cs" />
     <Compile Include="Controllers\Home\HomeController.cs" />
     <Compile Include="Controllers\Utils\UtilsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -740,6 +742,8 @@
     <Content Include="Areas\Administracion\Views\Admin\ItemsMenu.cshtml" />
     <Content Include="Content\assets\jquery.nestable\bower.json" />
     <Content Include="Content\assets\jquery.nestable\README.md" />
+    <Content Include="Areas\Evaluaciones\Views\web.config" />
+    <Content Include="Areas\Evaluaciones\Views\Index\Index.cshtml" />
     <None Include="Content\assets\jquery.validate\jquery.validate-vsdoc.js" />
     <Content Include="Content\assets\jquery.validate\jquery.validate.js" />
     <Content Include="Content\assets\jquery.validate\jquery.validate.min.js" />
@@ -780,6 +784,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Evaluaciones\Models\" />
+    <Folder Include="Areas\Evaluaciones\Views\Shared\" />
     <Folder Include="Views\Utils\" />
   </ItemGroup>
   <ItemGroup>
