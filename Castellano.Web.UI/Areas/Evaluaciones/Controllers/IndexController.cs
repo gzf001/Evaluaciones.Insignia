@@ -8,7 +8,7 @@ namespace Castellano.Web.UI.Areas.Evaluaciones.Controllers
 {
     public class IndexController : Controller
     {
-        // GET: Evaluaciones/Index
+        [HttpGet]
         public ActionResult Index()
         {
             return View();
