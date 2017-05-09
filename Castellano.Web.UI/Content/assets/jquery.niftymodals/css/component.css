@@ -28,8 +28,8 @@ perspective effects (not including the modals and the overlay).
 	top: 50%;
 	left: 50%;
 	width: 50%;
-	max-width: 630px;
-	min-width: 320px;
+	max-width: 720px;
+	min-width: 720px;
 	height: auto;
 	z-index: 2000;
 	visibility: hidden;
@@ -83,7 +83,7 @@ perspective effects (not including the modals and the overlay).
 .md-content > div {
 	margin: 0;
 	font-weight: 300;
-	font-size: 1.15em;
+	font-size: 1.0em;
 }
 
 

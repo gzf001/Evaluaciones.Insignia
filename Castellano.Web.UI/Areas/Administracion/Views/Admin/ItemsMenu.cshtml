@@ -1,4 +1,5 @@
 ﻿@using Castellano.Helpers
+@using Castellano.Web.UI.Helper
 
 @model Castellano.Web.UI.Areas.Administracion.Models.MenuItem
 
@@ -29,16 +30,81 @@
         <div class="col-md-6 col-md-offset-3">
             <span id="menuItems" />
         </div>
-    </div>    
+    </div>
 </div>
 
+<form id="modalForm">
 
+    @Html.AntiForgeryToken()
+
+    @Html.Hidden("aplicacionId")
+
+    <div id="form-primary" class="md-modal colored-header success md-effect-9">
+        <div class="md-content">
+            <div class="modal-header">
+                <h3>Aplicación</h3>
+                <button type="button" data-dismiss="modal" aria-hidden="true" class="close md-close">×</button>
+            </div>
+            <div class="modal-body form">
+                @Html.AntiForgeryToken()
+
+                @Html.Hidden("menuItemId")
+
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.AplicacionId, new { @for = "aplicacionLabel", @class = "control-label" })
+                            @Html.TextBoxFor(x => x.AplicacionId, new { @class = "form-control", @id = "aplicacion", @disabled = "false" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Titulo, new { @for = "titulo", @class = "control-label" })
+                            @Html.TextBoxFor(x => x.Titulo, new { @class = "form-control", @id = "titulo", @placeholder = "Titulo", @maxLength = "80" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.ToolTip, new { @for = "toolTip", @class = "control-label" })
+                            @Html.TextAreaFor(x => x.ToolTip, new { @class = "form-control", @id = "toolTip", @placeholder = "ToolTip" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Informacion, new { @for = "informacion", @class = "control-label" })
+                            @Html.TextAreaFor(x => x.Informacion, new { @class = "form-control", @id = "informacion", @placeholder = "Información" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Icono, new { @for = "icono", @class = "control-label" })
+                            @Html.TextBoxFor(x => x.Icono, new { @class = "form-control", @id = "icono", @placeholder = "Ícono", @maxLength = "70" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Url, new { @for = "url", @class = "control-label" })
+                            @Html.TextBoxFor(x => x.Url, new { @class = "form-control", @id = "url", @placeholder = "URL", @maxLength = "256", @disabled = "false" })
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    @Html.CheckBoxFor(m => m.Visible)
+                                    @Html.LabelFor(m => m.Visible)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="menuTreeView" class="col-md-5 scrollDivMenu">
+                        @Html.TreeViewMenu()
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-danger btn-flat md-close">Cancelar</button>
+                    <button type="submit" data-dismiss="modal" class="btn btn-primary btn-flat">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="md-overlay"></div>
+</form>
 
 @Html.Hidden("menuJson")
 
 @Scripts.Render("~/Content/js/jquery.nestable")
 
 <script type="text/javascript">
+
     jQuery(document).ready(function () {
 
         $('#aplicacion').change(function () {
@@ -60,13 +126,13 @@
 
         $(document).on('click', 'a[typeButton=Add]', function () {
 
-            alert('add');
+
 
         });
 
         $(document).on('click', 'a[typeButton=Edit]', function () {
 
-            alert('edit');
+
 
         });
 
@@ -106,6 +172,26 @@
                 }
             });
         });
+
+        $('label.tree-toggler').click(function () {
+            var icon = $(this).children(".fa");
+            if (icon.hasClass("fa-folder-open-o")) {
+                icon.removeClass("fa-folder-open-o").addClass("fa-folder-o");
+            } else {
+                icon.removeClass("fa-folder-o").addClass("fa-folder-open-o");
+            }
+
+            $(this).parent().children('ul.tree').toggle(300, function () {
+                $(this).parent().toggleClass("open");
+                $(".tree .nscroller").nanoScroller({ preventPageScrolling: true });
+            });
+        });
+
+        $('#menuTreeView a').on('click', function () {
+
+            $('#url').val($(this).attr('data-value'));
+
+        });
     });
 
     function menu() {
@@ -134,6 +220,8 @@
                     output.val('JSON browser support required for this demo.');
                 }
             }
+
+            $('.md-trigger').modalEffects();
         };
 
         $('#menu').nestable({
@@ -142,4 +230,5 @@
 
         updateOutput($('#menu').data('output', $('#menuJson')));
     }
+
 </script>

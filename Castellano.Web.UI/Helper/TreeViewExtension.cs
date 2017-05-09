@@ -49,7 +49,7 @@ namespace Castellano.Web.UI.Helper
                     string classFullName = string.Format("Castellano.Web.UI.Areas.{0}.Controllers.{1}", area, className);
 
                     Type type = Type.GetType(classFullName);
-                
+
                     //Obtención de métodos que sea tipo GET
                     IEnumerable<System.Reflection.MethodInfo> getMethod = type.GetMethods().Where<System.Reflection.MethodInfo>(x => x.CustomAttributes.Any<System.Reflection.CustomAttributeData>(y => y.AttributeType.Equals(typeof(System.Web.Mvc.HttpGetAttribute))) && !x.GetParameters().Any<System.Reflection.ParameterInfo>());
 
