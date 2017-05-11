@@ -50,42 +50,64 @@
 
                 @Html.Hidden("menuItemId")
 
-                <div class="row">
-                    <div class="col-md-7">
-                        <div class="form-group">
-                            @Html.LabelFor(x => x.AplicacionId, new { @for = "aplicacionLabel", @class = "control-label" })
-                            @Html.TextBoxFor(x => x.AplicacionId, new { @class = "form-control", @id = "aplicacion", @disabled = "false" })
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.NombreAplicacion, new { @for = "nombreAplicacion", @class = "control-label" })
+                                @Html.TextBoxFor(x => x.NombreAplicacion, new { @class = "form-control", @id = "nombreAplicacion", @disabled = "false" })
+                            </div>
                         </div>
-                        <div class="form-group">
-                            @Html.LabelFor(x => x.Titulo, new { @for = "titulo", @class = "control-label" })
-                            @Html.TextBoxFor(x => x.Titulo, new { @class = "form-control", @id = "titulo", @placeholder = "Titulo", @maxLength = "80" })
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.Titulo, new { @for = "titulo", @class = "control-label" })
+                                @Html.TextBoxFor(x => x.Titulo, new { @class = "form-control", @id = "titulo", @placeholder = "Titulo", @maxLength = "80" })
+                            </div>
                         </div>
-                        <div class="form-group">
-                            @Html.LabelFor(x => x.ToolTip, new { @for = "toolTip", @class = "control-label" })
-                            @Html.TextAreaFor(x => x.ToolTip, new { @class = "form-control", @id = "toolTip", @placeholder = "ToolTip" })
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.Nombre, new { @for = "nombre", @class = "control-label" })
+                                @Html.TextBoxFor(x => x.Nombre, new { @class = "form-control", @id = "nombre", @placeholder = "Nombre", @maxLength = "80" })
+                            </div>
                         </div>
-                        <div class="form-group">
-                            @Html.LabelFor(x => x.Informacion, new { @for = "informacion", @class = "control-label" })
-                            @Html.TextAreaFor(x => x.Informacion, new { @class = "form-control", @id = "informacion", @placeholder = "Información" })
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.ToolTip, new { @for = "toolTip", @class = "control-label" })
+                                @Html.TextAreaFor(x => x.ToolTip, new { @class = "form-control", @id = "toolTip", @placeholder = "ToolTip" })
+                            </div>
                         </div>
-                        <div class="form-group">
-                            @Html.LabelFor(x => x.Icono, new { @for = "icono", @class = "control-label" })
-                            @Html.TextBoxFor(x => x.Icono, new { @class = "form-control", @id = "icono", @placeholder = "Ícono", @maxLength = "70" })
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.Informacion, new { @for = "informacion", @class = "control-label" })
+                                @Html.TextAreaFor(x => x.Informacion, new { @class = "form-control", @id = "informacion", @placeholder = "Información" })
+                            </div>
                         </div>
-                        <div class="form-group">
-                            @Html.LabelFor(x => x.Url, new { @for = "url", @class = "control-label" })
-                            @Html.TextBoxFor(x => x.Url, new { @class = "form-control", @id = "url", @placeholder = "URL", @maxLength = "256", @disabled = "false" })
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.Icono, new { @for = "icono", @class = "control-label" })
+                                @Html.TextBoxFor(x => x.Icono, new { @class = "form-control", @id = "icono", @placeholder = "Ícono", @maxLength = "70" })
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <div class="checkbox">
-                                <label>
-                                    @Html.CheckBoxFor(m => m.Visible)
-                                    @Html.LabelFor(m => m.Visible)
-                                </label>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.Url, new { @for = "url", @class = "control-label" })
+                                @Html.TextBoxFor(x => x.Url, new { @class = "form-control", @id = "url", @placeholder = "URL", @maxLength = "256", @disabled = "false" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label>
+                                        @Html.CheckBoxFor(m => m.Visible)
+                                        @Html.LabelFor(m => m.Visible)
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div id="menuTreeView" class="col-md-5 scrollDivMenu">
+                </div>
+                <div class="col-md-5">
+                    <div id="tree" class="scrollDivMenu">
                         @Html.TreeViewMenu()
                     </div>
                 </div>
@@ -107,6 +129,85 @@
 
     jQuery(document).ready(function () {
 
+        var validator = $('#modalForm').validate({
+
+            errorClass: 'errorText',
+            validClass: 'validText',
+            errorElement: 'em',
+            rules: {
+                Nombre: {
+                    required: true,
+                },
+                Titulo: {
+                    required: true
+                },
+                Url: {
+                    required: true
+                }
+            },
+            messages: {
+                Nombre: {
+                    required: 'Ingrese el nombre'
+                },
+                Titulo: {
+                    required: 'Ingrese el título'
+                },
+                Url: {
+                    required: 'Seleccione una URL'
+                }
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).closest('.field').addClass(errorClass).removeClass(validClass);
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).closest('.field').removeClass(errorClass).addClass(validClass);
+            },
+            errorPlacement: function (error, element) {
+                error.insertAfter(element.parent());
+            },
+            submitHandler: function (form) {
+
+                var menuItemId = $('#menuItemId').val();
+
+                if (menuItemId == "") {
+
+                    menuItemId = generateId();
+                }
+
+                var obj = {
+                    aplicacionId: $('#aplicacion').val(),
+                    menuItemId: menuItemId,
+                    id: menuItemId,
+                    nombre: $('#nombre').val(),
+                    titulo: $('#titulo').val(),
+                    toolTip: $('#toolTip').val(),
+                    informacion: $('#informacion').val(),
+                    faIcon: $('#faIcon').val(),
+                    url: $('#url').val(),
+                    visible: $("#visible").prop("checked"),
+                    muestraMenus: true,
+                    publico: false,
+                    orden: 0
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Administracion/Admin/ItemsMenu",
+                    data: obj,
+                    success: function () {
+
+                        carga();
+
+                        menu();
+                    },
+                    error: function (data) {
+
+                        swal("Error!", "Se ha producido un error al registrar la información", "error");
+                    }
+                });
+            }
+        });
+
         $('#aplicacion').change(function () {
 
             if ($(this).val() == '-1') {
@@ -115,24 +216,33 @@
             }
             else {
 
-                $.getJSON('/Administracion/Admin/GetItemsMenu/' + $(this).val(), function (data) {
-
-                    $('#menuItems').html(data);
-
-                    menu();
-                });
+                carga();
             }
         })
 
         $(document).on('click', 'a[typeButton=Add]', function () {
 
+            var menuItemId = $(this).attr('data-value');
 
+            $.getJSON('/Administracion/Admin/ItemsMenu/' + $('#aplicacion').val() + '/' + menuItemId, function (data) {
+
+                popUp(menuItemId);
+
+                $('#menuItemId').val(menuItemId);
+                $('#nombre').val(data.Nombre);
+                $('#titulo').val(data.Titulo);
+                $('#toolTip').val(data.ToolTip);
+                $('#informacion').val(data.Informacion);
+                $('#faIcon').val(data.Fa_Icon);
+                $('#url').val(data.Url);
+                $("#visible").prop("checked", data.Visible);
+            });
 
         });
 
         $(document).on('click', 'a[typeButton=Edit]', function () {
 
-
+            popUp();
 
         });
 
@@ -187,7 +297,7 @@
             });
         });
 
-        $('#menuTreeView a').on('click', function () {
+        $('#path a[data-value]').on('click', function () {
 
             $('#url').val($(this).attr('data-value'));
 
@@ -231,4 +341,33 @@
         updateOutput($('#menu').data('output', $('#menuJson')));
     }
 
+    function carga() {
+
+        $.getJSON('/Administracion/Admin/GetItemsMenu/' + $('#aplicacion').val(), function (data) {
+
+            $('#menuItems').html(data);
+
+            menu();
+        });
+    }
+
+    function popUp() {
+
+        var form = $('#modal-form');
+
+        $('#nombreAplicacion').val($('#aplicacion option:selected').text());
+
+        $('#menuItemId').val("");
+        $('#nombre').val("");
+        $('#titulo').val("");
+        $('#toolTip').val("");
+        $('#informacion').val("");
+        $('#faIcon').val("");
+        $('#url').val("");
+        $("#visible").prop("checked", false);
+
+        form.find(".state-error").removeClass("state-error");
+        form.find(".state-success").removeClass("state-success");
+        form.find("em").remove();
+    }
 </script>

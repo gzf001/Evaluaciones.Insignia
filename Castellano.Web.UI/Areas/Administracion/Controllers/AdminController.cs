@@ -386,6 +386,26 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
 
         [Authorize]
         [HttpGet]
+        public JsonResult GetItemMenu(Guid aplicacionId, Guid itemId)
+        {
+            Castellano.Membresia.MenuItem menuItem = Castellano.Membresia.MenuItem.Get(aplicacionId, Castellano.Membresia.Menu.MenuPrincipal.Id, itemId);
+
+            Castellano.Web.UI.Areas.Administracion.Models.MenuItem m = new Castellano.Web.UI.Areas.Administracion.Models.MenuItem
+            {
+                NombreAplicacion = menuItem.Aplicacion.Nombre,
+                Nombre = menuItem.Nombre,
+                Titulo = menuItem.Titulo,
+                ToolTip = menuItem.ToolTip,
+                Informacion = menuItem.Informacion,
+                Url = menuItem.Url,
+                Visible = menuItem.Visible
+            };
+
+            return this.Json(m, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        [HttpGet]
         public JsonResult GetItemsMenu(Guid aplicacionId)
         {
             Castellano.Membresia.Aplicacion aplicacion = Castellano.Membresia.Aplicacion.Get(aplicacionId);
