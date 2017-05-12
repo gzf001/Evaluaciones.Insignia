@@ -745,6 +745,7 @@
     <Content Include="Content\assets\jquery.nestable\README.md" />
     <Content Include="Areas\Evaluaciones\Views\web.config" />
     <Content Include="Areas\Evaluaciones\Views\Index\Index.cshtml" />
+    <Content Include="Areas\Administracion\Views\Admin\Roles.cshtml" />
     <None Include="Content\assets\jquery.validate\jquery.validate-vsdoc.js" />
     <Content Include="Content\assets\jquery.validate\jquery.validate.js" />
     <Content Include="Content\assets\jquery.validate\jquery.validate.min.js" />
@@ -765,7 +766,7 @@
     <Content Include="Content\js\page-dashboard.js" />
     <Content Include="Content\js\voice-recognition.js" />
     <Content Include="Global.asax" />
-    <Content Include="js\Administracion\menuItem.js" />
+    <Content Include="js\Administracion\itemsMenu.js" />
     <Content Include="js\Layout\layOut.js" />
     <Content Include="js\Layout\menu-principal.js" />
     <None Include="Scripts\jquery-1.4.4-vsdoc.js" />

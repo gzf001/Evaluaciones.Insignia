@@ -83,11 +83,16 @@ namespace Castellano.Helpers
             return new MvcHtmlString(t.ToString(TagRenderMode.Normal));
         }
 
-        public static MvcHtmlString ActionLinkEmbedded(Guid id, Castellano.Helpers.TypeButton typeButton)
+        public static MvcHtmlString ActionLinkEmbedded(Guid id, Guid? parentId, Castellano.Helpers.TypeButton typeButton)
         {
             TagBuilder t = new TagBuilder("a");
 
             t.MergeAttribute("data-value", id.ToString());
+
+            if (parentId.HasValue)
+            {
+                t.MergeAttribute("data-parent", parentId.Value.ToString());
+            }
 
             switch (typeButton)
             {

@@ -358,8 +358,8 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
                     Nombre = aplicacion.Nombre,
                     Clave = aplicacion.Clave,
                     Orden = aplicacion.Orden,
-                    Accion = string.Format("{0}{1}", Castellano.Helpers.ActionLinkExtension.ActionLinkEmbedded(aplicacion.Id, Castellano.Helpers.TypeButton.Edit),
-                                                     Castellano.Helpers.ActionLinkExtension.ActionLinkEmbedded(aplicacion.Id, Castellano.Helpers.TypeButton.Delete))
+                    Accion = string.Format("{0}{1}", Castellano.Helpers.ActionLinkExtension.ActionLinkEmbedded(aplicacion.Id, null, Castellano.Helpers.TypeButton.Edit),
+                                                     Castellano.Helpers.ActionLinkExtension.ActionLinkEmbedded(aplicacion.Id, null, Castellano.Helpers.TypeButton.Delete))
                 });
             }
 
@@ -368,11 +368,131 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
 
         #endregion
 
+        #region Ítems de menú
+
         [Authorize]
         [HttpGet]
         public ActionResult ItemsMenu()
         {
             return this.View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult ItemsMenu(Castellano.Web.UI.Areas.Administracion.Models.MenuItem model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View();
+            }
+
+            try
+            {
+                Castellano.Membresia.MenuItem menuItem = Castellano.Membresia.MenuItem.Get(model.AplicacionId, Castellano.Membresia.Menu.MenuPrincipal.Id, model.Id);
+
+                using (Castellano.Membresia.Context context = new Castellano.Membresia.Context())
+                {
+                    Castellano.Membresia.MenuItem m = new Castellano.Membresia.MenuItem
+                    {
+                        AplicacionId = model.AplicacionId,
+                        MenuId = Castellano.Membresia.Menu.MenuPrincipal.Id,
+                        Id = model.Id,
+                        MenuItemId = model.MenuItemId,
+                        Nombre = model.Nombre,
+                        Informacion = model.Informacion,
+                        Icono = model.Icono,
+                        Url = model.Url,
+                        Visible = model.Visible,
+                        MuestraMenus = model.MuestraMenus
+                    };
+
+                    if (menuItem == null)
+                    {
+                        menuItem = Castellano.Membresia.MenuItem.Get(model.AplicacionId, Castellano.Membresia.Menu.MenuPrincipal.Id, model.MenuItemId.Value);
+
+                        m.Orden = Castellano.Membresia.MenuItem.Last(menuItem);
+                    }
+                    else
+                    {
+                        m.Orden = menuItem.Orden;
+                    }
+
+                    m.Save(context);
+
+                    foreach (Castellano.Membresia.Accion accion in Castellano.Membresia.Accion.GetAll())
+                    {
+                        new Castellano.Membresia.MenuItemAccion
+                        {
+                            AplicacionId = model.AplicacionId,
+                            MenuId = Castellano.Membresia.Menu.MenuPrincipal.Id,
+                            MenuItemId = model.Id,
+                            AccionCodigo = accion.Codigo
+                        }.Save(context);
+                    }
+
+                    context.SubmitChanges();
+                }
+
+                return this.View();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [Authorize]
+        [HttpGet]
+        public JsonResult DeleteItemsMenu(Guid aplicacionId, Guid itemId)
+        {
+            try
+            {
+                Castellano.Membresia.MenuItem menuItem = Castellano.Membresia.MenuItem.Get(aplicacionId, Castellano.Membresia.Menu.MenuPrincipal.Id, itemId);
+
+                using (Castellano.Membresia.Context context = new Castellano.Membresia.Context())
+                {
+                    foreach (Castellano.Membresia.MenuItem m in Castellano.Membresia.MenuItem.GetAll(menuItem))
+                    {
+                        new Castellano.Membresia.MenuItem
+                        {
+                            AplicacionId = m.AplicacionId,
+                            MenuId = m.MenuId,
+                            Id = m.Id,
+                            MenuItemId = m.MenuItemId,
+                            Nombre = m.Nombre,
+                            Informacion = m.Informacion,
+                            Icono = m.Icono,
+                            Url = m.Url,
+                            Visible = m.Visible,
+                            MuestraMenus = m.MuestraMenus
+                        }.Delete(context);
+
+                        context.SubmitChanges();
+                    }
+
+                    new Castellano.Membresia.MenuItem
+                    {
+                        AplicacionId = menuItem.AplicacionId,
+                        MenuId = menuItem.MenuId,
+                        Id = menuItem.Id,
+                        MenuItemId = menuItem.MenuItemId,
+                        Nombre = menuItem.Nombre,
+                        Informacion = menuItem.Informacion,
+                        Icono = menuItem.Icono,
+                        Url = menuItem.Url,
+                        Visible = menuItem.Visible,
+                        MuestraMenus = menuItem.MuestraMenus
+                    }.Delete(context);
+
+                    context.SubmitChanges();
+                }
+
+                return this.Json("200 ok", JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         [Authorize]
@@ -394,8 +514,6 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
             {
                 NombreAplicacion = menuItem.Aplicacion.Nombre,
                 Nombre = menuItem.Nombre,
-                Titulo = menuItem.Titulo,
-                ToolTip = menuItem.ToolTip,
                 Informacion = menuItem.Informacion,
                 Url = menuItem.Url,
                 Visible = menuItem.Visible
@@ -412,6 +530,20 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
 
             return this.Json(Castellano.Helpers.MenuExtension.MenuOrderable(null, aplicacion).ToString(), JsonRequestBehavior.AllowGet);
         }
+
+        #endregion
+
+        #region Roles
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult Roles()
+        {
+            
+            return this.View();
+        }
+
+        #endregion
 
         [Authorize]
         [HttpGet]

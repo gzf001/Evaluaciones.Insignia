@@ -67,6 +67,12 @@ namespace Castellano.Web.UI.Areas.Administracion
             );
 
             context.MapRoute(
+                name: "DeleteItemsMenu",
+                url: "Administracion/Admin/DeleteItemsMenu/{aplicacionId}/{itemId}",
+                defaults: new { area = "Administracion", controller = "Admin", action = "DeleteItemsMenu", aplicacionId = "", itemId = "" }
+            );
+
+            context.MapRoute(
                 name: "GetOrder",
                 url: "Administracion/Admin/GetOrder/{data}",
                 defaults: new { area = "Administracion", controller = "Admin", action = "GetOrder", data = "" }

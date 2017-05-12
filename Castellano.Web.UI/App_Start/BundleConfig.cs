@@ -42,6 +42,7 @@ namespace Castellano.Web.UI.App_Start
             #region Administración
 
             bundles.Add(new ScriptBundle("~/js/aplicacion").Include("~/js/Administracion/aplicacion.js"));
+            bundles.Add(new ScriptBundle("~/js/itemsMenu").Include("~/js/Administracion/itemsMenu.js"));
 
             #endregion
 
@@ -61,7 +62,6 @@ namespace Castellano.Web.UI.App_Start
             bundles.Add(new StyleBundle("~/Content/style").Include("~/Content/assets/css/style.css"));
             bundles.Add(new StyleBundle("~/Content/sweetalert").Include("~/Content/assets/bootstrap.sweetalert/sweetalert.css"));
             bundles.Add(new StyleBundle("~/Content/bootstrap.datatable").Include("~/Content/assets/jquery.datatable/plugins/bootstrap/3/dataTables.bootstrap.css"));
-            //bundles.Add(new StyleBundle("~/Content/magnific-popup").Include("~/Content/assets/magnific/magnific-popup.css"));
             bundles.Add(new StyleBundle("~/Content/jquery.niftymodals-css").Include("~/Content/assets/jquery.niftymodals/css/component.css"));
         }
     }
