@@ -1,8 +1,95 @@
-﻿
+﻿@model Castellano.Web.UI.Areas.Administracion.Models.Rol
+
 @{
     ViewBag.Title = "Roles";
     Layout = "~/Views/Shared/_LayoutLogged.cshtml";
 }
 
-<h2>Roles</h2>
+<div class="panel panel-default panel-default-fe">
+    <div class="panel-heading panel-heading-fe">
+        <h4>Roles y permisos</h4>
+    </div>
+    <div class="panel-body">
+        <div class="form-horizontal">
+            <div class="form-group">
+                @Html.LabelFor(x => x.AmbitoCodigo, new { @for = "ambito", @class = "col-sm-4 control-label" })
+                <div class="col-sm-5">
+                    @Html.DropDownListFor(x => x.AmbitoCodigo, Castellano.Ambito.Ambitos, new { @id = "ambito", @class = "form-control" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
+<div class="content">
+    <table id="gridView" class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Clave</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Nombre</th>
+                <th>Clave</th>
+                <th>Acciones</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $(document).tooltip();
+
+        
+        $("div.toolbar").html('<a class="btn btn-success btn-xs btn-flat md-trigger" data-modal="form-primary" href="#" title="Agregar una nueva aplicación" typebutton="Add"><i class="fa fa-plus"></i></a>');
+
+    });
+
+    $('#ambito').change(function () {
+
+
+        var table = gridView();
+
+        //table.clear().draw();
+
+        //table = gridView();
+
+        //table.ajax.reload();
+    })
+
+    function gridView() {
+
+        var table = $('#gridView').DataTable({
+            
+            "ajax": "/Administracion/Admin/GetRoles/" + $('#ambito').val(),
+            "columns": [
+                { "data": "Nombre" },
+                { "data": "Clave" },
+                { "data": "Accion" }
+            ],
+            "order": [[0, "asc"]],
+            "columnDefs": [
+                {
+                    "targets": [2],
+                    "searchable": false,
+                    "sortable": false
+                }
+            ],
+            "dom": '<"toolbar">',
+            "iDisplayLength": 15,
+            "aLengthMenu": [
+                [15, 20, 25, 30, -1],
+                [15, 20, 25, 30, "All"]
+            ]
+        });
+
+        return table;
+    }
+
+</script>

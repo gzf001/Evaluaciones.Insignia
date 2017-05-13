@@ -13,16 +13,13 @@
         messages: {
             Nombre: {
                 required: 'Ingrese el nombre'
-            },
-            Titulo: {
-                required: 'Ingrese el título'
             }
         },
         highlight: function (element, errorClass, validClass) {
-            $(element).closest('.field').addClass(errorClass).removeClass(validClass);
+            $(element).closest('.form-control').addClass(errorClass).removeClass(validClass);
         },
         unhighlight: function (element, errorClass, validClass) {
-            $(element).closest('.field').removeClass(errorClass).addClass(validClass);
+            $(element).closest('.form-control').removeClass(errorClass).addClass(validClass);
         },
         errorPlacement: function (error, element) {
             error.insertAfter(element.parent());
@@ -47,6 +44,8 @@
                 url: "/Administracion/Admin/ItemsMenu",
                 data: obj,
                 success: function () {
+
+                    $('#modalForm').hide();
 
                     swal("Listo!", "Su información fue guardada correctamente", "success");
 
@@ -245,7 +244,9 @@ function popUp() {
     $('#url').val("");
     $("#visible").prop("checked", false);
 
-    form.find(".state-error").removeClass("errorText");
-    form.find(".state-success").removeClass("validText");
+    form.find(".errorText").removeClass("errorText");
+    form.find(".validText").removeClass("validText");
     form.find("em").remove();
+
+    form.show();
 }

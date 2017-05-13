@@ -80,6 +80,16 @@ namespace Castellano.Web.UI.Areas.Administracion
 
             #endregion
 
+            #region Roles
+
+            context.MapRoute(
+                name: "GetRoles",
+                url: "Administracion/Admin/GetRoles/{ambitoCodigo}",
+                defaults: new { area = "Administracion", controller = "Admin", action = "GetRoles", ambitoCodigo = "" }
+            );
+
+            #endregion
+
             context.MapRoute(
                 "Administracion_default",
                 "Administracion/{controller}/{action}/{id}",

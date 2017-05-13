@@ -125,6 +125,7 @@
     <Compile Include="Areas\Administracion\Models\ChangePassword.cs" />
     <Compile Include="Areas\Administracion\Models\MenuItem.cs" />
     <Compile Include="Areas\Administracion\Models\Persona.cs" />
+    <Compile Include="Areas\Administracion\Models\Rol.cs" />
     <Compile Include="Areas\Evaluaciones\Controllers\IndexController.cs" />
     <Compile Include="Areas\Evaluaciones\EvaluacionesAreaRegistration.cs" />
     <Compile Include="Controllers\Home\HomeController.cs" />

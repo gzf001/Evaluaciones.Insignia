@@ -9,7 +9,7 @@ namespace Castellano.Web.UI.Areas.Administracion.Models
 {
     public class Aplicacion : Castellano.Membresia.Aplicacion
     {
-        public Aplicacion()
+        public Aplicacion() : base()
         {
             this.SelectedPerfil = new List<Guid>();
 

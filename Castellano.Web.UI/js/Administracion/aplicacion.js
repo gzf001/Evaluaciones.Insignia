@@ -71,6 +71,10 @@
                 data: obj,
                 success: function () {
 
+                    $('#modalForm').hide();
+
+                    swal("Listo!", "Su información fue guardada correctamente", "success");
+
                     table.ajax.reload();
                 },
                 error: function (data) {
@@ -83,7 +87,7 @@
 
     $(document).on('click', 'a[typebutton=Add]', function () {
 
-        limpiar();
+        popUp();
 
         $('#aplicacionId').val(generateId());
 
@@ -93,7 +97,7 @@
 
         $.getJSON('/Administracion/Admin/GetAplicacion/' + $(this).attr('data-value'), function (data) {
 
-            limpiar();
+            popUp();
 
             $('#aplicacionId').val(data.Id);
             $('#nombre').val(data.Nombre);
@@ -174,7 +178,7 @@ function gridView() {
     return table;
 }
 
-function limpiar() {
+function popUp() {
 
     var form = $('#modalForm');
 
@@ -191,4 +195,6 @@ function limpiar() {
     form.find(".errorText").removeClass("errorText");
     form.find(".validText").removeClass("validText");
     form.find("em").remove();
+
+    $('#modalForm').show();
 }

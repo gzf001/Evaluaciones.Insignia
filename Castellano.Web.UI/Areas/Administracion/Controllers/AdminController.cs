@@ -539,10 +539,35 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
         [HttpGet]
         public ActionResult Roles()
         {
-            
+
             return this.View();
         }
 
+        [Authorize]
+        [HttpGet]
+        public JsonResult GetRoles(int ambitoCodigo)
+        {
+            Castellano.Ambito ambito = Castellano.Ambito.Get(ambitoCodigo);
+
+            Castellano.Web.UI.Areas.Administracion.Models.Rol.Roles rol = new Castellano.Web.UI.Areas.Administracion.Models.Rol.Roles();
+
+            rol.data = new List<Castellano.Web.UI.Areas.Administracion.Models.Rol>();
+
+            foreach (Castellano.Membresia.Rol r in Castellano.Membresia.Rol.GetAll(ambito, true))
+            {
+                rol.data.Add(new Castellano.Web.UI.Areas.Administracion.Models.Rol
+                {
+                    Id = r.Id,
+                    AmbitoCodigo = r.AmbitoCodigo,
+                    Nombre = r.Nombre,
+                    Clave = r.Clave,
+                    Accion = string.Format("{0}{1}", Castellano.Helpers.ActionLinkExtension.ActionLinkEmbedded(r.Id, null, Castellano.Helpers.TypeButton.Edit),
+                                                     Castellano.Helpers.ActionLinkExtension.ActionLinkEmbedded(r.Id, null, Castellano.Helpers.TypeButton.Delete))
+                });
+            }
+
+            return this.Json(rol, JsonRequestBehavior.AllowGet);
+        }
         #endregion
 
         [Authorize]
