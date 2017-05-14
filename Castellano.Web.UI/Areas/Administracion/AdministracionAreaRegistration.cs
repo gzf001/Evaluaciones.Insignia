@@ -83,9 +83,21 @@ namespace Castellano.Web.UI.Areas.Administracion
             #region Roles
 
             context.MapRoute(
+                name: "GetRol",
+                url: "Administracion/Admin/GetRol/{id}",
+                defaults: new { area = "Administracion", controller = "Admin", action = "GetRol", id = "" }
+            );
+
+            context.MapRoute(
                 name: "GetRoles",
                 url: "Administracion/Admin/GetRoles/{ambitoCodigo}",
                 defaults: new { area = "Administracion", controller = "Admin", action = "GetRoles", ambitoCodigo = "" }
+            );
+
+            context.MapRoute(
+                name: "DeleteRol",
+                url: "Administracion/Admin/DeleteRol/{id}",
+                defaults: new { area = "Administracion", controller = "Admin", action = "DeleteRol", id = "" }
             );
 
             #endregion

@@ -358,8 +358,8 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
                     Nombre = aplicacion.Nombre,
                     Clave = aplicacion.Clave,
                     Orden = aplicacion.Orden,
-                    Accion = string.Format("{0}{1}", Castellano.Helpers.ActionLinkExtension.ActionLinkEmbedded(aplicacion.Id, null, Castellano.Helpers.TypeButton.Edit),
-                                                     Castellano.Helpers.ActionLinkExtension.ActionLinkEmbedded(aplicacion.Id, null, Castellano.Helpers.TypeButton.Delete))
+                    Accion = string.Format("{0}{1}", Castellano.Helpers.ActionLinkExtension.ActionLinkCrudEmbedded(aplicacion.Id, null, Castellano.Helpers.TypeButton.Edit),
+                                                     Castellano.Helpers.ActionLinkExtension.ActionLinkCrudEmbedded(aplicacion.Id, null, Castellano.Helpers.TypeButton.Delete))
                 });
             }
 
@@ -544,6 +544,33 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
         }
 
         [Authorize]
+        [HttpPost]
+        public ActionResult Roles(Castellano.Web.UI.Areas.Administracion.Models.Rol model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            Castellano.Membresia.Rol rol = Castellano.Membresia.Rol.Get(model.Id);
+
+            using (Castellano.Membresia.Context context = new Castellano.Membresia.Context())
+            {
+                new Castellano.Membresia.Rol
+                {
+                    Id = model.Id,
+                    AmbitoCodigo = model.AmbitoCodigo,
+                    Nombre = model.Nombre.Trim(),
+                    Clave = string.IsNullOrEmpty(model.Clave) ? default(string) : model.Clave.Trim()
+                }.Save(context);
+
+                context.SubmitChanges();
+            }
+
+            return this.Json("200 ok", JsonRequestBehavior.DenyGet);
+        }
+
+        [Authorize]
         [HttpGet]
         public JsonResult GetRoles(int ambitoCodigo)
         {
@@ -561,10 +588,59 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
                     AmbitoCodigo = r.AmbitoCodigo,
                     Nombre = r.Nombre,
                     Clave = r.Clave,
-                    Accion = string.Format("{0}{1}", Castellano.Helpers.ActionLinkExtension.ActionLinkEmbedded(r.Id, null, Castellano.Helpers.TypeButton.Edit),
-                                                     Castellano.Helpers.ActionLinkExtension.ActionLinkEmbedded(r.Id, null, Castellano.Helpers.TypeButton.Delete))
+                    Accion = string.Format("{0}{1}{2}", Castellano.Helpers.ActionLinkExtension.ActionLink(null, null, "GetPermissions", "Admin", "Administracion", Castellano.Helpers.TypeButton.Accept, r.Id, "btn btn-success btn-xs btn-flat", "fa-legal", "Configurar permisos"),
+                                                        Castellano.Helpers.ActionLinkExtension.ActionLinkCrudEmbedded(r.Id, null, Castellano.Helpers.TypeButton.Edit),
+                                                        Castellano.Helpers.ActionLinkExtension.ActionLinkCrudEmbedded(r.Id, null, Castellano.Helpers.TypeButton.Delete))
                 });
             }
+
+            return this.Json(rol, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public JsonResult GetRol(Guid id)
+        {
+            Castellano.Membresia.Rol rol = Castellano.Membresia.Rol.Get(id);
+
+            return this.Json(new Castellano.Web.UI.Areas.Administracion.Models.Rol
+            {
+                Id = rol.Id,
+                Nombre = rol.Nombre,
+                Clave = rol.Clave
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public JsonResult DeleteRol(Guid id)
+        {
+            Castellano.Membresia.Rol rol = Castellano.Membresia.Rol.Get(id);
+
+            using (Castellano.Membresia.Context context = new Castellano.Membresia.Context())
+            {
+                new Castellano.Membresia.Rol
+                {
+                    Id = rol.Id,
+                    AmbitoCodigo = rol.AmbitoCodigo,
+                    Nombre = rol.Nombre,
+                    Clave = rol.Clave,
+                }.Delete(context);
+
+                context.SubmitChanges();
+            }
+
+            return this.Json("200 ok", JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public JsonResult GetPermisos(Guid rolId)
+        {
+            Castellano.Membresia.Rol rol = Castellano.Membresia.Rol.Get(rolId);
+
+
+            
 
             return this.Json(rol, JsonRequestBehavior.AllowGet);
         }

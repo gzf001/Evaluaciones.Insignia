@@ -9,13 +9,8 @@ namespace Castellano.Helpers
 {
     public static class ActionLinkExtension
     {
-        public static MvcHtmlString ActionLink(this HtmlHelper htmlHelper, string text, string action, string controller, string area, Castellano.Helpers.TypeButton? typeButton, object dataValue, string css)
+        public static MvcHtmlString ActionLink(this HtmlHelper htmlHelper, string text, string action, string controller, string area, Castellano.Helpers.TypeButton typeButton, object dataValue, string css, string faIcon, string toolTip)
         {
-            if (!typeButton.HasValue)
-            {
-                throw new Exception("El tipo de botón es obligatorio");
-            }
-            //< a class="btn btn-primary btn-xs btn-flat md-trigger" data-value="@aplicacion.Id" data-modal="form-primary" href="#" data-original-title="Editar" data-toggle="tooltip"><i class="fa fa-pencil"></i></a>
             TagBuilder t = new TagBuilder("a");
 
             if (!string.IsNullOrEmpty(css))
@@ -44,14 +39,18 @@ namespace Castellano.Helpers
                 t.MergeAttribute("data-value", dataValue.ToString());
             }
 
+            if (!(typeButton.Equals(Castellano.Helpers.TypeButton.Edit) || typeButton.Equals(Castellano.Helpers.TypeButton.Edit)) && !string.IsNullOrEmpty(faIcon))
+            {
+                t.InnerHtml = string.Format("<i class='fa {0}'>{1}</i>", faIcon, text);
+            }
+
+            if (!(typeButton.Equals(Castellano.Helpers.TypeButton.Edit) || typeButton.Equals(Castellano.Helpers.TypeButton.Edit)) && !string.IsNullOrEmpty(toolTip))
+            {
+                t.MergeAttribute("title", toolTip);
+            }
+
             switch (typeButton)
             {
-                case Castellano.Helpers.TypeButton.Accept:
-                    {
-                        t.InnerHtml = string.Format("<i>{0}</i>", text);
-
-                        break;
-                    }
                 case Castellano.Helpers.TypeButton.Edit:
                     {
                         t.MergeAttribute("title", "Editar");
@@ -68,22 +67,16 @@ namespace Castellano.Helpers
 
                         break;
                     }
-                case Castellano.Helpers.TypeButton.Back:
-                    {
-                        t.InnerHtml = string.Format("<i>{0}</i>", text);
-
-                        break;
-                    }
             }
 
             t.MergeAttribute("onclick", "clickEdicion(this)");
 
-            t.MergeAttribute("typeButton", typeButton.Value.ToString());
+            t.MergeAttribute("typeButton", typeButton.ToString());
 
             return new MvcHtmlString(t.ToString(TagRenderMode.Normal));
         }
 
-        public static MvcHtmlString ActionLinkEmbedded(Guid id, Guid? parentId, Castellano.Helpers.TypeButton typeButton)
+        public static MvcHtmlString ActionLinkCrudEmbedded(Guid id, Guid? parentId, Castellano.Helpers.TypeButton typeButton)
         {
             TagBuilder t = new TagBuilder("a");
 
