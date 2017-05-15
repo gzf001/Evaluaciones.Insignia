@@ -17,6 +17,7 @@
     @Styles.Render("~/Content/bootstrap.slider")
     @Styles.Render("~/Content/intro")
     @Styles.Render("~/Content/jquery.niftymodals-css")
+    @Styles.Render("~/Content/jquery.icheck-css")
 
     @Styles.Render("~/Content/layout")
     @Styles.Render("~/Content/style-jquery-ui")
@@ -39,7 +40,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <a href="#">Home </a>
+                        <a href="#">Home</a>
                     </li>
                     <li> @Html.ActionLink("Acerca de...", "About", "Admin", new { area = "Administracion" }) </li>
                 </ul>
@@ -102,7 +103,8 @@
     @Scripts.Render("~/Content/js/page-dashboard")
     @Scripts.Render("~/Content/js/jquery.datatable")
     @Scripts.Render("~/Content/js/dataTables.bootstrap")
-    
+    @Scripts.Render("~/Content/js/jquery.icheck")
+
     @Scripts.Render("~/js/Layout/layout")
     @Scripts.Render("~/js/Layout/menu-principal")
 

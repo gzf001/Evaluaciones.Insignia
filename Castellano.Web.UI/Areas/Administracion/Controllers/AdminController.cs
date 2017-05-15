@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc.Extensions.Html;
 
 namespace Castellano.Web.UI.Areas.Administracion.Controllers
 {
@@ -512,7 +513,6 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
 
             Castellano.Web.UI.Areas.Administracion.Models.MenuItem m = new Castellano.Web.UI.Areas.Administracion.Models.MenuItem
             {
-                NombreAplicacion = menuItem.Aplicacion.Nombre,
                 Nombre = menuItem.Nombre,
                 Informacion = menuItem.Informacion,
                 Url = menuItem.Url,
@@ -588,7 +588,7 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
                     AmbitoCodigo = r.AmbitoCodigo,
                     Nombre = r.Nombre,
                     Clave = r.Clave,
-                    Accion = string.Format("{0}{1}{2}", Castellano.Helpers.ActionLinkExtension.ActionLink(null, null, "GetPermissions", "Admin", "Administracion", Castellano.Helpers.TypeButton.Accept, r.Id, "btn btn-success btn-xs btn-flat", "fa-legal", "Configurar permisos"),
+                    Accion = string.Format("{0}{1}{2}", Castellano.Helpers.ActionLinkExtension.ActionLink(null, null, string.Format("GetPermissions?rolId={0}", r.Id), "Admin", "Administracion", Castellano.Helpers.TypeButton.Accept, r.Id, "btn btn-success btn-xs btn-flat", "fa-legal", "Configurar permisos"),
                                                         Castellano.Helpers.ActionLinkExtension.ActionLinkCrudEmbedded(r.Id, null, Castellano.Helpers.TypeButton.Edit),
                                                         Castellano.Helpers.ActionLinkExtension.ActionLinkCrudEmbedded(r.Id, null, Castellano.Helpers.TypeButton.Delete))
                 });
@@ -635,15 +635,61 @@ namespace Castellano.Web.UI.Areas.Administracion.Controllers
 
         [Authorize]
         [HttpGet]
-        public JsonResult GetPermisos(Guid rolId)
+        public ActionResult GetPermissions(Guid rolId)
         {
             Castellano.Membresia.Rol rol = Castellano.Membresia.Rol.Get(rolId);
 
-
-            
-
-            return this.Json(rol, JsonRequestBehavior.AllowGet);
+            return this.View(new Castellano.Web.UI.Areas.Administracion.Models.RolAccion
+            {
+                RolId = rol.Id,
+                Rol = rol,
+                AplicacionId = default(Guid),
+                MenuId = Castellano.Membresia.Menu.MenuPrincipal.Id,
+                MenuItemId = default(Guid),
+                AccionCodigo = default(int)
+            });
         }
+
+        //[Authorize]
+        [HttpGet]
+        public JsonResult GetRolAccion(Guid rolId, Guid aplicacionId)
+        {
+            Castellano.Membresia.Rol rol = Castellano.Membresia.Rol.Get(rolId);
+
+            Castellano.Membresia.Aplicacion aplicacion = Castellano.Membresia.Aplicacion.Get(aplicacionId);
+
+            List<Castellano.Membresia.Accion> acciones = Castellano.Membresia.Accion.GetAll();
+
+            Castellano.Web.UI.Areas.Administracion.Models.RolAccion.RolAcciones rolAcciones = new Castellano.Web.UI.Areas.Administracion.Models.RolAccion.RolAcciones();
+
+            foreach (Castellano.Membresia.MenuItem menuItem in Castellano.Membresia.MenuItem.GetAll(Castellano.Membresia.Menu.MenuPrincipal, aplicacion))
+            {
+                Castellano.Web.UI.Areas.Administracion.Models.RolAccion model = new Castellano.Web.UI.Areas.Administracion.Models.RolAccion
+                {
+                    RolId = rol.Id,
+                    AplicacionId = aplicacion.Id,
+                    MenuId = menuItem.MenuId,
+                    MenuItemId = menuItem.Id,
+                    MenuItem = menuItem.Nombre
+                };
+
+                foreach (Castellano.Membresia.Accion accion in acciones)
+                {
+                    model.Accion += string.Format("<label class='checkbox-inline'><input type='checkbox' checked='' name='Accion' class='icheck'>{0}</label>", accion.Nombre);
+
+                    model.Acciones.Add(new SelectListItem
+                    {
+                        Text = accion.Nombre,
+                        Value = accion.Codigo.ToString()
+                    });
+                }
+
+                rolAcciones.data.Add(model);
+            }
+
+            return this.Json(rolAcciones, JsonRequestBehavior.AllowGet);
+        }
+
         #endregion
 
         [Authorize]

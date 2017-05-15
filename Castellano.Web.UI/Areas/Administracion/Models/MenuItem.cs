@@ -8,11 +8,6 @@ namespace Castellano.Web.UI.Areas.Administracion.Models
 {
     public class MenuItem : Castellano.Membresia.MenuItem
     {
-        [Display(Name = "Aplicación:")]
-        public string NombreAplicacion
-        {
-            get;
-            set;
-        }
+
     }
 }
